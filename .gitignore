@@ -3,9 +3,34 @@ dist/
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
 
 # Cache directories
 .puzzle_cache/
+
+# Packwiz temp files
+*.tmp
+.packwizignore
 
 # User-specific config files that shouldn't be distributed
 config/sodium-fingerprint.json

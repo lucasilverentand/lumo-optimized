@@ -3,7 +3,7 @@ name: Build Modpack
 on:
   push:
     branches: [main]
-    tags: ['v*']
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: "1.22"
 
       - name: Install packwiz
         run: go install github.com/packwiz/packwiz@latest
@@ -62,25 +62,22 @@ jobs:
 
             ### Downloads
 
-            | File | Launcher |
-            |------|----------|
-            | `lumo-optimized-${{ github.ref_name }}.mrpack` | Prism Launcher, Modrinth, ATLauncher, MultiMC |
-            | `lumo-optimized-${{ github.ref_name }}-curseforge.zip` | CurseForge, GDLauncher |
+            | File | Launcher | Installation |
+            |------|----------|--------------|
+            | `lumo-optimized-${{ github.ref_name }}.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC | Drag & drop or Import from file |
+            | `lumo-optimized-${{ github.ref_name }}-curseforge.zip` | CurseForge, GDLauncher | Import as modpack |
 
-      - name: Publish to Modrinth
-        uses: Kir-Antipov/mc-publish@v3.3
-        with:
-          modrinth-id: lumo-optimized
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          files: dist/lumo-optimized-${{ github.ref_name }}.mrpack
-          name: Lumo Optimized ${{ github.ref_name }}
-          version: ${{ github.ref_name }}
-          version-type: release
-          loaders: fabric
-          game-versions: |
-            1.21.3
-            1.21.4
-            1.21.5
-            1.21.6
-            1.21.7
-            1.21.8
+            ### Installation Instructions
+
+            **Prism Launcher (Recommended):**
+            1. Download the `.mrpack` file
+            2. Open Prism Launcher
+            3. Click "Add Instance" → "Import from zip"
+            4. Select the downloaded `.mrpack` file
+            5. Click OK to install
+
+            **CurseForge:**
+            1. Download the `-curseforge.zip` file
+            2. Open CurseForge launcher
+            3. Go to "Create Custom Profile"
+            4. Click "Import" and select the zip file

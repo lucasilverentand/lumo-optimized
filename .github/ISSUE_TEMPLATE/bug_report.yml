@@ -1,0 +1,95 @@
+name: Bug Report
+description: Report a bug or issue with the modpack
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: Tell us what should happen
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Modpack Version
+      description: Which version of Lumo Optimized are you using?
+      placeholder: e.g., 1.0.2
+    validations:
+      required: true
+
+  - type: input
+    id: launcher
+    attributes:
+      label: Launcher
+      description: Which launcher are you using?
+      placeholder: e.g., Prism Launcher, Modrinth App, CurseForge
+    validations:
+      required: true
+
+  - type: input
+    id: minecraft
+    attributes:
+      label: Minecraft Version
+      description: Which Minecraft version?
+      placeholder: e.g., 1.21.8
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Crash Log / Latest Log
+      description: |
+        Please provide crash logs or latest.log if relevant.
+        You can upload files or paste the log using a service like https://mclo.gs/
+      placeholder: Paste log URL or content here
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here (screenshots, modifications, etc.)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: modified
+    attributes:
+      label: Have you modified the modpack?
+      description: Did you add or remove any mods?
+      options:
+        - label: I have not modified the modpack
+        - label: I added/removed mods (please specify in Additional Context)

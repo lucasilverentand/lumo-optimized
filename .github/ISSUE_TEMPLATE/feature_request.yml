@@ -1,0 +1,79 @@
+name: Feature Request
+description: Suggest a mod addition or feature for the modpack
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please fill out the form below.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request Type
+      description: What kind of feature are you requesting?
+      options:
+        - Add a new mod
+        - Remove a mod
+        - Update configuration
+        - Other enhancement
+    validations:
+      required: true
+
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod Name (if applicable)
+      description: If requesting a mod addition/removal, what is the mod name?
+      placeholder: e.g., Sodium Extra
+    validations:
+      required: false
+
+  - type: input
+    id: mod-link
+    attributes:
+      label: Mod Link (if applicable)
+      description: Link to the mod page (Modrinth, CurseForge, GitHub)
+      placeholder: https://modrinth.com/mod/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of what you want to happen
+      placeholder: Describe your feature request
+    validations:
+      required: true
+
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Reasoning
+      description: Why should this be added to the modpack?
+      placeholder: |
+        - Improves performance by...
+        - Adds quality-of-life feature for...
+        - Fixes compatibility with...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or mods?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: Please confirm the following
+      options:
+        - label: This mod/feature is compatible with Fabric
+        - label: This mod/feature is compatible with Minecraft 1.21.x
+        - label: This mod/feature doesn't conflict with existing performance mods

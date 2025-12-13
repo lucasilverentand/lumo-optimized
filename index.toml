@@ -618,7 +618,7 @@ hash = "028c0c4eb8e7f76ee32ba6889bae9c058da066c049d2e3e6c1172f84f9f1c134"
 metafile = true
 
 [[files]]
-file = "resourcepacks/tras-fresh-player.pw.toml"
+file = "resourcepacks/fresh-moves.pw.toml"
 hash = "bf825aff575d42c7b992d0e6b39cd92c28ea62fc1910007528779ea86711c33a"
 metafile = true
 
