@@ -1,13 +1,13 @@
 name = "Lumo Optimized"
 author = "Luca"
-version = "1.0.1"
+version = "1.0.2"
 description = "A performance-focused Fabric modpack with quality-of-life improvements, optimized rendering, and beautiful visuals."
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "6241e533dc1ea5d7a33a4349137da389eee2d879ff08fd412503a67efecca1c0"
+hash = "74cd31b8142834128c3315a09c1a2c17f91c3afa4185b799b59602c51ae42626"
 
 [versions]
 fabric = "0.18.2"

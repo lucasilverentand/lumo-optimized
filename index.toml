@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = ".github/workflows/build.yml"
+hash = "8a60875a330a9b0c9763b373ae757027851c5eb5e598506295070f7fb3604332"
+
+[[files]]
 file = "Makefile"
 hash = "ae4b1a5cfa59099ebbdcd87f292efbc468f9ef8fcaf6743a34d15eb54fd9cfc7"
 
@@ -290,7 +294,7 @@ hash = "121b93764159be6fb7dab523b29a844e2bb78400ce8c48f52135a097e9b0006e"
 
 [[files]]
 file = "config/yosbr/options.txt"
-hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+hash = "f8fa7006aa14cddc80edae37646bf745c2703d726c4507f5f66e9a8a48d10e73"
 
 [[files]]
 file = "config/zoomify.json"
