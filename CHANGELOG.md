@@ -7,27 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Steam Deck Edition with optimized settings for handheld gaming
+  - Pre-configured controller support (Controlify)
+  - Optimized render/simulation distance (10/8 chunks)
+  - 60 FPS cap for battery life
+  - Fullscreen mode by default
+  - Disabled view bobbing for handheld comfort
+  - Shaders disabled by default
+  - Lower quality Distant Horizons LODs
+- Documentation site with Astro Starlight and Rapide theme
+- Steam Deck installation guide in documentation
+- Build script for Steam Deck edition
+
 ### Changed
+
 - Removed Modrinth publishing workflow
 - Improved GitHub release notes with installation instructions
 - Updated project descriptions for consistency
+- GitHub Actions now builds both Standard and Steam Deck editions
 
 ### Fixed
+
 - Renamed Fresh Moves resource pack file for clarity
 
 ## [1.0.2] - 2024-12-13
 
 ### Added
+
 - Automated Modrinth publishing workflow
 
 ## [1.0.1] - 2024-12-13
 
 ### Added
+
 - Enabled resource packs by default via YOSBR
 
 ## [1.0.0] - 2024-12-13
 
 ### Added
+
 - Initial release
 - Performance mods: Sodium, Lithium, FerriteCore, ImmediatelyFast, Entity Culling, More Culling, Dynamic FPS
 - Visual enhancements: Iris Shaders, Distant Horizons, Continuity, BetterGrassify, Animatica

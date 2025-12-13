@@ -1,0 +1,17 @@
+name = "Lumo Optimized - Steam Deck Edition"
+author = "Luca Silverentand"
+version = "1.0.0"
+description = "Steam Deck optimized Fabric modpack with controller support, performance tuning, and pre-configured settings for handheld gaming."
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = ""
+
+[versions]
+fabric = "0.18.2"
+minecraft = "1.21.8"
+
+[options]
+acceptable-game-versions = ["1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7"]

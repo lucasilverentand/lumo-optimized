@@ -11,6 +11,13 @@ A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life i
 
 **[View Full Documentation](https://lucasilverentand.github.io/lumo-optimized/)**
 
+## Editions
+
+| Edition        | Best For             | Download                                  |
+| -------------- | -------------------- | ----------------------------------------- |
+| **Standard**   | Desktop PCs, Laptops | `lumo-optimized-vX.X.X.mrpack`            |
+| **Steam Deck** | Valve Steam Deck     | `lumo-optimized-steam-deck-vX.X.X.mrpack` |
+
 ## Installation
 
 ### Prism Launcher (Recommended)

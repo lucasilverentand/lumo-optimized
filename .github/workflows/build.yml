@@ -22,14 +22,28 @@ jobs:
       - name: Install packwiz
         run: go install github.com/packwiz/packwiz@latest
 
-      - name: Build Modrinth pack
+      - name: Build Standard Edition
         run: |
           packwiz refresh
           mkdir -p dist
           packwiz modrinth export -o dist/lumo-optimized-${{ github.ref_name }}.mrpack
+          packwiz curseforge export -o dist/lumo-optimized-${{ github.ref_name }}-curseforge.zip
 
-      - name: Build CurseForge pack
-        run: packwiz curseforge export -o dist/lumo-optimized-${{ github.ref_name }}-curseforge.zip
+      - name: Build Steam Deck Edition
+        run: |
+          # Create build directory with base pack
+          mkdir -p .build/steam-deck
+          cp -r mods resourcepacks shaderpacks config index.toml icon.png .build/steam-deck/
+          cp steam-deck/pack.toml .build/steam-deck/
+
+          # Apply Steam Deck optimized configs
+          cp -r steam-deck/config/* .build/steam-deck/config/
+
+          # Build Steam Deck edition
+          cd .build/steam-deck
+          packwiz refresh
+          packwiz modrinth export -o ../../dist/lumo-optimized-steam-deck-${{ github.ref_name }}.mrpack
+          packwiz curseforge export -o ../../dist/lumo-optimized-steam-deck-${{ github.ref_name }}-curseforge.zip
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -60,24 +74,43 @@ jobs:
 
             A performance-focused Fabric modpack for Minecraft 1.21.8.
 
-            ### Downloads
+            ### Standard Edition
 
-            | File | Launcher | Installation |
-            |------|----------|--------------|
-            | `lumo-optimized-${{ github.ref_name }}.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC | Drag & drop or Import from file |
-            | `lumo-optimized-${{ github.ref_name }}-curseforge.zip` | CurseForge, GDLauncher | Import as modpack |
+            For desktop PCs and laptops.
 
-            ### Installation Instructions
+            | File | Launcher |
+            |------|----------|
+            | `lumo-optimized-${{ github.ref_name }}.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC |
+            | `lumo-optimized-${{ github.ref_name }}-curseforge.zip` | CurseForge, GDLauncher |
 
-            **Prism Launcher (Recommended):**
-            1. Download the `.mrpack` file
-            2. Open Prism Launcher
-            3. Click "Add Instance" → "Import from zip"
-            4. Select the downloaded `.mrpack` file
-            5. Click OK to install
+            ### Steam Deck Edition
 
-            **CurseForge:**
-            1. Download the `-curseforge.zip` file
-            2. Open CurseForge launcher
-            3. Go to "Create Custom Profile"
-            4. Click "Import" and select the zip file
+            Optimized for Steam Deck with controller support, performance tuning, and handheld-friendly settings.
+
+            | File | Launcher |
+            |------|----------|
+            | `lumo-optimized-steam-deck-${{ github.ref_name }}.mrpack` | Prism Launcher (Flatpak) |
+            | `lumo-optimized-steam-deck-${{ github.ref_name }}-curseforge.zip` | CurseForge |
+
+            **Steam Deck optimizations include:**
+            - Pre-configured controller support (Controlify)
+            - Optimized render distance (10 chunks) and simulation distance (8 chunks)
+            - 60 FPS cap for battery life
+            - Fullscreen by default
+            - Disabled view bobbing for handheld comfort
+            - Shaders disabled by default (can be enabled)
+            - Lower quality Distant Horizons LODs
+            - Optimized Dynamic FPS for power saving
+
+            ### Installation
+
+            **Prism Launcher:**
+            1. Download the `.mrpack` file for your platform
+            2. Open Prism Launcher → Add Instance → Import from zip
+            3. Select the file and click OK
+
+            **Steam Deck:**
+            1. Switch to Desktop Mode
+            2. Install Prism Launcher from Discover
+            3. Import the Steam Deck `.mrpack` file
+            4. Add to Steam as a non-Steam game for Gaming Mode

@@ -24,6 +24,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Introduction', slug: 'getting-started/introduction' },
 						{ label: 'Installation', slug: 'getting-started/installation' },
+						{ label: 'Steam Deck', slug: 'getting-started/steam-deck' },
 						{ label: 'First Launch', slug: 'getting-started/first-launch' },
 					],
 				},

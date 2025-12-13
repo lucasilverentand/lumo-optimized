@@ -6,21 +6,25 @@ DIST_DIR := dist
 PACK_NAME := lumo-optimized
 VERSION := $(shell grep '^version' pack.toml | cut -d'"' -f2)
 
-.PHONY: all clean modrinth curseforge refresh list help
+.PHONY: all clean modrinth curseforge refresh list help steam-deck
 
 all: modrinth curseforge
+
+all-editions: all steam-deck
 
 help:
 	@echo "Lumo Optimized Modpack Build System"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make modrinth    - Export .mrpack for Modrinth/Prism Launcher"
-	@echo "  make curseforge  - Export .zip for CurseForge"
-	@echo "  make all         - Export all formats"
-	@echo "  make refresh     - Refresh packwiz index"
-	@echo "  make list        - List all mods in the pack"
-	@echo "  make update      - Update all mods to latest versions"
-	@echo "  make clean       - Remove dist directory"
+	@echo "  make modrinth      - Export .mrpack for Modrinth/Prism Launcher"
+	@echo "  make curseforge    - Export .zip for CurseForge"
+	@echo "  make all           - Export all formats (standard edition)"
+	@echo "  make steam-deck    - Build Steam Deck optimized edition"
+	@echo "  make all-editions  - Build all editions (standard + Steam Deck)"
+	@echo "  make refresh       - Refresh packwiz index"
+	@echo "  make list          - List all mods in the pack"
+	@echo "  make update        - Update all mods to latest versions"
+	@echo "  make clean         - Remove dist directory"
 	@echo ""
 	@echo "Current version: $(VERSION)"
 
@@ -50,3 +54,8 @@ curseforge: $(DIST_DIR) refresh
 
 clean:
 	rm -rf $(DIST_DIR)
+	rm -rf .build
+
+# Build Steam Deck optimized edition
+steam-deck: $(DIST_DIR)
+	@./scripts/build-steam-deck.sh

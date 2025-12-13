@@ -1,0 +1,55 @@
+{
+  "animationSettings": {
+    "water": true,
+    "lava": true,
+    "fire": true,
+    "portal": true,
+    "blockAnimations": true,
+    "sculkSensor": true
+  },
+  "particleSettings": {
+    "particles": true,
+    "rainSplash": false,
+    "blockBreak": true,
+    "blockBreaking": true
+  },
+  "detailSettings": {
+    "sky": true,
+    "sun": true,
+    "stars": true,
+    "rainSnow": true,
+    "biomeColors": true,
+    "skyColors": true
+  },
+  "renderSettings": {
+    "fogEnabled": true,
+    "fogStart": 0,
+    "multiDimensionFog": true,
+    "lightUpdates": true,
+    "itemFrame": true,
+    "armorStand": true,
+    "painting": true,
+    "piston": true,
+    "beacon": true,
+    "enchantingTable": true,
+    "map": true,
+    "banner": true,
+    "signText": true
+  },
+  "extraSettings": {
+    "overlayCorner": "TOP_LEFT",
+    "textContrast": "CONTRAST",
+    "showFps": true,
+    "showFpsExtended": false,
+    "showCoords": true,
+    "showCoordsExtended": false,
+    "showMemory": false,
+    "reduceResolutionOnMac": false,
+    "cloudHeight": 192,
+    "cloudDistance": 100,
+    "toasts": false,
+    "advancedItemTooltips": false,
+    "steadyDebugHud": false,
+    "steadyDebugHudRefreshInterval": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "currentControllerUid": "",
+  "globalSettings": {
+    "outOfFocusInput": true,
+    "keyboardMovement": false,
+    "uiSounds": true,
+    "virtualMouseScreens": [],
+    "reachAroundPlacement": true,
+    "reachAroundPolicy": "EVERYWHERE",
+    "allowServerRumble": true,
+    "notifyLowBattery": true,
+    "lowBatteryThreshold": 0.2,
+    "openSettingsInNativeMode": true
+  },
+  "loadVibrationNatives": true,
+  "delegateSetup": false,
+  "quietMode": false
+}
