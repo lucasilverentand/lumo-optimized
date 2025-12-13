@@ -1,0 +1,230 @@
+---
+title: Troubleshooting
+description: Solutions for common issues with Lumo Optimized
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+# Troubleshooting
+
+Having issues? This guide covers common problems and their solutions.
+
+## Game Won't Launch
+
+### Java Issues
+
+**Symptoms:** Game fails to start, Java errors
+
+<Steps>
+1. Ensure Java 21 is installed
+2. In Prism Launcher: Settings → Java → Auto-detect
+3. Or manually select your Java 21 installation
+4. Try launching again
+</Steps>
+
+**Get Java 21:** [Adoptium Temurin](https://adoptium.net/)
+
+### Not Enough Memory
+
+**Symptoms:** Crash on launch, "Out of Memory" error
+
+<Steps>
+1. Edit instance → Settings → Java
+2. Increase Maximum memory allocation
+3. Recommended: 4-6 GB
+4. Don't exceed 50% of your total RAM
+</Steps>
+
+### Missing Libraries
+
+**Symptoms:** Error about missing files
+
+<Steps>
+1. Right-click instance → Edit → Mods
+2. Look for mods with warning icons
+3. Try: Delete mods → Re-add from Modrinth/CurseForge
+4. Or reinstall the entire modpack
+</Steps>
+
+## Performance Issues
+
+### Low FPS
+
+**Quick fixes:**
+1. Lower render distance (8-12 chunks)
+2. Disable shaders
+3. Allocate more RAM (up to 6-8 GB)
+4. Close other applications
+
+**See:** [Performance Tuning Guide](/lumo-optimized/customization/performance-tuning/)
+
+### Stuttering / Lag Spikes
+
+**Causes and solutions:**
+
+| Cause | Solution |
+|-------|----------|
+| Garbage collection | Use recommended JVM arguments |
+| Chunk loading | Lower simulation distance |
+| Shader compilation | Wait for initial compile |
+| World generation | Wait for chunks to generate |
+
+### Long Loading Times
+
+- First launch is always slower (caching)
+- Allocate RAM on SSD, not HDD
+- Reduce mods if heavily modded
+- Be patient with shader compilation
+
+## Shader Problems
+
+### Shaders Won't Enable
+
+<Steps>
+1. Update GPU drivers
+2. Check GPU supports OpenGL 4.6
+3. Try a different shader pack
+4. Disable Distant Horizons temporarily
+</Steps>
+
+### Black Screen with Shaders
+
+<Steps>
+1. Wait 1-2 minutes (compilation)
+2. Press **F3+R** to reload shaders
+3. Try pressing **Escape**
+4. Force-quit and disable shaders via config
+</Steps>
+
+**To disable shaders without launching:**
+1. Open `.minecraft/config/iris.properties`
+2. Set `enableShaders=false`
+3. Launch game
+4. Re-enable after fixing issue
+
+### Visual Glitches
+
+- Update GPU drivers (most common fix)
+- Try different shader preset
+- Check for shader pack updates
+- Report to shader pack developer
+
+## Mod-Specific Issues
+
+### Distant Horizons
+
+**LODs not generating:**
+- They generate as you explore
+- Check DH settings are enabled
+- Ensure enough RAM allocated
+
+**LOD gaps or holes:**
+- Normal during generation
+- Revisit area to regenerate
+- Delete DH data folder to reset
+
+### Voice Chat Not Working
+
+<Aside type="caution">
+Voice chat requires the server to have Simple Voice Chat installed.
+</Aside>
+
+**On supported servers:**
+1. Check microphone is connected
+2. Verify mic is selected in mod settings
+3. Test with **V** key (push-to-talk)
+4. Check system volume mixer
+
+### Xaero's Maps
+
+**Waypoints not showing:**
+- Press **U** to toggle waypoints
+- Check waypoint visibility settings
+- Ensure you're in the right dimension
+
+**Map not updating:**
+- Cave mode may be enabled
+- Check map settings
+- Try **Shift+M** to refresh
+
+## Server Connection Issues
+
+### Can't Connect to Server
+
+| Issue | Solution |
+|-------|----------|
+| Version mismatch | Ensure server is 1.21.x |
+| Mods required | Server may need specific mods |
+| Chat signatures | Check No Chat Reports settings |
+| Firewall | Allow Java through firewall |
+
+### Kicked for "Invalid Signature"
+
+This relates to chat signing:
+1. Open Mods → No Chat Reports
+2. Try different compatibility modes
+3. Contact server admin
+
+## Crashes
+
+### Finding Crash Logs
+
+**Location:**
+- `.minecraft/crash-reports/` - Crash reports
+- `.minecraft/logs/latest.log` - Latest log
+
+**Sharing logs:** Use [mclo.gs](https://mclo.gs) to paste and share
+
+### Reading Crash Reports
+
+Look for:
+1. The mod name in the stack trace
+2. "Caused by:" sections
+3. Memory errors (out of memory)
+4. Missing class errors
+
+### Common Crash Causes
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| OutOfMemoryError | Not enough RAM | Allocate more |
+| NoClassDefFoundError | Missing dependency | Install required library |
+| MixinApplyError | Mod conflict | Remove conflicting mod |
+| OpenGL Error | GPU/driver issue | Update drivers |
+
+## Resetting Configuration
+
+### Reset Specific Mod Config
+
+<Steps>
+1. Close Minecraft
+2. Open `.minecraft/config/`
+3. Delete the folder/file for that mod
+4. Launch game (defaults will regenerate)
+</Steps>
+
+### Full Config Reset
+
+<Steps>
+1. Back up your `saves` folder
+2. Back up `screenshots` if desired
+3. Delete the entire instance
+4. Re-import the modpack
+5. Restore `saves` folder
+</Steps>
+
+## Getting Help
+
+If you can't solve the issue:
+
+1. **Check existing issues:** [GitHub Issues](https://github.com/lucasilverentand/lumo-optimized/issues)
+2. **Create a bug report:** Include:
+   - Modpack version
+   - What you were doing
+   - Crash log (use mclo.gs)
+   - Steps to reproduce
+3. **Check mod-specific support** for individual mod issues
+
+<Aside type="tip">
+The more details you provide, the faster we can help!
+</Aside>

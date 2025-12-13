@@ -1,0 +1,181 @@
+---
+title: Resource Packs
+description: Included resource packs and how to add more
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+# Resource Packs
+
+Lumo Optimized comes with several resource packs pre-installed and enabled. This guide explains what's included and how to customize your resource pack setup.
+
+## Included Resource Packs
+
+These packs are included and enabled by default:
+
+### Fresh Animations
+**Complete mob animation overhaul.**
+
+Fresh Animations transforms how mobs move and behave visually:
+
+- Wolves wag their tails
+- Cats stretch and yawn
+- Villagers gesture while trading
+- Zombies shamble realistically
+- Skeletons have fluid bow animations
+- Creepers pulse before exploding
+- And much more...
+
+<Aside type="tip">
+Fresh Animations requires Entity Model Features (EMF) and Entity Texture Features (ETF), which are already included in the modpack.
+</Aside>
+
+### Fresh Moves
+**Player animation improvements.**
+
+Enhances your character's movements:
+
+- Smoother walking and running
+- Dynamic swimming animations
+- Better climbing animations
+- Improved jumping
+- Animated eyes
+
+### Better Leaves
+**Lush, bushy leaves.**
+
+Replaces the default leaf textures with rounder, bushier alternatives that make forests look more natural and full.
+
+### Low On Fire
+**See through flames.**
+
+When you're on fire, the overlay is lowered so you can actually see what's happening. No more burning blindness!
+
+## Managing Resource Packs
+
+### Changing Pack Order
+
+<Steps>
+1. Open **Options** → **Resource Packs**
+2. Packs on the right are active (top = highest priority)
+3. Drag packs up/down to change priority
+4. Click **Done** to apply
+</Steps>
+
+### Disabling Included Packs
+
+If you want to disable any included pack:
+
+<Steps>
+1. Open **Options** → **Resource Packs**
+2. Find the pack on the right side
+3. Click the arrow to move it to the left (disabled)
+4. Click **Done**
+</Steps>
+
+<Aside>
+Your pack preferences are saved. The defaults from YOSBR only apply on first install.
+</Aside>
+
+## Adding More Packs
+
+### Finding Resource Packs
+
+- [Modrinth Resource Packs](https://modrinth.com/resourcepacks)
+- [CurseForge Resource Packs](https://www.curseforge.com/minecraft/texture-packs)
+- [Planet Minecraft](https://www.planetminecraft.com/texture-packs/)
+
+### Installing New Packs
+
+<Steps>
+1. Download the resource pack (`.zip` file)
+2. Open **Options** → **Resource Packs**
+3. Click **Open Pack Folder**
+4. Copy the `.zip` file into the folder
+5. Return to game - the pack should appear on the left
+6. Click the arrow to enable it
+7. Drag to set priority
+8. Click **Done**
+</Steps>
+
+## Recommended Additions
+
+These packs work well with Lumo Optimized:
+
+### Visual Packs
+
+| Pack | Description | Compatibility |
+|------|-------------|---------------|
+| Faithful 32x | Double vanilla resolution | Excellent |
+| Stay True | Vanilla+ improvements | Excellent |
+| Vanilla Tweaks | Customizable vanilla changes | Excellent |
+| Dramatic Skys | Better sky textures | Good |
+
+### UI Packs
+
+| Pack | Description | Notes |
+|------|-------------|-------|
+| Dark Mode | Dark UI theme | Works with OptiGUI |
+| Vanilla Tweaks (UI) | Custom UI options | Customize online |
+
+### Audio Packs
+
+| Pack | Description |
+|------|-------------|
+| AmbientSounds | Environmental audio |
+| Sound Physics | Reverb and acoustics |
+
+<Aside type="caution">
+When adding resolution packs (32x, 64x, 128x+), you may need to allocate more RAM for texture loading.
+</Aside>
+
+## Compatibility Notes
+
+### OptiFine Format Support
+
+These mods enable OptiFine-style resource pack features:
+
+| Feature | Mod | Status |
+|---------|-----|--------|
+| Connected Textures | Continuity | Full support |
+| Custom Entity Models | EMF | Full support |
+| Custom Entity Textures | ETF | Full support |
+| Custom GUIs | OptiGUI | Full support |
+| Animated Textures | Animatica | Full support |
+| Custom Sky | Puzzle | Partial support |
+| Emissive Textures | Continuity/ETF | Full support |
+
+### Pack Conflicts
+
+If packs conflict:
+- Higher priority pack (top of list) wins
+- Check which features each pack changes
+- Try different ordering
+
+### Performance Impact
+
+- **Resolution**: Higher resolution = more VRAM needed
+- **Animations**: More custom animations = slightly more CPU
+- **Connected Textures**: Complex patterns = minor performance impact
+
+## Troubleshooting
+
+### Pack Not Appearing
+- Ensure it's a `.zip` file
+- Check if it's for the correct Minecraft version
+- Restart the game
+
+### Textures Not Loading
+- Check pack compatibility
+- Ensure required mods are present
+- Try disabling conflicting packs
+
+### Missing Features
+- Some OptiFine features may not be fully supported
+- Check mod compatibility list above
+- Update Continuity/EMF/ETF to latest versions
+
+### Performance Issues
+- Try lower resolution packs (16x or 32x)
+- Disable animation-heavy packs
+- Check RAM allocation

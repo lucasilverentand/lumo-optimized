@@ -1,0 +1,129 @@
+---
+title: Installation
+description: How to install Lumo Optimized on your preferred launcher
+---
+
+import { Tabs, TabItem, Steps, Aside } from "@astrojs/starlight/components";
+
+# Installation
+
+Lumo Optimized is distributed as a `.mrpack` file (Modrinth format) and a CurseForge-compatible `.zip` file. Choose the format that works with your launcher.
+
+## Download
+
+Get the latest release from [GitHub Releases](https://github.com/lucasilverentand/lumo-optimized/releases/latest).
+
+| File                                   | Compatible Launchers                              |
+| -------------------------------------- | ------------------------------------------------- |
+| `lumo-optimized-vX.X.X.mrpack`         | Prism Launcher, Modrinth App, ATLauncher, MultiMC |
+| `lumo-optimized-vX.X.X-curseforge.zip` | CurseForge, GDLauncher                            |
+
+## Launcher Instructions
+
+<Tabs>
+  <TabItem label="Prism Launcher" icon="star">
+    <Steps>
+    1. Download the `.mrpack` file from GitHub Releases
+    2. Open Prism Launcher
+    3. Click **Add Instance** in the top-left
+    4. Select **Import from zip** on the left sidebar
+    5. Click **Browse** and select the downloaded `.mrpack` file
+    6. Click **OK** to install
+    7. Wait for all mods to download
+    8. Double-click the instance to launch!
+    </Steps>
+
+    <Aside type="tip">
+      Prism Launcher is the recommended launcher for the best experience and easiest updates.
+    </Aside>
+
+  </TabItem>
+
+  <TabItem label="Modrinth App" icon="rocket">
+    **Drag and Drop (Easiest):**
+    <Steps>
+    1. Download the `.mrpack` file from GitHub Releases
+    2. Open Modrinth App
+    3. Drag and drop the `.mrpack` file into the app window
+    </Steps>
+
+    **Or manually:**
+    <Steps>
+    1. Download the `.mrpack` file from GitHub Releases
+    2. Open Modrinth App
+    3. Click **Create Profile**
+    4. Select **From File**
+    5. Choose the downloaded `.mrpack` file
+    6. Click **Create**
+    </Steps>
+
+  </TabItem>
+
+<TabItem label="ATLauncher" icon="laptop">
+  <Steps>
+    1. Download the `.mrpack` file from GitHub Releases 2. Open ATLauncher 3. Go
+    to the **Instances** tab 4. Click **Import** 5. Select the downloaded
+    `.mrpack` file 6. Click **OK** to install
+  </Steps>
+</TabItem>
+
+<TabItem label="MultiMC" icon="seti:config">
+  <Steps>
+    1. Download the `.mrpack` file from GitHub Releases 2. Open MultiMC 3. Click
+    **Add Instance** 4. Select **Import from zip** 5. Browse to the downloaded
+    `.mrpack` file 6. Click **OK** to install
+  </Steps>
+</TabItem>
+
+  <TabItem label="CurseForge" icon="puzzle">
+    <Steps>
+    1. Download the `-curseforge.zip` file from GitHub Releases
+    2. Open CurseForge launcher
+    3. Go to **Minecraft**
+    4. Click **Create Custom Profile**
+    5. Click **Import** at the top
+    6. Select the downloaded zip file
+    7. Wait for installation to complete
+    </Steps>
+
+    <Aside type="caution">
+      Use the `-curseforge.zip` file, not the `.mrpack` file!
+    </Aside>
+
+  </TabItem>
+</Tabs>
+
+## Memory Allocation
+
+For the best experience, allocate the right amount of RAM:
+
+| Usage                               | Recommended RAM |
+| ----------------------------------- | --------------- |
+| Without shaders                     | 4-6 GB          |
+| With shaders                        | 6-8 GB          |
+| With shaders + high render distance | 8-10 GB         |
+
+### How to Change RAM in Prism Launcher
+
+<Steps>
+  1. Right-click your instance → **Edit** 2. Go to **Settings** → **Java** 3.
+  Check **Memory** 4. Set **Maximum memory allocation** to your desired amount
+  5. Click **Close**
+</Steps>
+
+<Aside type="caution">
+  Don't allocate more than 50% of your total system RAM, and leave at least 4GB
+  for your OS and other applications.
+</Aside>
+
+## Java Requirements
+
+Lumo Optimized requires **Java 21** or higher. Most launchers will handle this automatically, but if you need to install Java manually:
+
+- [Adoptium Temurin 21](https://adoptium.net/) (Recommended)
+- [Oracle Java 21](https://www.oracle.com/java/technologies/downloads/)
+- [GraalVM 21](https://www.graalvm.org/) (For potential performance gains)
+
+## Next Steps
+
+Once installed, head to [First Launch](/lumo-optimized/getting-started/first-launch/) to learn about initial setup and configuration.

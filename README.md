@@ -9,6 +9,8 @@
 
 A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life improvements, optimized rendering, and beautiful visuals.
 
+**[View Full Documentation](https://lucasilverentand.github.io/lumo-optimized/)**
+
 ## Installation
 
 ### Prism Launcher (Recommended)

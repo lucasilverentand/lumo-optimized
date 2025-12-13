@@ -1,0 +1,176 @@
+---
+title: Utility Mods
+description: Helpful tools and utilities included in the modpack
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+# Utility Mods
+
+These mods provide useful tools and features that enhance your Minecraft experience with practical functionality.
+
+## Communication
+
+### Simple Voice Chat
+**Proximity voice chat for multiplayer.**
+
+Talk to nearby players using your microphone. Perfect for multiplayer servers and LAN games.
+
+**Features:**
+- Proximity-based voice
+- Group channels
+- Configurable range
+- Push-to-talk or voice activation
+- Volume controls per player
+
+**Default Key:** **V** (push to talk)
+
+**Settings:** Mods → Simple Voice Chat
+
+<Aside type="caution">
+Voice chat only works on servers that have Simple Voice Chat installed. It won't work on vanilla servers.
+</Aside>
+
+| Setting | Recommended |
+|---------|-------------|
+| Activation | Push to Talk |
+| Voice Distance | 48 blocks |
+| Microphone | Your preferred input |
+
+### CraftPresence
+**Discord Rich Presence.**
+
+Shows your Minecraft activity in Discord, including what server you're playing on and game details.
+
+**Features:**
+- Server name display
+- Player count
+- Custom status messages
+- Dimension display
+
+**Settings:** Mods → CraftPresence
+
+## Storage
+
+### Traveler's Backpack
+**Extra portable storage.**
+
+Craftable backpacks that provide additional inventory space you can carry with you.
+
+**Features:**
+- Large storage capacity
+- Sleeping bag included
+- Tool slots
+- Customizable colors
+- Fluid tank
+
+**Crafting:** Check the recipe in-game
+
+**Usage:** Place backpack or wear it and press **B** to open
+
+<Aside type="tip">
+Backpacks can be placed in the world as blocks or worn on your back!
+</Aside>
+
+## Building Tools
+
+### WorldEdit CUI
+**WorldEdit visualization.**
+
+If you use WorldEdit on a server, this mod shows your selection visually with a wireframe box.
+
+**Features:**
+- Selection visualization
+- Grid overlay
+- Works with server-side WorldEdit
+- Multiple selection display
+
+<Aside>
+This is a client-side visualization only. You need WorldEdit installed on the server to actually use WorldEdit commands.
+</Aside>
+
+## Debugging & Profiling
+
+### spark
+**Performance profiler.**
+
+A powerful profiling tool to analyze performance issues and find lag sources.
+
+**Commands:**
+```
+/spark profiler start    - Start profiling
+/spark profiler stop     - Stop and view results
+/spark health           - Show server health
+/spark tps              - Show TPS information
+```
+
+**When to Use:**
+- Experiencing lag or low FPS
+- Want to optimize your modpack
+- Debugging performance issues
+- Analyzing server performance
+
+### Crash Assistant
+**Better crash handling.**
+
+When Minecraft crashes, Crash Assistant provides more helpful information and can identify which mod likely caused the issue.
+
+**Features:**
+- Mod identification in crashes
+- Clearer crash reports
+- Suggested solutions
+- Easy crash log access
+
+## Privacy & Security
+
+### No Chat Reports
+**Disable chat reporting.**
+
+Removes the chat reporting feature added in 1.19.1, preventing reports and signature-related disconnects.
+
+**Features:**
+- Disables chat reporting
+- Removes signature requirements
+- Server compatibility modes
+- No gray "unsigned" messages
+
+**Settings:** Mods → No Chat Reports
+
+<Aside>
+Some servers require chat signatures. If you can't connect, check No Chat Reports settings.
+</Aside>
+
+## Included Libraries
+
+These mods are dependencies required by other mods:
+
+| Library | Used By |
+|---------|---------|
+| Fabric API | Most mods |
+| Fabric Language Kotlin | Kotlin-based mods |
+| Cloth Config | Configuration menus |
+| YACL | Configuration menus |
+| MidnightLib | Various mods |
+| Puzzles Lib | Puzzle, animations |
+| Cardinal Components API | Data storage |
+| LibIPN | Inventory Profiles Next |
+| UniLib | Various mods |
+| Forge Config API Port | Forge-style configs |
+| Placeholder API | Text placeholders |
+| YOSBR | Default configurations |
+
+### About YOSBR
+
+YOSBR (Your Options Shall Be Respected) allows modpacks to ship with default configuration files that only apply if you don't have existing settings. This is how Lumo Optimized provides pre-configured defaults without overwriting your preferences.
+
+## Summary
+
+| Mod | Primary Use |
+|-----|-------------|
+| Simple Voice Chat | Multiplayer communication |
+| CraftPresence | Discord integration |
+| Traveler's Backpack | Extra storage |
+| WorldEdit CUI | Building visualization |
+| spark | Performance debugging |
+| Crash Assistant | Crash analysis |
+| No Chat Reports | Privacy |

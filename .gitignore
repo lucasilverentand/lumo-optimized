@@ -1,5 +1,8 @@
 # Build output
 dist/
+docs/dist/
+docs/node_modules/
+docs/.astro/
 
 # macOS
 .DS_Store

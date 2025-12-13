@@ -1,0 +1,223 @@
+---
+title: Performance Tuning
+description: Optimize Lumo Optimized for your system
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+# Performance Tuning
+
+This guide helps you optimize Lumo Optimized for your specific hardware, whether you're on a low-end laptop or a high-end gaming PC.
+
+## Quick Performance Check
+
+<Steps>
+1. Launch Minecraft and load a world
+2. Press **F3** to open debug screen
+3. Note your FPS (top-left)
+4. Walk around to get an average
+</Steps>
+
+| FPS | Status |
+|-----|--------|
+| 60+ | Excellent |
+| 40-60 | Good |
+| 30-40 | Playable |
+| Below 30 | Needs optimization |
+
+## RAM Allocation
+
+### Finding the Right Amount
+
+| Setup | Recommended RAM |
+|-------|-----------------|
+| Base modpack, no shaders | 4 GB |
+| Base modpack with shaders | 6 GB |
+| With high-res textures | 6-8 GB |
+| Shaders + Distant Horizons | 8 GB |
+| Maximum quality | 8-10 GB |
+
+### How to Change RAM
+
+**Prism Launcher:**
+<Steps>
+1. Right-click instance → **Edit**
+2. Go to **Settings** → **Java**
+3. Check **Memory**
+4. Set **Maximum memory allocation**
+5. Click **Close**
+</Steps>
+
+<Aside type="caution">
+Don't allocate more than 50% of your total RAM. Leave at least 4GB for your operating system.
+</Aside>
+
+### JVM Arguments
+
+For better performance, use these JVM arguments:
+
+```
+-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1
+```
+
+These arguments optimize garbage collection for Minecraft.
+
+## Video Settings
+
+### Sodium Settings
+
+Access: **Options** → **Video Settings**
+
+#### General
+| Setting | Low-End | Balanced | High-End |
+|---------|---------|----------|----------|
+| Render Distance | 8 | 12-16 | 20+ |
+| Simulation Distance | 8 | 10 | 12 |
+| Max Framerate | V-Sync or 60 | 120+ | Unlimited |
+| GUI Scale | Auto | Auto | Auto |
+
+#### Quality
+| Setting | Low-End | Balanced | High-End |
+|---------|---------|----------|----------|
+| Graphics | Fast | Fancy | Fancy |
+| Clouds | OFF | Fast | Fancy |
+| Weather | Fast | Fast | Fancy |
+| Leaves | Fast | Smart | Fancy |
+| Particles | Minimal | Decreased | All |
+| Biome Blend | 1x1 | 3x3 | 5x5 |
+| Entity Distance | 75% | 100% | 150% |
+| Entity Shadows | OFF | ON | ON |
+| Vignette | OFF | ON | ON |
+
+### Sodium Extra Settings
+
+Access: **Options** → **Video Settings** → **Extras**
+
+Disable animations you don't need:
+- Disable fire animation if not needed
+- Disable water animation for slight boost
+- Disable unnecessary particles
+
+### Performance Tab
+| Setting | Impact |
+|---------|--------|
+| Fog | Medium |
+| Light Updates | Low |
+| Chunk Updates | Medium |
+| Item Frames | Low |
+
+## Distant Horizons Tuning
+
+Access: **Mods** → **Distant Horizons**
+
+### For Better Performance
+| Setting | Value |
+|---------|-------|
+| LOD Render Distance | 64-128 chunks |
+| Detail Quality | Low |
+| Vertical Quality | Low |
+| Threading | Match CPU cores |
+
+### For Better Quality
+| Setting | Value |
+|---------|-------|
+| LOD Render Distance | 256+ chunks |
+| Detail Quality | Medium-High |
+| Vertical Quality | Medium |
+| Compression | Lower values |
+
+<Aside type="tip">
+LODs are generated as you explore. New chunks won't have LODs until you've walked through them.
+</Aside>
+
+## Shader Optimization
+
+If using shaders, these settings have the biggest impact:
+
+### High Impact Settings
+1. **Shadow Quality** - Lower this first
+2. **Shadow Distance** - 2-4 chunks is usually enough
+3. **Volumetric Fog** - Disable for major FPS gain
+4. **SSAO** - Disable for better performance
+
+### Medium Impact Settings
+1. **Reflection Quality**
+2. **Cloud Quality**
+3. **Motion Blur** (disable anyway for gameplay)
+
+See the [Shaders Guide](/lumo-optimized/customization/shaders/) for detailed shader tuning.
+
+## System-Specific Optimization
+
+### Laptops
+- Keep laptop plugged in
+- Set power plan to "High Performance"
+- Ensure using dedicated GPU (not integrated)
+- Keep vents clear for cooling
+- Consider a cooling pad
+
+### AMD GPUs
+- Update to latest drivers
+- Enable AMD Anti-Lag
+- Use Radeon Chill for power savings
+
+### NVIDIA GPUs
+- Update to latest drivers
+- Enable "Max Performance" in NVIDIA Control Panel
+- Consider NVIDIA Reflex if available
+
+### Intel GPUs
+- Integrated graphics work best without shaders
+- Keep render distance low (8-10)
+- Use Potato shader preset if needed
+
+## Measuring Performance
+
+### Using spark
+
+Run these commands in-game:
+
+```
+/spark profiler start
+```
+Play for 30-60 seconds, then:
+```
+/spark profiler stop
+```
+
+This generates a report showing what's using the most resources.
+
+### Key Metrics in F3
+
+| Metric | Good Value |
+|--------|-----------|
+| FPS | 60+ |
+| E | Under 200 entities |
+| C | Chunk updates low |
+| Mem | Under 80% used |
+
+## Performance Presets
+
+### Potato Mode (Maximum FPS)
+- Render Distance: 6-8
+- Shaders: OFF
+- Clouds: OFF
+- Particles: Minimal
+- Entity Distance: 50%
+- No LODs or low quality LODs
+
+### Balanced Mode (Good FPS + Visuals)
+- Render Distance: 12
+- Shaders: Low/Medium preset
+- Clouds: Fast
+- Particles: Decreased
+- Entity Distance: 100%
+- LODs enabled
+
+### Quality Mode (Best Visuals)
+- Render Distance: 16-20
+- Shaders: High/Ultra preset
+- Clouds: Fancy
+- Particles: All
+- Entity Distance: 150%
+- High quality LODs

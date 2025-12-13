@@ -1,0 +1,174 @@
+---
+title: Adding Mods
+description: How to add or remove mods from Lumo Optimized
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+# Adding Mods
+
+While Lumo Optimized is designed to work great out of the box, you may want to add your own mods or remove ones you don't need.
+
+## Before You Start
+
+<Aside type="caution">
+Adding mods can cause compatibility issues. Always backup your worlds before making changes!
+</Aside>
+
+### Compatibility Checklist
+- [ ] Mod is for **Fabric** (not Forge/NeoForge)
+- [ ] Mod supports **Minecraft 1.21.x**
+- [ ] Check for known incompatibilities
+- [ ] Download from trusted sources (Modrinth, CurseForge)
+
+## Adding Mods
+
+### Via Prism Launcher
+
+<Steps>
+1. Right-click your instance → **Edit**
+2. Go to **Mods** on the left sidebar
+3. Click **Download mods**
+4. Search for the mod you want
+5. Select the correct version
+6. Click **Select mod for download**
+7. Click **Review and confirm**
+8. Close and launch the game
+</Steps>
+
+### Manual Installation
+
+<Steps>
+1. Download the mod `.jar` file
+2. Right-click instance → **Edit** → **Mods**
+3. Click **Add file**
+4. Select the downloaded `.jar`
+5. Or drag and drop into the mods list
+</Steps>
+
+<Aside type="tip">
+Prism Launcher's built-in mod browser ensures you get the right version for your Minecraft version.
+</Aside>
+
+## Removing Mods
+
+### Via Prism Launcher
+
+<Steps>
+1. Right-click your instance → **Edit**
+2. Go to **Mods**
+3. Find the mod you want to remove
+4. Right-click → **Delete**
+5. Confirm deletion
+</Steps>
+
+### Disabling vs Removing
+
+If you're unsure about removing a mod:
+1. Right-click the mod → **Disable**
+2. Test if the game works without it
+3. Permanently delete later if desired
+
+## Recommended Additions
+
+### Performance
+
+| Mod | Description |
+|-----|-------------|
+| C2ME | Chunk generation optimization |
+| Krypton | Network optimization |
+| LazyDFU | Faster startup |
+| Starlight | Lighting engine replacement |
+
+### Quality of Life
+
+| Mod | Description |
+|-----|-------------|
+| JEI/REI | Recipe viewer |
+| ShulkerBoxTooltip | Preview shulker contents |
+| LambDynamicLights | Dynamic lighting |
+| Mouse Tweaks | Better inventory controls |
+| BetterF3 | Cleaner debug screen |
+
+### Gameplay
+
+| Mod | Description |
+|-----|-------------|
+| Origins | Choose a species with abilities |
+| Create | Engineering and automation |
+| Cobblemon | Pokemon in Minecraft |
+| Waystones | Fast travel points |
+
+<Aside>
+Gameplay mods change the vanilla experience. Only add these if you want to diverge from vanilla.
+</Aside>
+
+## Common Compatibility Issues
+
+### Known Conflicts
+
+| Mod | Conflict With | Solution |
+|-----|---------------|----------|
+| OptiFine | Sodium, Iris | Don't use OptiFine |
+| Optifabric | All optimization mods | Don't use OptiFine |
+| Other render mods | Sodium | Choose one renderer |
+
+### Library Dependencies
+
+Many mods require libraries. Common ones:
+- **Fabric API** - Already included
+- **Cloth Config** - Already included
+- **Architectury** - May need for some mods
+
+Your launcher usually downloads dependencies automatically.
+
+## Updating Mods
+
+### Via Prism Launcher
+
+<Steps>
+1. Right-click instance → **Edit** → **Mods**
+2. Click **Check for updates**
+3. Review available updates
+4. Select mods to update
+5. Click **Update**
+</Steps>
+
+### Updating the Modpack
+
+When a new Lumo Optimized version releases:
+1. Download the new `.mrpack`
+2. Create a new instance
+3. Copy your `saves` folder from old instance
+4. Re-add any personal mods
+
+<Aside type="tip">
+Keep your personal mods noted somewhere so you can easily re-add them after updates!
+</Aside>
+
+## Troubleshooting
+
+### Game Won't Launch After Adding Mod
+1. Remove the new mod
+2. Check compatibility requirements
+3. Look for missing dependencies
+4. Check for mod conflicts
+
+### Crashes After Removing Mod
+1. Check if other mods depend on it
+2. Clear the config folder for that mod
+3. If world won't load, restore from backup
+
+### Mod Not Working
+1. Ensure it's enabled (not grayed out)
+2. Check if it needs configuration
+3. Verify correct Minecraft version
+4. Look for required libraries
+
+## Best Practices
+
+1. **Add mods one at a time** - Easier to troubleshoot
+2. **Test after each addition** - Launch game and verify
+3. **Keep backups** - Before any changes
+4. **Note your additions** - For future reference
+5. **Check mod pages** - For known issues and conflicts
