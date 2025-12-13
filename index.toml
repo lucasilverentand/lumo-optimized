@@ -5,6 +5,10 @@ file = "Makefile"
 hash = "ae4b1a5cfa59099ebbdcd87f292efbc468f9ef8fcaf6743a34d15eb54fd9cfc7"
 
 [[files]]
+file = "README.md"
+hash = "518461c738bf8518ed00f748a58020f541546e96275c18dd9e21fd97dd1c027d"
+
+[[files]]
 file = "config/DistantHorizons.toml"
 hash = "8f40fe8dc77169e76e238d8c80d7de5cab34b926d9092feacc20d62986df0f70"
 
@@ -129,14 +133,6 @@ file = "config/inventoryprofilesnext/inventoryprofiles.json"
 hash = "a44027e5b5bf7106a7657a84978cbdb46b0d55ac9db0cf77636d4670c4ebfdc3"
 
 [[files]]
-file = "config/inventoryprofilesnext/mc.silverswarm.online&25565/villager-trading-config-v2.json"
-hash = "d8159a94fc4562651a5c47dc83e46a7fd71dd70e143fca53d7b288393a87b4ef"
-
-[[files]]
-file = "config/inventoryprofilesnext/mc.silverswarm.online/villager-trading-config-v2.json"
-hash = "d8159a94fc4562651a5c47dc83e46a7fd71dd70e143fca53d7b288393a87b4ef"
-
-[[files]]
 file = "config/iris-excluded.json"
 hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
@@ -171,10 +167,6 @@ hash = "28e55a5f4425baccad039cf10a419d7b7b948a1f39e1b40b02f3246bde23f4c9"
 [[files]]
 file = "config/jade/sort-order.json"
 hash = "38ff3fca936fbe7ef0bad26a3a8ce16f08b6f83697b9ae82ca5f382b519a433d"
-
-[[files]]
-file = "config/jade/usernamecache.json"
-hash = "24769e59940abf931581a35a85aa7e7e24752647c0e6b68cc0280584b2c8ed6c"
 
 [[files]]
 file = "config/lithium.properties"
@@ -257,16 +249,8 @@ file = "config/voicechat/category-volumes.properties"
 hash = "3747c48bcb3a60834f88f056ee9b3a025153b11f6ca88652b4bddebb77cea009"
 
 [[files]]
-file = "config/voicechat/player-volumes.properties"
-hash = "cd385ca1eeda4df612631e2713cc6d503793157ef8bd5518d736429e6c1ae474"
-
-[[files]]
 file = "config/voicechat/translations.properties"
 hash = "b258a94a5ed60fbf93b66c452c3d6e36b044f630741f90e5b13852a4805b235e"
-
-[[files]]
-file = "config/voicechat/username-cache.json"
-hash = "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
 
 [[files]]
 file = "config/voicechat/voicechat-client.properties"
@@ -311,6 +295,14 @@ hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 [[files]]
 file = "config/zoomify.json"
 hash = "60a78fe1b271ce9b53e295235eb5a7cdb3a8692ca583fdaa7f5bc09f9049e2f4"
+
+[[files]]
+file = "dist/lumo-optimized-1.0.0-curseforge.zip"
+hash = "633e6740015ff11722c98ca9eb4f2ea5e66d020a1474322e3e66012c16872e1b"
+
+[[files]]
+file = "icon.png"
+hash = "4fbd86232694ec395a3bc9f7130448f5642fe4b1014e40be7c906e1dbaa27ae4"
 
 [[files]]
 file = "mods/animatica.pw.toml"
@@ -601,6 +593,10 @@ metafile = true
 file = "mods/zoomify.pw.toml"
 hash = "63ad1175108591347b8900f8459a45f7a2bfb395538e73f3bb2674d01dfb1f95"
 metafile = true
+
+[[files]]
+file = "overrides/icon.png"
+hash = "4fbd86232694ec395a3bc9f7130448f5642fe4b1014e40be7c906e1dbaa27ae4"
 
 [[files]]
 file = "resourcepacks/better-leaves.pw.toml"
