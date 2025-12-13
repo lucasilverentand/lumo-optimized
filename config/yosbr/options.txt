@@ -1,0 +1,1 @@
+resourcePacks:["vanilla","fabric","file/FreshAnimations_v1.10.2.zip","file/Better-Leaves-9.4.zip","continuity:default","continuity:glass_pane_culling_fix","file/+1.21.3 Fresh Moves v3.1.1 (With Animated Eyes).zip","file/LowOnFire v1.21.8§8.zip"]
