@@ -1,0 +1,16 @@
+filename = 'fancy-door-anim-1.0.1.jar'
+name = 'Fancy Door Animations'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.5', '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '8553ebadbb8f5c467b4401453820983ab2594f8b45a2ed28aa45fbfde5067c48fa08623db72218d9a530322ef79c239ee0d65482a5d0c2dbd891d5a826119cbd'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/gQIpdGQl/versions/V3a7HCMh/fancy-door-anim-1.0.1.jar'
+
+[update.modrinth]
+mod-id = 'gQIpdGQl'
+version = 'V3a7HCMh'

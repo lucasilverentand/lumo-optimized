@@ -1,0 +1,16 @@
+filename = 'entity_texture_features_1.21.6-fabric-7.0.6.jar'
+name = '[ETF] Entity Texture Features'
+side = 'client'
+x-prismlauncher-loaders = [ 'quilt', 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '52021fcab59c31875d5ce32ee1db27816a1baa7843e67c1c30e0c7819bc19ef0f1331dadb38558f1e5a9b6b9258b46bcb37a4c3cbf0b305cf0395ece5b64fb70'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/BVzZfTc1/versions/szy3S4To/entity_texture_features_1.21.6-fabric-7.0.6.jar'
+
+[update.modrinth]
+mod-id = 'BVzZfTc1'
+version = 'szy3S4To'

@@ -1,0 +1,16 @@
+# Build output
+dist/
+
+# macOS
+.DS_Store
+
+# Cache directories
+.puzzle_cache/
+
+# User-specific config files that shouldn't be distributed
+config/sodium-fingerprint.json
+config/xaeropatreon.txt
+config/jade/usernamecache.json
+config/voicechat/username-cache.json
+config/voicechat/player-volumes.properties
+config/inventoryprofilesnext/mc.*/

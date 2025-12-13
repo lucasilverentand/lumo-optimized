@@ -1,0 +1,16 @@
+filename = 'moreculling-fabric-1.21.8-1.4.0-beta.2.jar'
+name = 'More Culling'
+side = 'client'
+x-prismlauncher-loaders = [ 'quilt', 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'beta'
+
+[download]
+hash = '8c429895fa268c611f6421b8fb744857eba56ce178949e503682dccd29c6e85246824df061fd475cb449f6173c01e65c8aecef25b0a24b98e5b0667a80afc041'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/51shyZVL/versions/ivOsScf8/moreculling-fabric-1.21.8-1.4.0-beta.2.jar'
+
+[update.modrinth]
+mod-id = '51shyZVL'
+version = 'ivOsScf8'

@@ -1,0 +1,16 @@
+filename = 'flex-hud-0.3.3-1.21.6.jar'
+name = 'Flex HUD'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'alpha'
+
+[download]
+hash = 'a0be6632c4fcdd78f71ba88fb5910f0e6110c85604bd31e5d0f392a34ec86a76ff2eae2635f2ed840ad20c328c05cf275d1891dbb332907b932a3a8bced7f4ed'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/sJd4aIJv/versions/fotJtt8j/flex-hud-0.3.3-1.21.6.jar'
+
+[update.modrinth]
+mod-id = 'sJd4aIJv'
+version = 'fotJtt8j'

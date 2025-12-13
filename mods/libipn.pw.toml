@@ -1,0 +1,16 @@
+filename = 'libIPN-fabric-1.21.6-6.6.1.jar'
+name = 'libIPN'
+side = 'client'
+x-prismlauncher-loaders = [ 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '548eb905f5976242245b8c6bf37b7333f20897ebad23ab2455cdb714c8e1a2837626f3fc68210671cc8ce4ac11e5eef3b701e659a7513f98742abdea4633ff86'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/onSQdWhM/versions/B2GdJiKB/libIPN-fabric-1.21.6-6.6.1.jar'
+
+[update.modrinth]
+mod-id = 'onSQdWhM'
+version = 'B2GdJiKB'

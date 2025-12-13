@@ -1,0 +1,10 @@
+{
+  "states": {
+    "unfocused": {
+      "frame_rate_target": 20
+    },
+    "unplugged": {
+      "frame_rate_target": 30
+    }
+  }
+}

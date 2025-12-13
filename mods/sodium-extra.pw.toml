@@ -1,0 +1,16 @@
+filename = 'sodium-extra-fabric-0.7.0+mc1.21.8.jar'
+name = 'Sodium Extra'
+side = 'client'
+x-prismlauncher-loaders = [ 'quilt', 'fabric' ]
+x-prismlauncher-mc-versions = [ '1.21.8' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '1db359d1813ad16885860b200d0ec1a73582f186b3f7c68a5236bd7e11920d7571158787d89e659a5b5e85f9b146f17812d3483ecd28fabdd6cda639722e023c'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/PtjYWJkn/versions/Of25zuEG/sodium-extra-fabric-0.7.0%2Bmc1.21.8.jar'
+
+[update.modrinth]
+mod-id = 'PtjYWJkn'
+version = 'Of25zuEG'
