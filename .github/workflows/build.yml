@@ -16,7 +16,7 @@ jobs:
           - name: standard
             dir: ""
           - name: steam-deck
-            dir: steam-deck
+            dir: editions/steam-deck
           - name: macbook
             dir: editions/macbook
           - name: mac-studio

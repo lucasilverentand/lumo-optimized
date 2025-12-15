@@ -19,11 +19,7 @@ BUILD_DIR="$PROJECT_ROOT/.build/$EDITION"
 DIST_DIR="$PROJECT_ROOT/dist"
 
 # Determine edition source directory
-if [ "$EDITION" = "steam-deck" ]; then
-    EDITION_DIR="$PROJECT_ROOT/steam-deck"
-else
-    EDITION_DIR="$PROJECT_ROOT/editions/$EDITION"
-fi
+EDITION_DIR="$PROJECT_ROOT/editions/$EDITION"
 
 # Validate edition exists
 if [ ! -d "$EDITION_DIR" ]; then

@@ -29,7 +29,7 @@ jobs:
           - name: standard
             dir: ""
           - name: steam-deck
-            dir: steam-deck
+            dir: editions/steam-deck
           - name: low-end
             dir: editions/low-end
           - name: medium
@@ -58,25 +58,25 @@ jobs:
         run: |
           mkdir -p server
           cd server
-          
+
           if [ -f ~/server-cache/fabric-server-launch.jar ]; then
             echo "Using cached server"
             cp ~/server-cache/*.jar . || true
           else
             echo "Downloading Fabric server..."
             curl -OJ https://meta.fabricmc.net/v2/versions/loader/${{ env.MINECRAFT_VERSION }}/${{ env.FABRIC_LOADER_VERSION }}/1.0.1/server/jar
-            
+
             mkdir -p ~/server-cache
             cp *.jar ~/server-cache/ || true
           fi
-          
+
           echo "eula=true" > eula.txt
           ls -la
 
       - name: Configure server
         run: |
           cd server
-          
+
           cat > server.properties << 'EOF'
           server-port=25565
           online-mode=false
@@ -99,9 +99,9 @@ jobs:
         id: benchmark
         run: |
           cd server
-          
+
           echo "Starting server benchmark for ${{ matrix.edition.name }}..."
-          
+
           timeout ${{ inputs.duration || '180' }} java -Xms3G -Xmx3G \
             -XX:+UseG1GC \
             -XX:+ParallelRefProcEnabled \
@@ -110,45 +110,45 @@ jobs:
             -XX:+DisableExplicitGC \
             -Dlog4j2.formatMsgNoLookups=true \
             -jar server.jar nogui 2>&1 | tee server.log || true
-          
+
           echo "Benchmark complete"
 
       - name: Parse results
         run: |
           cd server
-          
+
           STARTUP_TIME=$(grep -oP 'Done \(\K[0-9.]+' server.log 2>/dev/null | head -1)
           if [ -z "$STARTUP_TIME" ]; then
             STARTUP_TIME="0"
           fi
-          
+
           ERROR_COUNT=$(grep -c "ERROR" server.log 2>/dev/null || echo "0")
           WARN_COUNT=$(grep -c "WARN" server.log 2>/dev/null || echo "0")
           CHUNKS=$(grep -c "Preparing spawn area" server.log 2>/dev/null || echo "0")
-          
+
           CRASH=0
           if grep -q "Exception\|Error\|Crash" server.log 2>/dev/null; then
             CRASH=1
           fi
-          
+
           SCORE=100
           STARTUP_INT=${STARTUP_TIME%.*}
           if [ ! -z "$STARTUP_INT" ] && [ "$STARTUP_INT" -gt 60 ] 2>/dev/null; then
             SCORE=$((SCORE - 20))
           fi
-          
+
           if [ "$ERROR_COUNT" -gt 10 ]; then
             SCORE=$((SCORE - 20))
           fi
-          
+
           if [ "$CRASH" -eq 1 ]; then
             SCORE=$((SCORE - 30))
           fi
-          
+
           if [ "$SCORE" -lt 0 ]; then
             SCORE=0
           fi
-          
+
           cat > results.json << JSONEOF
 {
   "edition": "${{ matrix.edition.name }}",
@@ -164,7 +164,7 @@ jobs:
   "score": ${SCORE}
 }
 JSONEOF
-          
+
           echo "Results for ${{ matrix.edition.name }}:"
           cat results.json
 
@@ -193,7 +193,7 @@ JSONEOF
       - name: Analyze and generate report
         run: |
           mkdir -p benchmark-report
-          
+
           echo "# Benchmark Results" > benchmark-report/BENCHMARK.md
           echo "" >> benchmark-report/BENCHMARK.md
           echo "*Generated: $(date -u '+%Y-%m-%d %H:%M UTC')*" >> benchmark-report/BENCHMARK.md
@@ -202,7 +202,7 @@ JSONEOF
           echo "" >> benchmark-report/BENCHMARK.md
           echo "| Edition | Score | Startup Time | Chunks | Errors | Status |" >> benchmark-report/BENCHMARK.md
           echo "|---------|-------|--------------|--------|--------|--------|" >> benchmark-report/BENCHMARK.md
-          
+
           for result_dir in benchmarks/benchmark-*/; do
             if [ -f "$result_dir/results.json" ]; then
               edition=$(jq -r '.edition' "$result_dir/results.json")
@@ -211,20 +211,20 @@ JSONEOF
               chunks=$(jq -r '.chunks_prepared' "$result_dir/results.json")
               errors=$(jq -r '.errors.error_count' "$result_dir/results.json")
               crashed=$(jq -r '.crashed' "$result_dir/results.json")
-              
+
               status="✅"
               if [ "$crashed" == "1" ]; then
                 status="❌"
               fi
-              
+
               echo "| $edition | $score/100 | ${startup}s | $chunks | $errors | $status |" >> benchmark-report/BENCHMARK.md
             fi
           done
-          
+
           echo "" >> benchmark-report/BENCHMARK.md
           echo "---" >> benchmark-report/BENCHMARK.md
           echo "*Server-side benchmarks on GitHub Actions Ubuntu runners (3GB RAM)*" >> benchmark-report/BENCHMARK.md
-          
+
           cat benchmark-report/BENCHMARK.md
 
       - name: Upload report
