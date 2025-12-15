@@ -3,7 +3,7 @@ title: Performance Mods
 description: Mods that optimize Minecraft's performance
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 
 # Performance Mods
 
@@ -12,11 +12,13 @@ Lumo Optimized includes the most effective performance mods available for Fabric
 ## Core Optimization
 
 ### Sodium
+
 **The foundation of Minecraft performance optimization.**
 
 Sodium completely rewrites Minecraft's rendering engine, providing massive FPS improvements on most hardware. It's the most impactful performance mod you can install.
 
 **Benefits:**
+
 - 3-5x FPS improvement on average
 - Better chunk loading
 - More efficient memory usage
@@ -25,15 +27,18 @@ Sodium completely rewrites Minecraft's rendering engine, providing massive FPS i
 **Settings:** Options → Video Settings
 
 <Aside type="tip">
-Sodium replaces OptiFine's rendering. You don't need (and shouldn't use) OptiFine with this modpack.
+  Sodium replaces OptiFine's rendering. You don't need (and shouldn't use)
+  OptiFine with this modpack.
 </Aside>
 
 ### Lithium
+
 **Game logic and server optimization.**
 
 Lithium optimizes many game systems including mob AI, world generation, physics calculations, and more. Unlike Sodium, Lithium works invisibly in the background.
 
 **Benefits:**
+
 - Faster world generation
 - Reduced tick times
 - Better mob performance
@@ -42,11 +47,13 @@ Lithium optimizes many game systems including mob AI, world generation, physics 
 **Settings:** No configuration needed - it just works!
 
 ### FerriteCore
+
 **Memory usage optimization.**
 
 FerriteCore reduces Minecraft's memory footprint, allowing more RAM for other things like higher render distances or more mods.
 
 **Benefits:**
+
 - 40-50% reduction in memory usage
 - Fewer out-of-memory crashes
 - Better performance with many mods
@@ -57,37 +64,44 @@ FerriteCore reduces Minecraft's memory footprint, allowing more RAM for other th
 ## Rendering Optimization
 
 ### ImmediatelyFast
+
 **Immediate mode rendering optimization.**
 
 Optimizes various rendering systems that Sodium doesn't cover, like HUDs, text rendering, and map rendering.
 
 **Benefits:**
+
 - Faster text rendering
 - Smoother HUD updates
 - Better map performance
 - Reduced frame time spikes
 
 ### Entity Culling
+
 **Skip rendering entities you can't see.**
 
 Entity Culling prevents Minecraft from rendering entities that are hidden behind blocks, saving significant GPU resources in crowded areas.
 
 **Benefits:**
+
 - Major FPS boost in villages and farms
 - Reduced GPU load
 - Smoother gameplay near many mobs
 - Works with all entities
 
 <Aside>
-Entity Culling is especially effective in mob farms, villager trading halls, and anywhere with many entities.
+  Entity Culling is especially effective in mob farms, villager trading halls,
+  and anywhere with many entities.
 </Aside>
 
 ### More Culling
+
 **Additional culling optimizations.**
 
 Extends culling to more game elements like block entities, particles, and other rendering that Entity Culling doesn't cover.
 
 **Benefits:**
+
 - Culls item frames and paintings
 - Optimizes particle rendering
 - Reduces unnecessary draw calls
@@ -96,11 +110,13 @@ Extends culling to more game elements like block entities, particles, and other 
 ## Background Optimization
 
 ### Dynamic FPS
+
 **Reduce resource usage when not playing.**
 
 When Minecraft is in the background or paused, Dynamic FPS dramatically reduces the frame rate to save power and system resources.
 
 **Benefits:**
+
 - Near-zero GPU usage when alt-tabbed
 - Lower power consumption
 - Reduces system heat
@@ -108,15 +124,16 @@ When Minecraft is in the background or paused, Dynamic FPS dramatically reduces 
 
 **Settings:** Mods → Dynamic FPS
 
-| Setting | Recommended |
-|---------|-------------|
-| Unfocused FPS | 1-5 FPS |
-| Hidden FPS | 0 FPS |
+| Setting              | Recommended     |
+| -------------------- | --------------- |
+| Unfocused FPS        | 1-5 FPS         |
+| Hidden FPS           | 0 FPS           |
 | Pause when unfocused | Your preference |
 
 ## Performance Tips
 
 ### For Maximum FPS
+
 1. Keep shaders disabled
 2. Set render distance to 12-16 chunks
 3. Disable fancy graphics
@@ -124,13 +141,16 @@ When Minecraft is in the background or paused, Dynamic FPS dramatically reduces 
 5. Lower entity distance
 
 ### For Balanced Performance
+
 1. Use shader performance presets
 2. Set render distance to 16-24 chunks
-3. Enable Distant Horizons for far views
+3. Enable Voxy for far views (highly efficient)
 4. Keep default quality settings
 
 ### Monitoring Performance
+
 Use **spark** (included) to profile your game:
+
 ```
 /spark profiler start
 /spark profiler stop

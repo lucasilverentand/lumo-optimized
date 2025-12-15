@@ -1,0 +1,13 @@
+name = "Photon Shaders"
+filename = "photon-v1.2a.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/gKpp8WRi/versions/Oc3j6ljJ/photon-v1.2a.zip"
+hash-format = "sha512"
+hash = ""
+
+[update]
+[update.modrinth]
+mod-id = "gKpp8WRi"
+version = "Oc3j6ljJ"

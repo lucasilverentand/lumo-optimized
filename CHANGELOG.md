@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Voxy LOD mod (replaces Distant Horizons) - up to 10x faster performance
+- Photon Shaders (replaces Complementary Unbound) - better Voxy compatibility
+
+### Changed
+
+- Switched from Distant Horizons to Voxy for LOD rendering
+- Switched from Complementary Unbound to Photon Shaders
+- Updated all documentation for new mods
+
+### Removed
+
+- Distant Horizons (replaced by Voxy)
+- Complementary Unbound shaders (replaced by Photon)
+
+## [1.1.0] - 2024-12-15
+
+### Added
+
 - Steam Deck Edition with optimized settings for handheld gaming
   - Pre-configured controller support (Controlify)
   - Optimized render/simulation distance (10/8 chunks)
@@ -16,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fullscreen mode by default
   - Disabled view bobbing for handheld comfort
   - Shaders disabled by default
-  - Lower quality Distant Horizons LODs
+  - Lower quality LODs for battery life
 - Documentation site with Astro Starlight and Rapide theme
 - Steam Deck installation guide in documentation
 - Build script for Steam Deck edition
@@ -58,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub Actions workflow for automated builds
 - Support for Minecraft 1.21.3-1.21.8
 
-[Unreleased]: https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/lucasilverentand/lumo-optimized/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lucasilverentand/lumo-optimized/releases/tag/v1.0.0

@@ -3,47 +3,57 @@ title: FAQ
 description: Frequently asked questions about Lumo Optimized
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 
 # Frequently Asked Questions
 
 ## General
 
 ### What is Lumo Optimized?
+
 Lumo Optimized is a Fabric modpack that focuses on performance optimization, visual enhancements, and quality-of-life improvements without changing core Minecraft gameplay.
 
 ### What Minecraft versions are supported?
+
 The modpack is built for **Minecraft 1.21.8** and is compatible with 1.21.3-1.21.8.
 
 ### Do I need OptiFine?
+
 **No!** Lumo Optimized includes Sodium, Iris, and other mods that replace and exceed OptiFine's functionality. Using OptiFine will cause conflicts.
 
 ### Is this modpack free?
+
 Yes, completely free. All included mods are open source or freely distributable.
 
 ### Can I use this on servers?
+
 Yes! All mods are client-side, so you can join any vanilla or Fabric server. Some features (like voice chat) require server-side mods.
 
 ## Installation
 
 ### Which file do I download?
-| Launcher | Download |
-|----------|----------|
-| Prism, Modrinth App, ATLauncher, MultiMC | `.mrpack` file |
-| CurseForge, GDLauncher | `-curseforge.zip` file |
+
+| Launcher                                 | Download               |
+| ---------------------------------------- | ---------------------- |
+| Prism, Modrinth App, ATLauncher, MultiMC | `.mrpack` file         |
+| CurseForge, GDLauncher                   | `-curseforge.zip` file |
 
 ### How much RAM do I need?
+
 - **Minimum:** 4 GB allocated
 - **Recommended:** 6 GB allocated
 - **With shaders:** 8 GB allocated
 
 ### What Java version is required?
+
 Java 21 or higher. Most launchers handle this automatically.
 
 ## Performance
 
 ### Why is my FPS low?
+
 Common causes:
+
 1. Shaders enabled (disable for major FPS boost)
 2. Render distance too high (try 12 chunks)
 3. Not enough RAM allocated
@@ -52,7 +62,9 @@ Common causes:
 See the [Performance Tuning Guide](/lumo-optimized/customization/performance-tuning/).
 
 ### First launch is very slow?
+
 Normal! The first launch takes longer because:
+
 - Textures are being cached
 - Shaders are compiling
 - Resource packs are loading
@@ -60,74 +72,94 @@ Normal! The first launch takes longer because:
 Subsequent launches will be much faster.
 
 ### How do I enable shaders?
-Options → Video Settings → Shader Packs → Select Complementary Unbound → Apply
+
+Options → Video Settings → Shader Packs → Select Photon Shaders → Apply
 
 ## Features
 
 ### How do I zoom?
+
 Hold **C** to zoom. You can configure this in Zoomify's settings.
 
 ### How do I open the map?
+
 Press **M** for the full world map. The minimap is always visible in the corner.
 
 ### How do I sort my inventory?
+
 Press **R** with your inventory open. You can also middle-click to lock slots.
 
 ### How do I use voice chat?
+
 Press **V** (push-to-talk). Voice chat only works on servers with Simple Voice Chat installed.
 
 ### Why can't I see far terrain?
-Distant Horizons generates LODs as you explore. Walk around and the view distance will extend over time.
+
+Voxy generates LODs as you explore. Walk around and the view distance will extend over time. You can also use `/voxy import world` to generate LODs from existing chunks.
 
 ## Customization
 
 ### Can I add more mods?
+
 Yes! See the [Adding Mods Guide](/lumo-optimized/guides/adding-mods/). Be careful about compatibility.
 
 ### Can I remove mods I don't want?
+
 Yes, you can disable or remove mods via your launcher. Some mods are dependencies for others.
 
 ### How do I change keybinds?
+
 Options → Controls → Key Binds. Look for the mod's name to find its keybinds.
 
 ### Can I use my own shaders?
+
 Yes! Download shader packs and add them to the shaderpacks folder via the Shader Packs menu.
 
 ### Can I use resource packs?
+
 Yes! Add resource packs normally. The included packs use OptiFine features that are supported by Continuity, EMF, and ETF.
 
 ## Compatibility
 
 ### Does this work with OptiFine?
+
 **No.** OptiFine conflicts with Sodium and Iris. Don't install it.
 
 ### Does this work with Forge mods?
+
 No, this is a Fabric modpack. Only Fabric mods are compatible.
 
 ### Can I use this with other modpacks?
+
 This is a standalone modpack. Merging modpacks is not recommended.
 
 ### Is this compatible with vanilla worlds?
-Yes! Your vanilla worlds will work perfectly. You may see LOD generation from Distant Horizons.
+
+Yes! Your vanilla worlds will work perfectly. You may see LOD generation from Voxy as you explore.
 
 ## Multiplayer
 
 ### Can I join vanilla servers?
+
 Yes, all mods are client-side.
 
 ### Why doesn't voice chat work on some servers?
+
 The server needs Simple Voice Chat installed. It's not a vanilla feature.
 
 ### Why do I get kicked for chat signature issues?
+
 Some servers require signed chat. Adjust No Chat Reports settings:
 Mods → No Chat Reports → Try different compatibility options.
 
 ### Can my friends without the modpack play with me?
+
 Yes, on both vanilla and Fabric servers. They just won't have the mod features.
 
 ## Troubleshooting
 
 ### The game crashed!
+
 1. Check the crash report in `.minecraft/crash-reports/`
 2. Share it via [mclo.gs](https://mclo.gs)
 3. Create a [GitHub Issue](https://github.com/lucasilverentand/lumo-optimized/issues)
@@ -135,39 +167,48 @@ Yes, on both vanilla and Fabric servers. They just won't have the mod features.
 See the [Troubleshooting Guide](/lumo-optimized/guides/troubleshooting/).
 
 ### Shaders show a black screen
+
 Wait for compilation (1-5 minutes first time), or press F3+R to reload. If stuck, see troubleshooting guide.
 
 ### Some textures are missing
+
 Ensure resource packs are enabled. Options → Resource Packs → Move packs to the right side.
 
 ### My settings keep resetting
+
 Your settings should persist. If they don't, check that your instance folder has write permissions.
 
 ## Updates
 
 ### How do I update the modpack?
+
 1. Download the new version
 2. Create a new instance
 3. Copy your `saves` folder
 4. Re-add any personal mods
 
 ### Will my worlds break with updates?
+
 Generally no. We maintain compatibility. Always backup worlds before updating.
 
 ### How often is it updated?
+
 We update when mods release important updates or new Minecraft versions. Check GitHub for releases.
 
 ## Contributing
 
 ### How can I suggest a mod?
+
 Create a [Feature Request](https://github.com/lucasilverentand/lumo-optimized/issues/new/choose) on GitHub.
 
 ### I found a bug!
+
 Create a [Bug Report](https://github.com/lucasilverentand/lumo-optimized/issues/new/choose) with details and logs.
 
 ### Can I contribute to the project?
+
 Yes! See [CONTRIBUTING.md](https://github.com/lucasilverentand/lumo-optimized/blob/main/CONTRIBUTING.md) for guidelines.
 
 <Aside>
-Don't see your question? Create an issue on GitHub and we'll add it!
+  Don't see your question? Create an issue on GitHub and we'll add it!
 </Aside>

@@ -85,8 +85,8 @@ make list
 
 ### Visual Enhancements
 
-- Iris Shaders - Shader support (includes Complementary Unbound)
-- Distant Horizons - See farther with LODs
+- Iris Shaders - Shader support (includes Photon Shaders)
+- Voxy - See farther with LODs (up to 10x faster than alternatives)
 - Continuity - Connected textures
 - BetterGrassify - Better grass rendering
 - Animatica - Animated textures support
@@ -128,7 +128,7 @@ make list
 
 ### Shaders (Included)
 
-- Complementary Unbound
+- Photon Shaders
 
 ## Requirements
 

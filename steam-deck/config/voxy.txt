@@ -1,0 +1,6 @@
+# Voxy configuration - Steam Deck optimized
+# Lower LOD render distance for better battery life
+
+render_distance=128
+lod_bias=1
+enable_async_updates=true

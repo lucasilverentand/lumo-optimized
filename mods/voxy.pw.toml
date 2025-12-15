@@ -1,0 +1,13 @@
+name = "Voxy"
+filename = "voxy-0.3.12-fabric-1.21.x.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/voxy/versions/jW9fIVlv/voxy-0.3.12-fabric-1.21.x.jar"
+hash-format = "sha512"
+hash = ""
+
+[update]
+[update.modrinth]
+mod-id = "voxy"
+version = "jW9fIVlv"

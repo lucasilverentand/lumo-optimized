@@ -3,7 +3,7 @@ title: Visual Enhancements
 description: Mods that improve Minecraft's graphics and aesthetics
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 
 # Visual Enhancement Mods
 
@@ -12,11 +12,13 @@ Lumo Optimized includes a carefully selected set of visual mods that make Minecr
 ## Shaders & Lighting
 
 ### Iris Shaders
+
 **Shader mod compatible with Sodium.**
 
 Iris brings shader support to Sodium, allowing you to use popular shader packs while maintaining excellent performance.
 
 **Features:**
+
 - Full shader pack support
 - Sodium compatibility
 - Performance profiles
@@ -25,65 +27,71 @@ Iris brings shader support to Sodium, allowing you to use popular shader packs w
 **Settings:** Options → Video Settings → Shader Packs
 
 <Aside type="tip">
-Iris works with most OptiFine shaders. Complementary Unbound is included and recommended!
+  Iris works with most OptiFine shaders. Photon Shaders is included and
+  optimized for Voxy compatibility!
 </Aside>
 
-### Distant Horizons
-**See further than ever before.**
+### Voxy
 
-Distant Horizons adds Level of Detail (LOD) rendering, allowing you to see terrain hundreds of chunks away without killing your FPS.
+**See further than ever before - up to 10x faster.**
+
+Voxy is a high-performance Level of Detail (LOD) rendering mod that lets you see terrain hundreds of chunks away without killing your FPS. It's significantly faster than alternatives.
 
 **Features:**
-- Up to 512 chunk render distance
-- Automatic LOD generation
-- Works with shaders
-- Minimal performance impact
 
-**Settings:** Mods → Distant Horizons
+- Extremely fast LOD rendering
+- Up to 10x better performance than alternatives
+- Full Photon shader compatibility
+- Automatic LOD generation as you explore
 
-| Setting | Description |
-|---------|-------------|
-| LOD Render Distance | How far LODs render |
-| LOD Quality | Detail level of distant terrain |
-| Vertical Quality | Height detail in LODs |
+**Settings:** In-game Voxy menu
+
+**Commands:**
+
+- `/voxy import world` - Generate LODs from current world
 
 <Aside>
-LODs are generated as you explore. New areas won't have LODs until you visit them!
+  LODs are generated as you explore. New areas won't have LODs until you visit
+  them!
 </Aside>
 
 ## Textures & Animations
 
 ### Continuity
+
 **Connected textures made easy.**
 
 Continuity adds OptiFine-style connected textures, making glass, bookshelves, and other blocks look seamless.
 
 **Features:**
+
 - Connected glass panes
 - Connected bookshelves
 - Emissive textures
 - Custom block models
 
 ### Animatica
+
 **Animated texture support.**
 
 Enables animated textures from resource packs, bringing life to various blocks and items.
 
 ### Entity Model Features (EMF)
+
 **Custom entity models.**
 
 Allows resource packs to completely change how mobs and entities look with custom 3D models.
 
 ### Entity Texture Features (ETF)
+
 **Enhanced entity textures.**
 
 Enables random mob textures, emissive entity textures, and other entity texture features from resource packs.
 
-<Aside type="tip">
-EMF and ETF are what make Fresh Animations work!
-</Aside>
+<Aside type="tip">EMF and ETF are what make Fresh Animations work!</Aside>
 
 ### BetterGrassify
+
 **Beautiful grass blocks.**
 
 Makes grass blocks show grass on all visible sides, not just the top. Creates a much more natural look.
@@ -93,16 +101,19 @@ Makes grass blocks show grass on all visible sides, not just the top. Creates a 
 ## Animations & Effects
 
 ### Fancy Door Animations
+
 **Doors that swing open.**
 
 Adds smooth opening and closing animations to all doors instead of the instant vanilla behavior.
 
 ### Smooth GUI
+
 **Smooth menu animations.**
 
 Adds subtle animations when opening and navigating menus for a more polished feel.
 
 ### Smooth Scroll
+
 **Better scrolling.**
 
 Makes scrolling in menus and inventories smooth instead of jumping line by line.
@@ -110,16 +121,19 @@ Makes scrolling in menus and inventories smooth instead of jumping line by line.
 ## GUI & Interface
 
 ### OptiGUI
+
 **Custom GUI textures.**
 
 Allows resource packs to change the appearance of chests, crafting tables, and other container GUIs.
 
 ### Puzzle
+
 **OptiFine parity features.**
 
 Adds various OptiFine-exclusive features that resource packs may require, like custom loading screens.
 
 ### Capes
+
 **Show off your capes.**
 
 Displays capes from OptiFine, MinecraftCapes, and other cape providers in-game.
@@ -129,38 +143,40 @@ Displays capes from OptiFine, MinecraftCapes, and other cape providers in-game.
 These visual resource packs are included and enabled by default:
 
 ### Fresh Animations
+
 Completely overhauls mob animations with smooth, dynamic movements. Wolves wag their tails, villagers gesture while trading, and mobs feel more alive.
 
 ### Fresh Moves
+
 Adds improved player animations including better walking, running, and swimming movements.
 
 ### Better Leaves
+
 Replaces the default leaf textures with more detailed, bushy leaves that look more natural.
 
 ### Low On Fire
+
 Lowers the fire overlay when you're burning, so you can actually see what's happening.
 
-## Shader Pack: Complementary Unbound
+## Shader Pack: Photon Shaders
 
-The included shader pack offers:
+The included shader pack offers a gameplay-focused experience with semi-realistic visuals:
 
-- **Realistic lighting** with ray-traced shadows
+- **Realistic lighting** with beautiful shadows
 - **Volumetric fog** and atmospheric effects
 - **Water reflections** and caustics
 - **Waving grass** and leaves
-- **Multiple presets** for different performance levels
+- **Full Voxy LOD compatibility**
+- **Colored lighting** (Iris only)
+- **labPBR support** for resource packs
 
 ### Enabling Shaders
-1. Options → Video Settings → Shader Packs
-2. Select **Complementary Unbound**
-3. Click **Apply**
-4. Choose a preset in Shader Settings if needed
 
-### Performance Presets
-| Preset | FPS Impact | Quality |
-|--------|------------|---------|
-| Potato | Minimal | Basic effects |
-| Low | Light | Nice lighting |
-| Medium | Moderate | Good balance |
-| High | Heavy | Full features |
-| Ultra | Very Heavy | Maximum quality |
+1. Options → Video Settings → Shader Packs
+2. Select **Photon Shaders**
+3. Click **Apply**
+4. Adjust settings in Shader Settings if needed
+
+### Why Photon?
+
+Photon Shaders is specifically chosen for its excellent compatibility with Voxy LODs. Unlike other shaders that can have visual glitches with LOD mods, Photon works seamlessly with Voxy for a consistent visual experience across all render distances.

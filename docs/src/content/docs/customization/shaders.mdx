@@ -3,168 +3,160 @@ title: Shaders
 description: Configure and customize shaders in Lumo Optimized
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Aside, Steps } from "@astrojs/starlight/components";
 
 # Shaders
 
-Lumo Optimized includes Iris Shaders with Complementary Unbound pre-installed. This guide covers how to enable, configure, and optimize shaders for your system.
+Lumo Optimized includes Iris Shaders with Photon Shaders pre-installed. Photon is specifically chosen for its excellent compatibility with Voxy LODs. This guide covers how to enable, configure, and optimize shaders for your system.
 
 ## Enabling Shaders
 
 <Steps>
-1. Open **Options** → **Video Settings**
-2. Click **Shader Packs**
-3. Select **Complementary Unbound** from the list
-4. Click **Apply**
-5. Wait for shaders to compile (first time only)
+  1. Open **Options** → **Video Settings** 2. Click **Shader Packs** 3. Select
+  **Photon Shaders** from the list 4. Click **Apply** 5. Wait for shaders to
+  compile (first time only)
 </Steps>
 
 <Aside>
-Shader compilation can take 1-5 minutes on first use. This happens once per shader pack and is cached for future use.
+  Shader compilation can take 1-5 minutes on first use. This happens once per
+  shader pack and is cached for future use.
 </Aside>
 
-## Complementary Unbound
+## Photon Shaders
 
-The included shader pack offers stunning visuals with good performance.
+Photon is a gameplay-focused shader pack with semi-realistic visuals and excellent Voxy compatibility.
 
 ### Features
-- Realistic shadows with multiple quality levels
+
+- Realistic shadows with beautiful lighting
 - Volumetric lighting and fog
 - Reflective water with caustics
 - Waving grass, leaves, and crops
-- Bloom and lens effects
-- Customizable color grading
-- Night vision compatibility
+- Colored lighting (Iris exclusive)
+- labPBR support for resource packs
+- **Full Voxy LOD compatibility**
 
-### Performance Presets
+### Why Photon?
 
-Access presets: Shader Packs → Shader Pack Settings
+Photon Shaders is specifically chosen for its seamless compatibility with Voxy. Unlike other shaders that can have visual glitches with LOD mods (floating chunks, broken lighting), Photon works perfectly with Voxy for a consistent visual experience across all render distances.
 
-| Preset | Target FPS | Best For |
-|--------|-----------|----------|
-| Potato | 60+ FPS | Integrated graphics, older PCs |
-| Low | 50-60 FPS | Entry-level dedicated GPUs |
-| Medium | 40-60 FPS | Mid-range GPUs (GTX 1060, RX 580) |
-| High | 30-50 FPS | High-end GPUs (RTX 3060, RX 6700) |
-| Ultra | 20-40 FPS | Enthusiast GPUs (RTX 4070+) |
+### Performance
+
+Photon is designed to be gameplay-focused, meaning it prioritizes smooth performance over extreme visual fidelity. Most mid-range systems can run Photon comfortably.
+
+| GPU Tier                               | Expected FPS |
+| -------------------------------------- | ------------ |
+| Integrated (Intel UHD, AMD Vega)       | 20-40 FPS    |
+| Entry-Level (GTX 1050, RX 560)         | 40-60 FPS    |
+| Mid-Range (GTX 1060-1080, RX 580-5700) | 60-100 FPS   |
+| High-End (RTX 3060+, RX 6700+)         | 100+ FPS     |
 
 <Aside type="tip">
-Start with Medium and adjust based on your performance. You can always fine-tune individual settings later.
+  Photon is more performance-friendly than many popular shaders while still
+  looking great!
 </Aside>
 
-## Performance Optimization
+## Shader Settings
 
-### Quick Wins
+Access shader settings: **Shader Packs** → **Shader Pack Settings**
 
-These settings have the biggest performance impact:
+### Key Settings
 
-| Setting | Performance Impact | Recommendation |
-|---------|-------------------|----------------|
-| Shadow Quality | Very High | Lower for better FPS |
-| Shadow Distance | High | 2-4 chunks for balance |
-| Volumetric Fog | High | Disable if struggling |
-| Reflection Quality | Medium | Lower or disable |
-| SSAO | Medium | Disable for low-end |
+| Setting         | Performance Impact | Recommendation                   |
+| --------------- | ------------------ | -------------------------------- |
+| Shadow Quality  | High               | Lower for better FPS             |
+| Shadow Distance | Medium             | 2-4 chunks is usually enough     |
+| Volumetric Fog  | Medium             | Disable if struggling            |
+| Reflections     | Medium             | Lower or disable for performance |
 
 ### Recommended Settings by GPU Tier
 
 **Integrated Graphics (Intel UHD, AMD Vega):**
-- Use Potato preset
-- Shadow Distance: 1-2 chunks
-- Disable volumetric effects
+
 - Consider playing without shaders
+- If using shaders, minimize shadow distance
+- Disable volumetric effects
 
 **Entry-Level (GTX 1050, RX 560):**
-- Use Low preset
+
 - Shadow Distance: 2 chunks
 - Lower render distance to 8-10
 
 **Mid-Range (GTX 1060-1080, RX 580-5700):**
-- Use Medium preset
-- Shadow Distance: 3 chunks
+
+- Default settings should work well
+- Shadow Distance: 3-4 chunks
 - Render distance: 12-16
 
 **High-End (RTX 3060+, RX 6700+):**
-- Use High/Ultra preset
+
 - Full features enabled
 - Higher render distances possible
 
-## Shader Settings Guide
+## Voxy Compatibility
 
-### Shadows
-- **Shadow Quality**: Resolution of shadows (higher = sharper but slower)
-- **Shadow Distance**: How far shadows render
-- **Colored Shadows**: Tinted light through glass (disable for performance)
+One of the main reasons Lumo Optimized uses Photon is its excellent Voxy compatibility:
 
-### Lighting
-- **Global Illumination**: Bounced light (expensive but beautiful)
-- **Ambient Occlusion**: Soft shadows in corners
-- **Volumetric Lighting**: God rays and light shafts
-
-### Water
-- **Reflections**: Mirror-like water surface
-- **Caustics**: Light patterns underwater
-- **Wave Height**: Intensity of water waves
-
-### Effects
-- **Bloom**: Glow around bright objects
-- **Motion Blur**: Blur when moving (preference)
-- **Depth of Field**: Background blur (can affect gameplay)
-
-## Distant Horizons Compatibility
-
-Shaders work with Distant Horizons LODs! The LOD terrain will be shaded, though with some limitations:
-
-- LOD terrain may have simpler shading
-- Shadows typically don't render on LODs
-- Water reflections limited to nearby terrain
+- LOD terrain is properly shaded
+- No floating chunk glitches
+- Consistent lighting across all distances
+- Smooth transitions between LOD levels
 
 <Aside type="tip">
-For the best look with Distant Horizons, set your regular render distance to at least 8 chunks so the transition between full terrain and LODs is less noticeable.
+  With Photon + Voxy, you can see hundreds of chunks away with shaders enabled
+  and no visual artifacts!
 </Aside>
 
 ## Adding More Shaders
 
-You can add additional shader packs:
+You can add additional shader packs, but note that most shaders have issues with Voxy:
 
 <Steps>
-1. Download a shader pack (`.zip` file) from [Modrinth](https://modrinth.com/shaders) or elsewhere
-2. Open **Shader Packs** screen
-3. Click **Open Shader Pack Folder**
-4. Copy the `.zip` file into the folder
-5. Return to game and select the new shader
+  1. Download a shader pack (`.zip` file) from
+  [Modrinth](https://modrinth.com/shaders) 2. Open **Shader Packs** screen 3.
+  Click **Open Shader Pack Folder** 4. Copy the `.zip` file into the folder 5.
+  Return to game and select the new shader
 </Steps>
 
-### Recommended Shaders
+### Shader Compatibility with Voxy
 
-| Shader | Style | Performance |
-|--------|-------|-------------|
-| Complementary Reimagined | Similar to Unbound, different aesthetic | Medium |
-| BSL Shaders | Popular, customizable | Medium |
-| Sildur's Vibrant | Colorful, many options | Low-Medium |
-| Super Duper Vanilla | Vanilla+ enhancement | Low |
-| Rethinking Voxels | Path-traced, stunning | Very High |
+| Shader              | Voxy Compatibility     |
+| ------------------- | ---------------------- |
+| **Photon**          | Excellent (included)   |
+| Complementary       | Poor (visual glitches) |
+| BSL                 | Poor (floating chunks) |
+| Sildur's            | Poor (lighting issues) |
+| Super Duper Vanilla | Untested               |
+
+<Aside type="caution">
+  If you use a shader other than Photon, you may experience visual glitches with
+  Voxy LODs. Disable shaders or switch back to Photon if you encounter issues.
+</Aside>
 
 ## Troubleshooting
 
 ### Shaders Won't Enable
+
 - Update your GPU drivers
 - Ensure you have enough VRAM
-- Try a lower-end shader pack first
+- Try restarting the game
 
 ### Low FPS with Shaders
+
 - Lower shadow quality and distance first
 - Disable volumetric effects
 - Reduce render distance
-- Try a lighter shader preset
+- Voxy LODs have minimal impact; focus on shader settings
 
 ### Visual Glitches
+
+- Ensure you're using Photon for Voxy compatibility
 - Update GPU drivers
-- Try disabling specific shader features
 - Check for shader pack updates
 - Ensure Iris is up to date
 
 ### Black Screen
+
 - Wait for shader compilation
 - Try pressing F3+R to reload shaders
 - Disable shaders and try again

@@ -3,7 +3,7 @@ title: Steam Deck Installation
 description: How to install and play Lumo Optimized on Steam Deck
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Aside, Steps } from "@astrojs/starlight/components";
 
 # Steam Deck Installation
 
@@ -13,19 +13,20 @@ Lumo Optimized offers a dedicated **Steam Deck Edition** with optimized settings
 
 The Steam Deck Edition includes all the same mods as the standard edition, but with pre-configured settings optimized for the Deck:
 
-| Feature | Setting | Reason |
-|---------|---------|--------|
-| Render Distance | 10 chunks | Balanced performance |
-| Simulation Distance | 8 chunks | Reduced CPU load |
-| FPS Cap | 60 FPS | Battery life |
-| Fullscreen | Enabled | Full screen usage |
-| View Bobbing | Disabled | Handheld comfort |
-| Shaders | Disabled | Better battery/performance |
-| GUI Scale | 3 | Readable on 7" screen |
-| Controller | Pre-configured | Works out of the box |
+| Feature             | Setting        | Reason                     |
+| ------------------- | -------------- | -------------------------- |
+| Render Distance     | 10 chunks      | Balanced performance       |
+| Simulation Distance | 8 chunks       | Reduced CPU load           |
+| FPS Cap             | 60 FPS         | Battery life               |
+| Fullscreen          | Enabled        | Full screen usage          |
+| View Bobbing        | Disabled       | Handheld comfort           |
+| Shaders             | Disabled       | Better battery/performance |
+| GUI Scale           | 3              | Readable on 7" screen      |
+| Controller          | Pre-configured | Works out of the box       |
 
 <Aside type="tip">
-You can still enable shaders on Steam Deck! The defaults are just optimized for battery life. See the customization section below.
+  You can still enable shaders on Steam Deck! The defaults are just optimized
+  for battery life. See the customization section below.
 </Aside>
 
 ## Installation
@@ -33,75 +34,61 @@ You can still enable shaders on Steam Deck! The defaults are just optimized for 
 ### Step 1: Switch to Desktop Mode
 
 <Steps>
-1. Hold the **Power** button on your Steam Deck
-2. Select **Switch to Desktop**
-3. Wait for Desktop Mode to load
+  1. Hold the **Power** button on your Steam Deck 2. Select **Switch to
+  Desktop** 3. Wait for Desktop Mode to load
 </Steps>
 
 ### Step 2: Install Prism Launcher
 
 <Steps>
-1. Open **Discover** (software center) from the taskbar
-2. Search for **Prism Launcher**
-3. Click **Install**
-4. Wait for installation to complete
+  1. Open **Discover** (software center) from the taskbar 2. Search for **Prism
+  Launcher** 3. Click **Install** 4. Wait for installation to complete
 </Steps>
 
 ### Step 3: Set Up Prism Launcher
 
 <Steps>
-1. Open Prism Launcher from the app menu
-2. On first launch, select your language
-3. Select **Java 21** when prompted (or let it auto-detect)
-4. Set memory allocation to **4096 MB** (4 GB)
-5. Complete the setup wizard
+  1. Open Prism Launcher from the app menu 2. On first launch, select your
+  language 3. Select **Java 21** when prompted (or let it auto-detect) 4. Set
+  memory allocation to **4096 MB** (4 GB) 5. Complete the setup wizard
 </Steps>
 
 <Aside type="caution">
-Make sure to select Java 21 or higher. Minecraft 1.21+ requires it!
+  Make sure to select Java 21 or higher. Minecraft 1.21+ requires it!
 </Aside>
 
 ### Step 4: Download Steam Deck Edition
 
 <Steps>
-1. Open a web browser (Firefox is pre-installed)
-2. Go to [GitHub Releases](https://github.com/lucasilverentand/lumo-optimized/releases/latest)
-3. Download `lumo-optimized-steam-deck-vX.X.X.mrpack`
-4. Save to your Downloads folder
+  1. Open a web browser (Firefox is pre-installed) 2. Go to [GitHub
+  Releases](https://github.com/lucasilverentand/lumo-optimized/releases/latest)
+  3. Download `lumo-optimized-steam-deck-vX.X.X.mrpack` 4. Save to your
+  Downloads folder
 </Steps>
 
 ### Step 5: Import the Modpack
 
 <Steps>
-1. Open Prism Launcher
-2. Click **Add Instance**
-3. Select **Import from zip** on the left
-4. Click **Browse** and navigate to Downloads
-5. Select the `.mrpack` file
-6. Click **OK** to install
-7. Wait for all mods to download
+  1. Open Prism Launcher 2. Click **Add Instance** 3. Select **Import from zip**
+  on the left 4. Click **Browse** and navigate to Downloads 5. Select the
+  `.mrpack` file 6. Click **OK** to install 7. Wait for all mods to download
 </Steps>
 
 ### Step 6: Add to Steam (Gaming Mode)
 
 <Steps>
-1. Open **Steam** in Desktop Mode
-2. Click **Games** → **Add a Non-Steam Game**
-3. Click **Browse** and navigate to:
-   ```
-   ~/.local/share/PrismLauncher/prismlauncher
-   ```
-4. Select the Prism Launcher executable
-5. Click **Add Selected Programs**
+  1. Open **Steam** in Desktop Mode 2. Click **Games** → **Add a Non-Steam
+  Game** 3. Click **Browse** and navigate to: ```
+  ~/.local/share/PrismLauncher/prismlauncher ``` 4. Select the Prism Launcher
+  executable 5. Click **Add Selected Programs**
 </Steps>
 
 ### Step 7: Configure Steam Input
 
 <Steps>
-1. In Steam, right-click Prism Launcher
-2. Select **Properties** → **Controller**
-3. Choose **Gamepad with Mouse Trackpad**
-4. This enables mouse control with the right trackpad
+  1. In Steam, right-click Prism Launcher 2. Select **Properties** →
+  **Controller** 3. Choose **Gamepad with Mouse Trackpad** 4. This enables mouse
+  control with the right trackpad
 </Steps>
 
 Now you can launch Minecraft from Gaming Mode!
@@ -110,26 +97,26 @@ Now you can launch Minecraft from Gaming Mode!
 
 The Steam Deck Edition uses **Controlify** for native controller support:
 
-| Button | Action |
-|--------|--------|
-| Left Stick | Move |
-| Right Stick | Look around |
-| A | Jump |
-| B | Sneak (toggle) |
-| X | Inventory |
-| Y | Drop item |
-| LB | Cycle hotbar left |
-| RB | Cycle hotbar right |
-| LT | Use item / Place block |
-| RT | Attack / Break block |
-| L3 | Sprint |
-| R3 | Toggle perspective |
-| D-Pad | Hotbar slots 1-4 |
-| Start | Pause menu |
-| Select | Chat |
+| Button      | Action                 |
+| ----------- | ---------------------- |
+| Left Stick  | Move                   |
+| Right Stick | Look around            |
+| A           | Jump                   |
+| B           | Sneak (toggle)         |
+| X           | Inventory              |
+| Y           | Drop item              |
+| LB          | Cycle hotbar left      |
+| RB          | Cycle hotbar right     |
+| LT          | Use item / Place block |
+| RT          | Attack / Break block   |
+| L3          | Sprint                 |
+| R3          | Toggle perspective     |
+| D-Pad       | Hotbar slots 1-4       |
+| Start       | Pause menu             |
+| Select      | Chat                   |
 
 <Aside>
-You can customize controls in-game: Options → Controls → Controlify Settings
+  You can customize controls in-game: Options → Controls → Controlify Settings
 </Aside>
 
 ## Performance Tips
@@ -137,6 +124,7 @@ You can customize controls in-game: Options → Controls → Controlify Settings
 ### Battery Life
 
 For longer battery life:
+
 - Keep shaders disabled (default)
 - Lower render distance to 8 chunks
 - Enable Steam Deck's 40Hz mode in Quick Access menu
@@ -147,15 +135,13 @@ For longer battery life:
 If you want to enable shaders:
 
 <Steps>
-1. Options → Video Settings → Shader Packs
-2. Select **Complementary Unbound**
-3. Click **Shader Settings**
-4. Choose **Potato** or **Low** preset
-5. Click Apply
+  1. Options → Video Settings → Shader Packs 2. Select **Photon Shaders** 3.
+  Click **Shader Settings** 4. Choose **Potato** or **Low** preset 5. Click
+  Apply
 </Steps>
 
 <Aside type="caution">
-Shaders will significantly reduce battery life (2-3 hours vs 4-5 hours).
+  Shaders will significantly reduce battery life (2-3 hours vs 4-5 hours).
 </Aside>
 
 ### 40Hz Mode
@@ -163,10 +149,8 @@ Shaders will significantly reduce battery life (2-3 hours vs 4-5 hours).
 Steam Deck can run at 40Hz, which is smoother than 30 FPS but more battery-efficient than 60:
 
 <Steps>
-1. Press the **Quick Access** button (...)
-2. Go to **Performance** tab
-3. Set **Refresh Rate** to 40
-4. Set **Frame Limit** to 40
+  1. Press the **Quick Access** button (...) 2. Go to **Performance** tab 3. Set
+  **Refresh Rate** to 40 4. Set **Frame Limit** to 40
 </Steps>
 
 Then in-game, change max FPS to 40 in Video Settings.
@@ -189,7 +173,7 @@ Then in-game, change max FPS to 40 in Video Settings.
 
 1. Lower render distance to 8 chunks
 2. Disable shaders if enabled
-3. Check Distant Horizons quality is set to Low
+3. Check Voxy render distance settings
 4. Ensure no background apps are running
 
 ### Game Too Small/Large
@@ -199,17 +183,17 @@ Then in-game, change max FPS to 40 in Video Settings.
 
 ## Comparison: Standard vs Steam Deck Edition
 
-| Setting | Standard | Steam Deck |
-|---------|----------|------------|
-| Render Distance | Auto | 10 chunks |
-| Simulation Distance | Auto | 8 chunks |
-| Max FPS | Unlimited | 60 |
-| Fullscreen | No | Yes |
-| View Bobbing | Yes | No |
-| Shaders | Available | Disabled by default |
-| GUI Scale | Auto | 3 |
-| Controller | Manual setup | Pre-configured |
-| DH Quality | Default | Low |
+| Setting             | Standard     | Steam Deck          |
+| ------------------- | ------------ | ------------------- |
+| Render Distance     | Auto         | 10 chunks           |
+| Simulation Distance | Auto         | 8 chunks            |
+| Max FPS             | Unlimited    | 60                  |
+| Fullscreen          | No           | Yes                 |
+| View Bobbing        | Yes          | No                  |
+| Shaders             | Available    | Disabled by default |
+| GUI Scale           | Auto         | 3                   |
+| Controller          | Manual setup | Pre-configured      |
+| DH Quality          | Default      | Low                 |
 
 ## Recommended Accessories
 
