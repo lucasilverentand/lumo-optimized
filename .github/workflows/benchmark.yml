@@ -4,12 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       duration:
-        description: "Benchmark duration in seconds"
+        description: 'Benchmark duration in seconds'
         required: false
-        default: "180"
+        default: '180'
   schedule:
-    # Run weekly on Sundays at midnight
-    - cron: "0 0 * * 0"
+    - cron: '0 0 * * 0'
   push:
     tags: ["v*"]
 
@@ -45,7 +44,7 @@ jobs:
       - name: Setup Java ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
+          distribution: 'temurin'
           java-version: ${{ env.JAVA_VERSION }}
 
       - name: Cache Minecraft server
@@ -59,30 +58,25 @@ jobs:
         run: |
           mkdir -p server
           cd server
-
-          # Check cache first
+          
           if [ -f ~/server-cache/fabric-server-launch.jar ]; then
             echo "Using cached server"
             cp ~/server-cache/*.jar . || true
           else
             echo "Downloading Fabric server..."
-            # Download Fabric installer
             curl -OJ https://meta.fabricmc.net/v2/versions/loader/${{ env.MINECRAFT_VERSION }}/${{ env.FABRIC_LOADER_VERSION }}/1.0.1/server/jar
-
-            # Cache it
+            
             mkdir -p ~/server-cache
             cp *.jar ~/server-cache/ || true
           fi
-
-          # Accept EULA
+          
           echo "eula=true" > eula.txt
-
           ls -la
 
       - name: Configure server
         run: |
           cd server
-
+          
           cat > server.properties << 'EOF'
           server-port=25565
           online-mode=false
@@ -105,10 +99,9 @@ jobs:
         id: benchmark
         run: |
           cd server
-
+          
           echo "Starting server benchmark for ${{ matrix.edition.name }}..."
-
-          # Start server
+          
           timeout ${{ inputs.duration || '180' }} java -Xms3G -Xmx3G \
             -XX:+UseG1GC \
             -XX:+ParallelRefProcEnabled \
@@ -117,69 +110,61 @@ jobs:
             -XX:+DisableExplicitGC \
             -Dlog4j2.formatMsgNoLookups=true \
             -jar server.jar nogui 2>&1 | tee server.log || true
-
+          
           echo "Benchmark complete"
 
       - name: Parse results
         run: |
           cd server
-
-          # Parse startup time
-          STARTUP_TIME=$(grep -oP 'Done \(\K[0-9.]+' server.log | head -1 || echo "0")
-
-          # Count errors
-          ERROR_COUNT=$(grep -c "ERROR" server.log || echo "0")
-          WARN_COUNT=$(grep -c "WARN" server.log || echo "0")
-
-          # Count chunks prepared
-          CHUNKS=$(grep -c "Preparing spawn area" server.log || echo "0")
-
-          # Check for crashes
+          
+          STARTUP_TIME=$(grep -oP 'Done \(\K[0-9.]+' server.log 2>/dev/null | head -1)
+          if [ -z "$STARTUP_TIME" ]; then
+            STARTUP_TIME="0"
+          fi
+          
+          ERROR_COUNT=$(grep -c "ERROR" server.log 2>/dev/null || echo "0")
+          WARN_COUNT=$(grep -c "WARN" server.log 2>/dev/null || echo "0")
+          CHUNKS=$(grep -c "Preparing spawn area" server.log 2>/dev/null || echo "0")
+          
           CRASH=0
-          if grep -q "Exception\|Error\|Crash" server.log; then
+          if grep -q "Exception\|Error\|Crash" server.log 2>/dev/null; then
             CRASH=1
           fi
-
-          # Calculate score
+          
           SCORE=100
-
-          # Penalize slow startup (>60s is bad)
-          if (( $(echo "$STARTUP_TIME > 60" | bc -l) )); then
+          STARTUP_INT=${STARTUP_TIME%.*}
+          if [ ! -z "$STARTUP_INT" ] && [ "$STARTUP_INT" -gt 60 ] 2>/dev/null; then
             SCORE=$((SCORE - 20))
           fi
-
-          # Penalize errors
+          
           if [ "$ERROR_COUNT" -gt 10 ]; then
             SCORE=$((SCORE - 20))
           fi
-
-          # Penalize crash
+          
           if [ "$CRASH" -eq 1 ]; then
             SCORE=$((SCORE - 30))
           fi
-
-          # Ensure score is between 0-100
+          
           if [ "$SCORE" -lt 0 ]; then
             SCORE=0
           fi
-
-          # Generate results JSON
-          cat > results.json << EOF
-          {
-            "edition": "${{ matrix.edition.name }}",
-            "status": "completed",
-            "startup_time_s": ${STARTUP_TIME},
-            "duration_s": ${{ inputs.duration || '180' }},
-            "chunks_prepared": ${CHUNKS},
-            "errors": {
-              "error_count": ${ERROR_COUNT},
-              "warn_count": ${WARN_COUNT}
-            },
-            "crashed": ${CRASH},
-            "score": ${SCORE}
-          }
-          EOF
-
+          
+          cat > results.json << JSONEOF
+{
+  "edition": "${{ matrix.edition.name }}",
+  "status": "completed",
+  "startup_time_s": ${STARTUP_TIME},
+  "duration_s": ${{ inputs.duration || '180' }},
+  "chunks_prepared": ${CHUNKS},
+  "errors": {
+    "error_count": ${ERROR_COUNT},
+    "warn_count": ${WARN_COUNT}
+  },
+  "crashed": ${CRASH},
+  "score": ${SCORE}
+}
+JSONEOF
+          
           echo "Results for ${{ matrix.edition.name }}:"
           cat results.json
 
@@ -208,8 +193,7 @@ jobs:
       - name: Analyze and generate report
         run: |
           mkdir -p benchmark-report
-
-          # Collect all results
+          
           echo "# Benchmark Results" > benchmark-report/BENCHMARK.md
           echo "" >> benchmark-report/BENCHMARK.md
           echo "*Generated: $(date -u '+%Y-%m-%d %H:%M UTC')*" >> benchmark-report/BENCHMARK.md
@@ -218,8 +202,7 @@ jobs:
           echo "" >> benchmark-report/BENCHMARK.md
           echo "| Edition | Score | Startup Time | Chunks | Errors | Status |" >> benchmark-report/BENCHMARK.md
           echo "|---------|-------|--------------|--------|--------|--------|" >> benchmark-report/BENCHMARK.md
-
-          # Process each edition
+          
           for result_dir in benchmarks/benchmark-*/; do
             if [ -f "$result_dir/results.json" ]; then
               edition=$(jq -r '.edition' "$result_dir/results.json")
@@ -228,20 +211,20 @@ jobs:
               chunks=$(jq -r '.chunks_prepared' "$result_dir/results.json")
               errors=$(jq -r '.errors.error_count' "$result_dir/results.json")
               crashed=$(jq -r '.crashed' "$result_dir/results.json")
-
+              
               status="✅"
-              if [ "$crashed" -eq 1 ]; then
+              if [ "$crashed" == "1" ]; then
                 status="❌"
               fi
-
+              
               echo "| $edition | $score/100 | ${startup}s | $chunks | $errors | $status |" >> benchmark-report/BENCHMARK.md
             fi
           done
-
+          
           echo "" >> benchmark-report/BENCHMARK.md
           echo "---" >> benchmark-report/BENCHMARK.md
           echo "*Server-side benchmarks on GitHub Actions Ubuntu runners (3GB RAM)*" >> benchmark-report/BENCHMARK.md
-
+          
           cat benchmark-report/BENCHMARK.md
 
       - name: Upload report
