@@ -1,0 +1,21 @@
+{
+  "configVersion": 7,
+  "renderNametagsThroughWalls": false,
+  "blockEntityWhitelist": [
+    "minecraft:beacon"
+  ],
+  "entityWhitelist": [],
+  "tracingDistance": 64,
+  "debugMode": false,
+  "sleepDelay": 5,
+  "hitboxLimit": 30,
+  "captureRate": 3,
+  "tickCulling": true,
+  "tickCullingWhitelist": [
+    "minecraft:firework_rocket"
+  ],
+  "disableF3": false,
+  "skipEntityCulling": false,
+  "skipBlockEntityCulling": false,
+  "blockEntityFrustumCulling": true
+}

@@ -1,0 +1,17 @@
+name = "Lumo Optimized - High-End Edition"
+author = "Luca Silverentand"
+version = "1.0.0"
+description = "High-end PC optimized Fabric modpack for powerful gaming rigs. Maximum visual quality with all shader features enabled."
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = ""
+
+[versions]
+fabric = "0.18.2"
+minecraft = "1.21.8"
+
+[options]
+acceptable-game-versions = ["1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7"]

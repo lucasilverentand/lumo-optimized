@@ -1,0 +1,6 @@
+# Voxy configuration - Medium-tier optimized
+# Balanced LOD render distance for performance and visuals
+
+render_distance=256
+lod_bias=0
+enable_async_updates=true

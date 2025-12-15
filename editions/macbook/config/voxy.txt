@@ -1,0 +1,6 @@
+# Voxy configuration - MacBook optimized
+# Balanced LOD render distance for battery life and thermals
+
+render_distance=192
+lod_bias=0
+enable_async_updates=true

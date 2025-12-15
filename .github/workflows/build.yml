@@ -10,6 +10,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        edition:
+          - name: standard
+            dir: ""
+          - name: steam-deck
+            dir: steam-deck
+          - name: macbook
+            dir: editions/macbook
+          - name: mac-studio
+            dir: editions/mac-studio
+          - name: low-end
+            dir: editions/low-end
+          - name: medium
+            dir: editions/medium
+          - name: high-end
+            dir: editions/high-end
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,33 +39,44 @@ jobs:
       - name: Install packwiz
         run: go install github.com/packwiz/packwiz@latest
 
-      - name: Build Standard Edition
+      - name: Build ${{ matrix.edition.name }} Edition
         run: |
-          packwiz refresh
           mkdir -p dist
-          packwiz modrinth export -o dist/lumo-optimized-${{ github.ref_name }}.mrpack
-          packwiz curseforge export -o dist/lumo-optimized-${{ github.ref_name }}-curseforge.zip
 
-      - name: Build Steam Deck Edition
-        run: |
-          # Create build directory with base pack
-          mkdir -p .build/steam-deck
-          cp -r mods resourcepacks shaderpacks config index.toml icon.png .build/steam-deck/
-          cp steam-deck/pack.toml .build/steam-deck/
+          if [ "${{ matrix.edition.name }}" = "standard" ]; then
+            # Build standard edition directly
+            packwiz refresh
+            packwiz modrinth export -o dist/lumo-optimized-${{ github.ref_name }}.mrpack
+            packwiz curseforge export -o dist/lumo-optimized-${{ github.ref_name }}-curseforge.zip
+          else
+            # Build variant edition
+            EDITION="${{ matrix.edition.name }}"
+            EDITION_DIR="${{ matrix.edition.dir }}"
 
-          # Apply Steam Deck optimized configs
-          cp -r steam-deck/config/* .build/steam-deck/config/
+            mkdir -p .build/$EDITION
+            cp -r mods resourcepacks shaderpacks config index.toml icon.png .build/$EDITION/
+            cp $EDITION_DIR/pack.toml .build/$EDITION/
 
-          # Build Steam Deck edition
-          cd .build/steam-deck
-          packwiz refresh
-          packwiz modrinth export -o ../../dist/lumo-optimized-steam-deck-${{ github.ref_name }}.mrpack
-          packwiz curseforge export -o ../../dist/lumo-optimized-steam-deck-${{ github.ref_name }}-curseforge.zip
+            # Apply edition-specific configs
+            if [ -d "$EDITION_DIR/config" ]; then
+              cp -r $EDITION_DIR/config/* .build/$EDITION/config/
+            fi
 
-      - name: Upload artifacts
+            # Apply edition-specific shader settings
+            if [ -d "$EDITION_DIR/shaderpacks" ]; then
+              cp -r $EDITION_DIR/shaderpacks/* .build/$EDITION/shaderpacks/
+            fi
+
+            cd .build/$EDITION
+            packwiz refresh
+            packwiz modrinth export -o ../../dist/lumo-optimized-$EDITION-${{ github.ref_name }}.mrpack
+            packwiz curseforge export -o ../../dist/lumo-optimized-$EDITION-${{ github.ref_name }}-curseforge.zip
+          fi
+
+      - name: Upload ${{ matrix.edition.name }} artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: modpack-builds
+          name: ${{ matrix.edition.name }}-build
           path: dist/
 
   release:
@@ -58,11 +86,17 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download artifacts
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          name: modpack-builds
-          path: dist/
+          path: artifacts/
+
+      - name: Collect all builds
+        run: |
+          mkdir -p dist
+          find artifacts -name "*.mrpack" -exec cp {} dist/ \;
+          find artifacts -name "*.zip" -exec cp {} dist/ \;
+          ls -la dist/
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -74,43 +108,78 @@ jobs:
 
             A performance-focused Fabric modpack for Minecraft 1.21.8.
 
-            ### Standard Edition
+            ### Available Editions
 
-            For desktop PCs and laptops.
+            | Edition | Target Hardware | Shaders | Description |
+            |---------|-----------------|---------|-------------|
+            | **Standard** | Desktop PCs | Enabled | Default balanced settings |
+            | **Steam Deck** | Valve Steam Deck | Disabled | Controller support, battery optimized |
+            | **MacBook** | Apple Silicon laptops | Enabled* | Battery-conscious, Mac-compatible shaders |
+            | **Mac Studio** | Apple Silicon desktop | Enabled* | Maximum quality, Mac-compatible shaders |
+            | **Low-End** | Integrated GPU, <8GB RAM | Disabled | Maximum performance, minimal visuals |
+            | **Medium** | Mid-range GPU, 8-16GB RAM | Enabled | Balanced quality and performance |
+            | **High-End** | RTX 3070+, 16GB+ RAM | Enabled | Maximum visual quality |
 
-            | File | Launcher |
-            |------|----------|
-            | `lumo-optimized-${{ github.ref_name }}.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC |
-            | `lumo-optimized-${{ github.ref_name }}-curseforge.zip` | CurseForge, GDLauncher |
+            *Mac editions use Photon shader with Apple Metal compatibility settings (SH Skylight and Colored Shadows disabled)
 
-            ### Steam Deck Edition
+            ### Download Guide
 
-            Optimized for Steam Deck with controller support, performance tuning, and handheld-friendly settings.
+            | File Pattern | Launcher Compatibility |
+            |--------------|------------------------|
+            | `*.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC |
+            | `*-curseforge.zip` | CurseForge Launcher, GDLauncher |
 
-            | File | Launcher |
-            |------|----------|
-            | `lumo-optimized-steam-deck-${{ github.ref_name }}.mrpack` | Prism Launcher (Flatpak) |
-            | `lumo-optimized-steam-deck-${{ github.ref_name }}-curseforge.zip` | CurseForge |
+            ### Edition Details
 
-            **Steam Deck optimizations include:**
+            #### Standard Edition
+            Default settings suitable for most desktop PCs.
+
+            #### Steam Deck Edition
             - Pre-configured controller support (Controlify)
-            - Optimized render distance (10 chunks) and simulation distance (8 chunks)
             - 60 FPS cap for battery life
-            - Fullscreen by default
-            - Disabled view bobbing for handheld comfort
-            - Shaders disabled by default (can be enabled)
-            - Lower quality Distant Horizons LODs
-            - Optimized Dynamic FPS for power saving
+            - Shaders disabled by default
+            - Aggressive Dynamic FPS when unfocused
+
+            #### MacBook Edition
+            - Apple Metal compatible shaders
+            - Battery-conscious Dynamic FPS
+            - Adaptive sync enabled
+            - Reduced resolution scaling available
+
+            #### Mac Studio Edition
+            - Maximum quality settings
+            - High render distances (512 LOD)
+            - Apple Metal compatible shaders
+
+            #### Low-End Edition
+            - Shaders disabled
+            - Minimal particle effects
+            - Aggressive culling (64 block distance)
+            - Low LOD render distance (64)
+
+            #### Medium Edition
+            - Balanced shader settings
+            - Standard particle effects
+            - Moderate LOD distance (256)
+
+            #### High-End Edition
+            - Maximum shader quality
+            - All visual effects enabled
+            - Maximum LOD distance (512)
+            - SSGI enabled
 
             ### Installation
 
             **Prism Launcher:**
-            1. Download the `.mrpack` file for your platform
+            1. Download the `.mrpack` file for your hardware
             2. Open Prism Launcher → Add Instance → Import from zip
             3. Select the file and click OK
 
-            **Steam Deck:**
-            1. Switch to Desktop Mode
-            2. Install Prism Launcher from Discover
-            3. Import the Steam Deck `.mrpack` file
-            4. Add to Steam as a non-Steam game for Gaming Mode
+            ### Benchmarking
+
+            Use the built-in Spark profiler to test performance:
+            ```
+            /spark profiler start
+            [play for 60 seconds]
+            /spark profiler stop
+            ```

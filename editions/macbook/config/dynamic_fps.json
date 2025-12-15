@@ -1,0 +1,48 @@
+{
+  "idle": {
+    "frame_rate_target": 5,
+    "volume_multiplier": 1.0,
+    "run_garbage_collector": false,
+    "show_toasts": true,
+    "sound_enabled": true,
+    "render_sky": true
+  },
+  "unfocused": {
+    "frame_rate_target": 10,
+    "volume_multiplier": 0.5,
+    "run_garbage_collector": false,
+    "show_toasts": true,
+    "sound_enabled": true,
+    "render_sky": true
+  },
+  "invisible": {
+    "frame_rate_target": 0,
+    "volume_multiplier": 0.0,
+    "run_garbage_collector": true,
+    "show_toasts": false,
+    "sound_enabled": false,
+    "render_sky": false
+  },
+  "abandoned": {
+    "frame_rate_target": -1,
+    "volume_multiplier": -1.0,
+    "run_garbage_collector": false,
+    "show_toasts": false,
+    "sound_enabled": false,
+    "render_sky": false
+  },
+  "enabled_states": {
+    "focused": true,
+    "hovered": true,
+    "unfocused": true,
+    "invisible": true,
+    "abandoned": false
+  },
+  "power_states": {
+    "battery": true,
+    "charging": true
+  },
+  "uncap_menu_frame_rate": false,
+  "pause_on_alt_tab": false,
+  "restore_vanilla_chunk_updates": true
+}

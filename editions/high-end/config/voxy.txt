@@ -1,0 +1,6 @@
+# Voxy configuration - High-End optimized
+# Maximum LOD render distance for best visuals
+
+render_distance=512
+lod_bias=0
+enable_async_updates=true
