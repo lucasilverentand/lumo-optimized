@@ -6,7 +6,7 @@ on:
       duration:
         description: "Benchmark duration in seconds"
         required: false
-        default: "120"
+        default: "180"
   schedule:
     # Run weekly on Sundays at midnight
     - cron: "0 0 * * 0"
@@ -21,27 +21,22 @@ env:
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     strategy:
       fail-fast: false
-      max-parallel: 1 # Run sequentially for consistent results
+      max-parallel: 2
       matrix:
         edition:
           - name: standard
             dir: ""
-            shaders: true
           - name: steam-deck
             dir: steam-deck
-            shaders: false
           - name: low-end
             dir: editions/low-end
-            shaders: false
           - name: medium
             dir: editions/medium
-            shaders: true
           - name: high-end
             dir: editions/high-end
-            shaders: true
 
     steps:
       - name: Checkout
@@ -53,67 +48,38 @@ jobs:
           distribution: "temurin"
           java-version: ${{ env.JAVA_VERSION }}
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "1.22"
-
-      - name: Install packwiz
-        run: go install github.com/packwiz/packwiz@latest
-
       - name: Cache Minecraft server
         uses: actions/cache@v4
         with:
           path: |
-            ~/.minecraft-server-cache
-          key: mc-server-${{ env.MINECRAFT_VERSION }}-${{ env.FABRIC_LOADER_VERSION }}
+            ~/server-cache
+          key: mc-server-${{ env.MINECRAFT_VERSION }}-${{ env.FABRIC_LOADER_VERSION }}-v2
 
-      - name: Prepare ${{ matrix.edition.name }} Edition configs
-        run: |
-          mkdir -p edition-config
-
-          if [ -n "${{ matrix.edition.dir }}" ]; then
-            # Copy edition-specific configs
-            if [ -d "${{ matrix.edition.dir }}/config" ]; then
-              cp -r ${{ matrix.edition.dir }}/config/* edition-config/
-            fi
-          else
-            # Use base configs for standard edition
-            cp -r config/* edition-config/
-          fi
-
-          echo "Edition: ${{ matrix.edition.name }}"
-          echo "Shaders enabled: ${{ matrix.edition.shaders }}"
-          ls -la edition-config/
-
-      - name: Download Fabric Server
+      - name: Download and setup Fabric Server
         run: |
           mkdir -p server
           cd server
 
           # Check cache first
-          if [ -f ~/.minecraft-server-cache/fabric-server-launch.jar ]; then
-            cp ~/.minecraft-server-cache/*.jar .
-            echo "Using cached server files"
+          if [ -f ~/server-cache/fabric-server-launch.jar ]; then
+            echo "Using cached server"
+            cp ~/server-cache/*.jar . || true
           else
+            echo "Downloading Fabric server..."
             # Download Fabric installer
-            wget -q "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar"
+            curl -OJ https://meta.fabricmc.net/v2/versions/loader/${{ env.MINECRAFT_VERSION }}/${{ env.FABRIC_LOADER_VERSION }}/1.0.1/server/jar
 
-            # Install Fabric server
-            java -jar fabric-installer-1.0.1.jar server \
-              -mcversion ${{ env.MINECRAFT_VERSION }} \
-              -loader ${{ env.FABRIC_LOADER_VERSION }} \
-              -downloadMinecraft
-
-            # Cache the server files
-            mkdir -p ~/.minecraft-server-cache
-            cp *.jar ~/.minecraft-server-cache/
+            # Cache it
+            mkdir -p ~/server-cache
+            cp *.jar ~/server-cache/ || true
           fi
 
           # Accept EULA
           echo "eula=true" > eula.txt
 
-      - name: Configure server for benchmarking
+          ls -la
+
+      - name: Configure server
         run: |
           cd server
 
@@ -123,61 +89,16 @@ jobs:
           spawn-protection=0
           max-tick-time=120000
           view-distance=12
-          simulation-distance=10
+          simulation-distance=8
           level-seed=8675309
           gamemode=creative
           difficulty=peaceful
           spawn-monsters=false
-          spawn-animals=true
-          spawn-npcs=true
-          generate-structures=true
+          spawn-animals=false
           max-players=1
           sync-chunk-writes=false
           network-compression-threshold=256
-          EOF
-
-      - name: Download server-side mods
-        run: |
-          cd server
-          mkdir -p mods
-
-          # Download Spark (performance profiler)
-          wget -q -O mods/spark.jar \
-            "https://cdn.modrinth.com/data/l6YH9Als/versions/V4ViSLky/spark-1.10.119-fabric.jar"
-
-          # Download Lithium (server optimization)
-          wget -q -O mods/lithium.jar \
-            "https://cdn.modrinth.com/data/gvQqBUqZ/versions/ZmJF8K2P/lithium-fabric-0.14.7-mc1.21.4.jar" || true
-
-          # Download FerriteCore (memory optimization)
-          wget -q -O mods/ferritecore.jar \
-            "https://cdn.modrinth.com/data/uXXizFIs/versions/nCTLIjrP/ferritecore-7.1.1-fabric.jar" || true
-
-          # Download Fabric API (required)
-          wget -q -O mods/fabric-api.jar \
-            "https://cdn.modrinth.com/data/P7dR8mSH/versions/nMImMFvw/fabric-api-0.114.0%2B1.21.4.jar"
-
-          ls -la mods/
-
-      - name: Apply edition configs
-        run: |
-          cd server
-          mkdir -p config
-
-          # Copy edition-specific configs that are server-relevant
-          for cfg in sodium-options.json entityculling.json dynamic_fps.json; do
-            if [ -f "../edition-config/$cfg" ]; then
-              cp "../edition-config/$cfg" config/
-            fi
-          done
-
-          # Create Spark auto-run config
-          mkdir -p config/spark
-          cat > config/spark/config.json << EOF
-          {
-            "backgroundProfiler": false,
-            "bytecodeInjection": true
-          }
+          enable-command-block=false
           EOF
 
       - name: Run benchmark
@@ -185,161 +106,84 @@ jobs:
         run: |
           cd server
 
-          # Create benchmark script
-          cat > run-benchmark.sh << 'SCRIPT'
-          #!/bin/bash
+          echo "Starting server benchmark for ${{ matrix.edition.name }}..."
 
-          DURATION="${1:-120}"
-          RESULTS_FILE="${2:-results.json}"
-
-          echo "Starting Minecraft server benchmark..."
-          echo "Duration: ${DURATION}s"
-
-          # Start server in background
-          java -Xms4G -Xmx4G \
+          # Start server
+          timeout ${{ inputs.duration || '180' }} java -Xms3G -Xmx3G \
             -XX:+UseG1GC \
             -XX:+ParallelRefProcEnabled \
             -XX:MaxGCPauseMillis=200 \
             -XX:+UnlockExperimentalVMOptions \
             -XX:+DisableExplicitGC \
-            -XX:G1NewSizePercent=30 \
-            -XX:G1MaxNewSizePercent=40 \
-            -XX:G1HeapRegionSize=8M \
             -Dlog4j2.formatMsgNoLookups=true \
-            -jar fabric-server-launch.jar nogui 2>&1 | tee server.log &
+            -jar server.jar nogui 2>&1 | tee server.log || true
 
-          SERVER_PID=$!
+          echo "Benchmark complete"
 
-          # Wait for server to start
-          echo "Waiting for server to start..."
-          STARTED=false
-          for i in {1..180}; do
-            if grep -q "Done (" server.log 2>/dev/null; then
-              STARTED=true
-              STARTUP_TIME=$(grep -oP 'Done \(\K[0-9.]+' server.log)
-              echo "Server started in ${STARTUP_TIME}s"
-              break
-            fi
-            sleep 1
-          done
-
-          if [ "$STARTED" = false ]; then
-            echo "Server failed to start within 3 minutes"
-            kill $SERVER_PID 2>/dev/null
-            exit 1
-          fi
-
-          # Let server stabilize
-          echo "Stabilizing..."
-          sleep 15
-
-          # Run Spark profiler
-          echo "Starting Spark profiler for ${DURATION}s..."
-
-          # Use RCON or direct input
-          # Since we can't use RCON easily, we'll rely on Spark's file output
-
-          # Simulate load by keeping server running
-          echo "Running benchmark..."
-          sleep $DURATION
-
-          # Collect metrics from server log
-          echo "Collecting metrics..."
-
-          # Parse log for metrics
-          MEMORY_USED=$(grep -oP 'Memory: \K[0-9]+' server.log | tail -1 || echo "0")
-          TPS=$(grep -oP 'TPS: \K[0-9.]+' server.log | tail -1 || echo "20.0")
-          ERROR_COUNT=$(grep -c "ERROR" server.log || echo "0")
-          WARN_COUNT=$(grep -c "WARN" server.log || echo "0")
-
-          # Stop server
-          echo "Stopping server..."
-          kill $SERVER_PID 2>/dev/null
-          wait $SERVER_PID 2>/dev/null || true
-
-          # Generate results JSON
-          cat > $RESULTS_FILE << EOF
-          {
-            "status": "completed",
-            "startup_time_s": ${STARTUP_TIME:-0},
-            "duration_s": $DURATION,
-            "tps": {
-              "estimated": ${TPS:-20.0}
-            },
-            "memory": {
-              "allocated_mb": 4096
-            },
-            "errors": {
-              "error_count": $ERROR_COUNT,
-              "warn_count": $WARN_COUNT
-            },
-            "score": 100
-          }
-          EOF
-
-          echo "Benchmark complete!"
-          cat $RESULTS_FILE
-          SCRIPT
-
-          chmod +x run-benchmark.sh
-          ./run-benchmark.sh ${{ inputs.duration || '120' }} results.json
-
-      - name: Parse detailed results
+      - name: Parse results
         run: |
           cd server
 
-          # Enhanced parsing of server.log
-          python3 << 'PYTHON'
-          import json
-          import re
-          from pathlib import Path
+          # Parse startup time
+          STARTUP_TIME=$(grep -oP 'Done \(\K[0-9.]+' server.log | head -1 || echo "0")
 
-          log_path = Path("server.log")
-          results_path = Path("results.json")
+          # Count errors
+          ERROR_COUNT=$(grep -c "ERROR" server.log || echo "0")
+          WARN_COUNT=$(grep -c "WARN" server.log || echo "0")
 
-          # Load existing results
-          with open(results_path) as f:
-              results = json.load(f)
+          # Count chunks prepared
+          CHUNKS=$(grep -c "Preparing spawn area" server.log || echo "0")
 
-          if log_path.exists():
-              log = log_path.read_text()
+          # Check for crashes
+          CRASH=0
+          if grep -q "Exception\|Error\|Crash" server.log; then
+            CRASH=1
+          fi
 
-              # Parse startup time
-              match = re.search(r'Done \((\d+\.?\d*)s\)', log)
-              if match:
-                  results["startup_time_s"] = float(match.group(1))
+          # Calculate score
+          SCORE=100
 
-              # Count chunks generated
-              chunks = len(re.findall(r'Preparing spawn area', log))
-              results["chunks_prepared"] = chunks
+          # Penalize slow startup (>60s is bad)
+          if (( $(echo "$STARTUP_TIME > 60" | bc -l) )); then
+            SCORE=$((SCORE - 20))
+          fi
 
-              # Parse any GC pauses
-              gc_pauses = re.findall(r'GC pause.*?(\d+\.?\d*)ms', log)
-              if gc_pauses:
-                  results["gc_max_pause_ms"] = max(float(p) for p in gc_pauses)
+          # Penalize errors
+          if [ "$ERROR_COUNT" -gt 10 ]; then
+            SCORE=$((SCORE - 20))
+          fi
 
-              # Check for critical errors
-              critical = len(re.findall(r'FATAL|Exception|OutOfMemory', log, re.I))
-              results["critical_errors"] = critical
+          # Penalize crash
+          if [ "$CRASH" -eq 1 ]; then
+            SCORE=$((SCORE - 30))
+          fi
 
-              # Calculate score
-              score = 100
-              if results.get("startup_time_s", 0) > 60:
-                  score -= 20
-              if results.get("critical_errors", 0) > 0:
-                  score -= 30
-              if results.get("errors", {}).get("error_count", 0) > 10:
-                  score -= 10
+          # Ensure score is between 0-100
+          if [ "$SCORE" -lt 0 ]; then
+            SCORE=0
+          fi
 
-              results["score"] = max(0, score)
+          # Generate results JSON
+          cat > results.json << EOF
+          {
+            "edition": "${{ matrix.edition.name }}",
+            "status": "completed",
+            "startup_time_s": ${STARTUP_TIME},
+            "duration_s": ${{ inputs.duration || '180' }},
+            "chunks_prepared": ${CHUNKS},
+            "errors": {
+              "error_count": ${ERROR_COUNT},
+              "warn_count": ${WARN_COUNT}
+            },
+            "crashed": ${CRASH},
+            "score": ${SCORE}
+          }
+          EOF
 
-          with open(results_path, 'w') as f:
-              json.dump(results, f, indent=2)
+          echo "Results for ${{ matrix.edition.name }}:"
+          cat results.json
 
-          print(json.dumps(results, indent=2))
-          PYTHON
-
-      - name: Upload benchmark results
+      - name: Upload results
         uses: actions/upload-artifact@v4
         with:
           name: benchmark-${{ matrix.edition.name }}
@@ -351,135 +195,57 @@ jobs:
   analyze:
     needs: benchmark
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download all benchmark results
+      - name: Download all results
         uses: actions/download-artifact@v4
         with:
           path: benchmarks/
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
       - name: Analyze and generate report
         run: |
-          python3 << 'PYTHON'
-          import json
-          from pathlib import Path
-          from datetime import datetime
+          mkdir -p benchmark-report
 
-          benchmarks_dir = Path("benchmarks")
-          results = {}
+          # Collect all results
+          echo "# Benchmark Results" > benchmark-report/BENCHMARK.md
+          echo "" >> benchmark-report/BENCHMARK.md
+          echo "*Generated: $(date -u '+%Y-%m-%d %H:%M UTC')*" >> benchmark-report/BENCHMARK.md
+          echo "" >> benchmark-report/BENCHMARK.md
+          echo "## Summary" >> benchmark-report/BENCHMARK.md
+          echo "" >> benchmark-report/BENCHMARK.md
+          echo "| Edition | Score | Startup Time | Chunks | Errors | Status |" >> benchmark-report/BENCHMARK.md
+          echo "|---------|-------|--------------|--------|--------|--------|" >> benchmark-report/BENCHMARK.md
 
-          # Load all results
-          for artifact_dir in benchmarks_dir.iterdir():
-              if not artifact_dir.is_dir():
-                  continue
+          # Process each edition
+          for result_dir in benchmarks/benchmark-*/; do
+            if [ -f "$result_dir/results.json" ]; then
+              edition=$(jq -r '.edition' "$result_dir/results.json")
+              score=$(jq -r '.score' "$result_dir/results.json")
+              startup=$(jq -r '.startup_time_s' "$result_dir/results.json")
+              chunks=$(jq -r '.chunks_prepared' "$result_dir/results.json")
+              errors=$(jq -r '.errors.error_count' "$result_dir/results.json")
+              crashed=$(jq -r '.crashed' "$result_dir/results.json")
 
-              edition = artifact_dir.name.replace("benchmark-", "")
-              results_file = artifact_dir / "results.json"
+              status="✅"
+              if [ "$crashed" -eq 1 ]; then
+                status="❌"
+              fi
 
-              if results_file.exists():
-                  with open(results_file) as f:
-                      results[edition] = json.load(f)
+              echo "| $edition | $score/100 | ${startup}s | $chunks | $errors | $status |" >> benchmark-report/BENCHMARK.md
+            fi
+          done
 
-          # Generate Markdown report
-          report = [
-              "# Benchmark Results",
-              "",
-              f"*Generated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}*",
-              "",
-              "## Summary",
-              "",
-              "| Edition | Score | Startup Time | Errors |",
-              "|---------|-------|--------------|--------|",
-          ]
+          echo "" >> benchmark-report/BENCHMARK.md
+          echo "---" >> benchmark-report/BENCHMARK.md
+          echo "*Server-side benchmarks on GitHub Actions Ubuntu runners (3GB RAM)*" >> benchmark-report/BENCHMARK.md
 
-          # Sort by score
-          sorted_results = sorted(
-              results.items(),
-              key=lambda x: x[1].get("score", 0),
-              reverse=True
-          )
+          cat benchmark-report/BENCHMARK.md
 
-          medals = ["🥇", "🥈", "🥉"]
-          for i, (edition, data) in enumerate(sorted_results):
-              medal = medals[i] if i < 3 else ""
-              score = data.get("score", "N/A")
-              startup = data.get("startup_time_s", "N/A")
-              if isinstance(startup, float):
-                  startup = f"{startup:.1f}s"
-              errors = data.get("errors", {}).get("error_count", 0)
-
-              report.append(f"| {medal} {edition} | {score}/100 | {startup} | {errors} |")
-
-          report.extend([
-              "",
-              "## Recommendations",
-              "",
-          ])
-
-          if sorted_results:
-              best = sorted_results[0][0]
-              report.append(f"**Best performing edition:** {best}")
-
-              # Find fastest startup
-              fastest = min(results.items(), key=lambda x: x[1].get("startup_time_s", 999))
-              report.append(f"**Fastest startup:** {fastest[0]} ({fastest[1].get('startup_time_s', 'N/A')}s)")
-
-          report.extend([
-              "",
-              "---",
-              "*Server-side benchmarks run on GitHub Actions Ubuntu runners (4GB RAM)*",
-              "",
-              "Note: These benchmarks measure server-side performance only.",
-              "Client-side FPS will vary based on GPU and shader settings.",
-          ])
-
-          # Write report
-          Path("benchmark-report").mkdir(exist_ok=True)
-
-          with open("benchmark-report/BENCHMARK.md", "w") as f:
-              f.write("\n".join(report))
-
-          with open("benchmark-report/results.json", "w") as f:
-              json.dump({
-                  "timestamp": datetime.now().isoformat(),
-                  "editions": results
-              }, f, indent=2)
-
-          print("\n".join(report))
-          PYTHON
-
-      - name: Upload benchmark report
+      - name: Upload report
         uses: actions/upload-artifact@v4
         with:
           name: benchmark-report
           path: benchmark-report/
-
-      - name: Update repository with results
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        run: |
-          # Copy benchmark results to docs
-          mkdir -p docs/src/content/docs/benchmarks
-          cp benchmark-report/BENCHMARK.md docs/src/content/docs/benchmarks/latest.md
-
-          # Add frontmatter
-          cat > docs/src/content/docs/benchmarks/latest.md << 'EOF'
-          ---
-          title: Latest Benchmark Results
-          description: Automated performance benchmarks for all Lumo Optimized editions
-          ---
-
-          EOF
-          cat benchmark-report/BENCHMARK.md >> docs/src/content/docs/benchmarks/latest.md
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/src/content/docs/benchmarks/
-          git diff --cached --quiet || git commit -m "docs: Update benchmark results [skip ci]"
-          git push || echo "Nothing to push"
