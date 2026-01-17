@@ -1,0 +1,22 @@
+{
+  "name": "lumo-optimized",
+  "version": "1.0.0",
+  "description": "A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices",
+  "scripts": {
+    "build": "make modrinth curseforge"
+  },
+  "keywords": [
+    "minecraft",
+    "modpack",
+    "fabric",
+    "performance",
+    "optimization"
+  ],
+  "author": "Luca Silverentand",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucasilverentand/lumo-optimized.git"
+  },
+  "packageManager": "pnpm@10.19.0"
+}

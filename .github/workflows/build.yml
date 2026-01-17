@@ -3,30 +3,12 @@ name: Build Modpack
 on:
   push:
     branches: [main]
-    tags: ["v*"]
   pull_request:
     branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        edition:
-          - name: standard
-            dir: ""
-          - name: steam-deck
-            dir: editions/steam-deck
-          - name: macbook
-            dir: editions/macbook
-          - name: mac-studio
-            dir: editions/mac-studio
-          - name: low-end
-            dir: editions/low-end
-          - name: medium
-            dir: editions/medium
-          - name: high-end
-            dir: editions/high-end
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,147 +21,16 @@ jobs:
       - name: Install packwiz
         run: go install github.com/packwiz/packwiz@latest
 
-      - name: Build ${{ matrix.edition.name }} Edition
+      - name: Build Modpack
         run: |
           mkdir -p dist
+          packwiz refresh
+          VERSION=$(grep '^version' pack.toml | cut -d'"' -f2)
+          packwiz modrinth export -o dist/lumo-optimized-${VERSION}.mrpack
+          packwiz curseforge export -o dist/lumo-optimized-${VERSION}-curseforge.zip
 
-          if [ "${{ matrix.edition.name }}" = "standard" ]; then
-            # Build standard edition directly
-            packwiz refresh
-            packwiz modrinth export -o dist/lumo-optimized-${{ github.ref_name }}.mrpack
-            packwiz curseforge export -o dist/lumo-optimized-${{ github.ref_name }}-curseforge.zip
-          else
-            # Build variant edition
-            EDITION="${{ matrix.edition.name }}"
-            EDITION_DIR="${{ matrix.edition.dir }}"
-
-            mkdir -p .build/$EDITION
-            cp -r mods resourcepacks shaderpacks config index.toml icon.png .build/$EDITION/
-            cp $EDITION_DIR/pack.toml .build/$EDITION/
-
-            # Apply edition-specific configs
-            if [ -d "$EDITION_DIR/config" ]; then
-              cp -r $EDITION_DIR/config/* .build/$EDITION/config/
-            fi
-
-            # Apply edition-specific shader settings
-            if [ -d "$EDITION_DIR/shaderpacks" ]; then
-              cp -r $EDITION_DIR/shaderpacks/* .build/$EDITION/shaderpacks/
-            fi
-
-            cd .build/$EDITION
-            packwiz refresh
-            packwiz modrinth export -o ../../dist/lumo-optimized-$EDITION-${{ github.ref_name }}.mrpack
-            packwiz curseforge export -o ../../dist/lumo-optimized-$EDITION-${{ github.ref_name }}-curseforge.zip
-          fi
-
-      - name: Upload ${{ matrix.edition.name }} artifacts
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.edition.name }}-build
+          name: modpack-build
           path: dist/
-
-  release:
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts/
-
-      - name: Collect all builds
-        run: |
-          mkdir -p dist
-          find artifacts -name "*.mrpack" -exec cp {} dist/ \;
-          find artifacts -name "*.zip" -exec cp {} dist/ \;
-          ls -la dist/
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/*
-          generate_release_notes: true
-          body: |
-            ## Lumo Optimized ${{ github.ref_name }}
-
-            A performance-focused Fabric modpack for Minecraft 1.21.8.
-
-            ### Available Editions
-
-            | Edition | Target Hardware | Shaders | Description |
-            |---------|-----------------|---------|-------------|
-            | **Standard** | Desktop PCs | Enabled | Default balanced settings |
-            | **Steam Deck** | Valve Steam Deck | Disabled | Controller support, battery optimized |
-            | **MacBook** | Apple Silicon laptops | Enabled* | Battery-conscious, Mac-compatible shaders |
-            | **Mac Studio** | Apple Silicon desktop | Enabled* | Maximum quality, Mac-compatible shaders |
-            | **Low-End** | Integrated GPU, <8GB RAM | Disabled | Maximum performance, minimal visuals |
-            | **Medium** | Mid-range GPU, 8-16GB RAM | Enabled | Balanced quality and performance |
-            | **High-End** | RTX 3070+, 16GB+ RAM | Enabled | Maximum visual quality |
-
-            *Mac editions use Photon shader with Apple Metal compatibility settings (SH Skylight and Colored Shadows disabled)
-
-            ### Download Guide
-
-            | File Pattern | Launcher Compatibility |
-            |--------------|------------------------|
-            | `*.mrpack` | Prism Launcher, Modrinth App, ATLauncher, MultiMC |
-            | `*-curseforge.zip` | CurseForge Launcher, GDLauncher |
-
-            ### Edition Details
-
-            #### Standard Edition
-            Default settings suitable for most desktop PCs.
-
-            #### Steam Deck Edition
-            - Pre-configured controller support (Controlify)
-            - 60 FPS cap for battery life
-            - Shaders disabled by default
-            - Aggressive Dynamic FPS when unfocused
-
-            #### MacBook Edition
-            - Apple Metal compatible shaders
-            - Battery-conscious Dynamic FPS
-            - Adaptive sync enabled
-            - Reduced resolution scaling available
-
-            #### Mac Studio Edition
-            - Maximum quality settings
-            - High render distances (512 LOD)
-            - Apple Metal compatible shaders
-
-            #### Low-End Edition
-            - Shaders disabled
-            - Minimal particle effects
-            - Aggressive culling (64 block distance)
-            - Low LOD render distance (64)
-
-            #### Medium Edition
-            - Balanced shader settings
-            - Standard particle effects
-            - Moderate LOD distance (256)
-
-            #### High-End Edition
-            - Maximum shader quality
-            - All visual effects enabled
-            - Maximum LOD distance (512)
-            - SSGI enabled
-
-            ### Installation
-
-            **Prism Launcher:**
-            1. Download the `.mrpack` file for your hardware
-            2. Open Prism Launcher → Add Instance → Import from zip
-            3. Select the file and click OK
-
-            ### Benchmarking
-
-            Use the built-in Spark profiler to test performance:
-            ```
-            /spark profiler start
-            [play for 60 seconds]
-            /spark profiler stop
-            ```

@@ -1,6 +1,6 @@
-# Voxy configuration
-# LOD render distance and quality settings
+# Voxy configuration - Low-End optimized
+# Minimal LOD render distance for maximum performance
 
-render_distance=256
-lod_bias=0
+render_distance=64
+lod_bias=2
 enable_async_updates=true

@@ -7,16 +7,16 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.3--1.21.8-brightgreen)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-dbd0b4)](https://fabricmc.net/)
 
-A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life improvements, optimized rendering, and beautiful visuals.
+A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices, integrated graphics, and older hardware. Maximum performance with carefully selected mods.
 
 **[View Full Documentation](https://lucasilverentand.github.io/lumo-optimized/)**
 
-## Editions
+## Features
 
-| Edition        | Best For             | Download                                  |
-| -------------- | -------------------- | ----------------------------------------- |
-| **Standard**   | Desktop PCs, Laptops | `lumo-optimized-vX.X.X.mrpack`            |
-| **Steam Deck** | Valve Steam Deck     | `lumo-optimized-steam-deck-vX.X.X.mrpack` |
+- **Optimized for Low-End Hardware**: Integrated GPU, <8GB RAM
+- **Maximum Performance**: Shaders disabled, aggressive culling, minimal particles
+- **Low LOD Distance**: 64 blocks for best performance
+- **Essential QoL Mods**: Minimap, inventory sorting, and more
 
 ## Installation
 
@@ -32,15 +32,8 @@ A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life i
 
 1. Download the latest `.mrpack` file from [Releases](../../releases)
 2. Open Modrinth App
-3. Drag and drop the `.mrpack` file into the app, OR
-4. Click **Create Profile** → **From File** and select the `.mrpack`
-
-### ATLauncher / MultiMC
-
-1. Download the latest `.mrpack` file from [Releases](../../releases)
-2. Open your launcher and go to **Add Instance** → **Import**
-3. Select the downloaded `.mrpack` file
-4. Click **OK** to install
+3. Drag and drop the `.mrpack` file into the app
+4. OR click **Create Profile** → **From File** and select the `.mrpack`
 
 ### CurseForge Launcher
 
@@ -48,7 +41,6 @@ A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life i
 2. Open CurseForge launcher
 3. Go to **Create Custom Profile**
 4. Click **Import** and select the downloaded zip file
-5. Wait for installation to complete
 
 ## Building from Source
 
@@ -132,9 +124,9 @@ make list
 
 ## Requirements
 
-- Minecraft 1.21.8
+- Minecraft 1.21.3-1.21.8
 - Java 21 or higher
-- Recommended: 4GB+ allocated RAM
+- Minimum: 2GB allocated RAM (4GB recommended)
 
 ## License
 

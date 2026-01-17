@@ -1,7 +1,7 @@
 name = "Lumo Optimized"
 author = "Luca Silverentand"
-version = "1.0.2"
-description = "A performance-focused Fabric modpack for Minecraft 1.21.8 with quality-of-life improvements, optimized rendering, and beautiful visuals."
+version = "1.0.0"
+description = "A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices, integrated graphics, and older hardware."
 pack-format = "packwiz:1.1.0"
 
 [index]
