@@ -7,7 +7,9 @@
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.3--1.21.8-brightgreen)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-dbd0b4)](https://fabricmc.net/)
 
-A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices, integrated graphics, and older hardware. Maximum performance with carefully selected mods.
+A performance-focused Fabric modpack optimized for low-end devices, integrated graphics, and older hardware. Maximum performance with carefully selected mods.
+
+**Available for Minecraft 1.20.x, 1.21.3-1.21.7, and 1.21.8** - See [version support](EDITIONS.md)
 
 **[View Full Documentation](https://lucasilverentand.github.io/lumo-optimized/)**
 
