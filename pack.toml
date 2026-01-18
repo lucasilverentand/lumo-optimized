@@ -1,7 +1,7 @@
 name = "Lumo Optimized"
 author = "Luca Silverentand"
 version = "1.0.0"
-description = "A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices, integrated graphics, and older hardware."
+description = "A performance-focused Fabric modpack for Minecraft 1.20.4 optimized for low-end devices, integrated graphics, and older hardware."
 pack-format = "packwiz:1.1.0"
 
 [index]
@@ -10,8 +10,8 @@ hash-format = "sha256"
 hash = "74cd31b8142834128c3315a09c1a2c17f91c3afa4185b799b59602c51ae42626"
 
 [versions]
-fabric = "0.18.2"
-minecraft = "1.21.8"
+fabric = "0.16.5"
+minecraft = "1.20.4"
 
 [options]
-acceptable-game-versions = ["1.21.3", "1.21.4", "1.21.5", "1.21.6", "1.21.7"]
+acceptable-game-versions = ["1.20.1", "1.20.2", "1.20.3", "1.20.4", "1.20.5", "1.20.6"]
