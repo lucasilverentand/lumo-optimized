@@ -5,6 +5,19 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
+
+
+### Features
+
+* implement automated mod and version management system ([2f252c2](https://github.com/lucasilverentand/lumo-optimized/commit/2f252c235be3e94a096f95dd9847f2e9bea11274))
+
+
+### Bug Fixes
+
+* correct packwiz command syntax for mod updates ([8db09f2](https://github.com/lucasilverentand/lumo-optimized/commit/8db09f2c2370020dd5464afa1c675d0a95024490))
+* use correct packwiz syntax with both project-id and version-id ([77e4d9a](https://github.com/lucasilverentand/lumo-optimized/commit/77e4d9a6297b748c0dcaefc1ff37858182c63ce7))
+
 ## 1.0.0 (2026-01-17)
 
 
