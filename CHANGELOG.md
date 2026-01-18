@@ -5,6 +5,48 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/lucasilverentand/lumo-optimized/compare/mc1.20-v1.1.0...mc1.20-v2.0.0) (2026-01-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Multiple editions removed in favor of single low-end optimized modpack
+
+### Features
+
+* Add 5 new performance profiles and CI benchmarking ([20dfcd6](https://github.com/lucasilverentand/lumo-optimized/commit/20dfcd6e530437b1cab6d61c2a313a88604555d0))
+* add multi-branch release support for all Minecraft versions ([770c203](https://github.com/lucasilverentand/lumo-optimized/commit/770c2033536ab896a66a321254296d3ac0659771))
+* Add Steam Deck Edition with optimized settings ([7de8649](https://github.com/lucasilverentand/lumo-optimized/commit/7de8649a2b449e153192e47af78b8512549bc361))
+* Add Terralith 2.5.13 datapack ([8789870](https://github.com/lucasilverentand/lumo-optimized/commit/8789870ce376010c8f4301d491c37d725ea4b123))
+* Major quality improvements and remove Modrinth publishing ([3868ad9](https://github.com/lucasilverentand/lumo-optimized/commit/3868ad9d8b1b71eae9ba74f22cb4958742e1a6b4))
+* simplify to single low-end modpack with Release Please ([59e0b37](https://github.com/lucasilverentand/lumo-optimized/commit/59e0b37c392be5023bbda7d98d70f968062c1c6b))
+* Switch to Voxy and Photon Shaders ([085b95c](https://github.com/lucasilverentand/lumo-optimized/commit/085b95c18ce478a08a685d4f43e33d5f11575941))
+
+
+### Bug Fixes
+
+* configure mc1.20 component for release tagging ([6c43dd1](https://github.com/lucasilverentand/lumo-optimized/commit/6c43dd176eeedd05a2c307a00fe0a70bf706cd57))
+* Resolve JSON parsing and bc dependency issues in benchmark ([79b056e](https://github.com/lucasilverentand/lumo-optimized/commit/79b056ee49353324f544f56f4a51c48ffdc68767))
+* Simplify benchmark workflow to use vanilla server ([9fbbb65](https://github.com/lucasilverentand/lumo-optimized/commit/9fbbb65e48c6155a6df70233870ed02e17d368c0))
+
+
+### Documentation
+
+* Add Astro Starlight documentation site with Rapide theme ([2859a58](https://github.com/lucasilverentand/lumo-optimized/commit/2859a58e1fbeb5d64c3fe9d0d4ff1b78a9209a79))
+* Add comprehensive editions comparison guide ([caa1ad4](https://github.com/lucasilverentand/lumo-optimized/commit/caa1ad4fad8178cad71a61fd0d60372de6ffdd16))
+* Add setup completion summary ([37fbc56](https://github.com/lucasilverentand/lumo-optimized/commit/37fbc56938f92e58311e3d0a7527b305a7b335de))
+
+
+### Miscellaneous
+
+* add workflow_dispatch trigger to release-please ([158a537](https://github.com/lucasilverentand/lumo-optimized/commit/158a5378b02af4723f1fb5a071ecd2766914039e))
+* create mc-1.20.x branch for MC 1.20.4 ([08a21d1](https://github.com/lucasilverentand/lumo-optimized/commit/08a21d17294bbe8d6d7c64304a564ddeccd623e0))
+* **main:** release 1.0.0 ([8e1087e](https://github.com/lucasilverentand/lumo-optimized/commit/8e1087e761dd9d584c2bf36caf22984061e86e0b))
+* **main:** release 1.0.0 ([9b1361d](https://github.com/lucasilverentand/lumo-optimized/commit/9b1361d5f51f8bcc4817acc897715dfd54eccb44))
+* **mc-1.20.x:** release 1.1.0 ([#10](https://github.com/lucasilverentand/lumo-optimized/issues/10)) ([715c5c6](https://github.com/lucasilverentand/lumo-optimized/commit/715c5c63cacce7b5dc622119c8d0580a7488c455))
+* remove all benchmarking files and references ([ce8741c](https://github.com/lucasilverentand/lumo-optimized/commit/ce8741cb510569f52e0f4b23f871c8482c05d798))
+* reset release-please manifest to 0.0.0 ([c00f54a](https://github.com/lucasilverentand/lumo-optimized/commit/c00f54a58b950108c0a3ea40b36f460b5745bde0))
+
 ## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
 
 
