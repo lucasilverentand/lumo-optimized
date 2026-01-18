@@ -1,6 +1,7 @@
 {
   "packages": {
     ".": {
+      "component": "mc1.21",
       "release-type": "simple",
       "extra-files": [
         {
