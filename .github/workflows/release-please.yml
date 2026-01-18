@@ -54,10 +54,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        edition: [steam-deck, macbook, mac-studio, low-end, medium, high-end]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -70,31 +66,25 @@ jobs:
       - name: Install packwiz
         run: go install github.com/packwiz/packwiz@latest
 
-      - name: Build Edition
+      - name: Build Modpack
         env:
           VERSION: ${{ needs.release-please.outputs.version }}
           MC_VERSION: ${{ needs.release-please.outputs.mc_version }}
           BRANCH: ${{ needs.release-please.outputs.branch }}
-          EDITION: ${{ matrix.edition }}
         run: |
-          echo "Building $EDITION edition for Minecraft $MC_VERSION (version $VERSION)"
-
-          # Run edition-specific build script
-          if [ -f "scripts/build-edition.sh" ]; then
-            bash scripts/build-edition.sh "$EDITION"
-          else
-            echo "Warning: scripts/build-edition.sh not found, using packwiz refresh only"
-            packwiz refresh
-          fi
+          echo "Building Lumo Optimized for Minecraft $MC_VERSION (version $VERSION)"
 
           # Create dist directory
           mkdir -p dist
 
-          # Set filename with edition, MC version, and release version
+          # Refresh packwiz index
+          packwiz refresh
+
+          # Set filename with MC version for non-main branches
           if [ "$BRANCH" = "main" ]; then
-            FILENAME_BASE="lumo-optimized-${EDITION}-${VERSION}"
+            FILENAME_BASE="lumo-optimized-${VERSION}"
           else
-            FILENAME_BASE="lumo-optimized-${EDITION}-mc${MC_VERSION}-${VERSION}"
+            FILENAME_BASE="lumo-optimized-mc${MC_VERSION}-${VERSION}"
           fi
 
           # Export modpack
