@@ -5,6 +5,13 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
+
+
+### Features
+
+* add multi-branch release support for all Minecraft versions ([6353545](https://github.com/lucasilverentand/lumo-optimized/commit/635354533d844bdde7fa156ceb1e591fc393275f))
+
 ## 1.0.0 (2026-01-17)
 
 
