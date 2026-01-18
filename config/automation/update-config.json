@@ -1,0 +1,30 @@
+{
+  "updateFrequency": "daily",
+  "updateSchedule": "0 2 * * *",
+  "minecraftVersions": {
+    "track": ["1.21.x", "1.20.x"],
+    "autoCreateBranch": false
+  },
+  "modUpdates": {
+    "autoApply": false,
+    "createDraftPR": true,
+    "releaseTypes": ["release"],
+    "excludeAlpha": true,
+    "excludeBeta": true
+  },
+  "loaderUpdates": {
+    "fabricLoader": {
+      "autoUpdate": true,
+      "trackStable": true
+    }
+  },
+  "compatibility": {
+    "strictValidation": true,
+    "requireAllEditionsBuild": true
+  },
+  "rateLimit": {
+    "batchSize": 50,
+    "batchDelayMs": 200,
+    "cacheTtlHours": 24
+  }
+}

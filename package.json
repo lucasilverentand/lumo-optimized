@@ -18,5 +18,11 @@
     "type": "git",
     "url": "https://github.com/lucasilverentand/lumo-optimized.git"
   },
-  "packageManager": "pnpm@10.19.0"
+  "packageManager": "bun@1.1.0",
+  "dependencies": {
+    "@octokit/rest": "^22.0.1",
+    "axios": "^1.13.2",
+    "semver": "^7.7.3",
+    "toml": "^3.0.0"
+  }
 }

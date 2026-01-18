@@ -1,0 +1,156 @@
+name: Automated Update Check
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  check-updates:
+    name: Check for mod updates
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: [main, mc-1.21.x, mc-1.20.x]
+      fail-fast: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Setup Packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      - name: Check for updates
+        id: check
+        run: |
+          bun run scripts/automation/check-updates.js
+          if [ -f updates.json ]; then
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create feature branch
+        if: steps.check.outputs.has_updates == 'true'
+        env:
+          BRANCH: ${{ matrix.branch }}
+        run: |
+          DATE=$(date +%Y%m%d)
+          BRANCH_NAME="chore/auto-update-$DATE-$BRANCH"
+          git checkout -b "$BRANCH_NAME"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Apply updates
+        if: steps.check.outputs.has_updates == 'true'
+        run: |
+          bun run scripts/automation/apply-updates.js
+
+      - name: Commit changes
+        if: steps.check.outputs.has_updates == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          # Read commit message from file
+          COMMIT_MSG=$(cat .commit-message.txt)
+          git commit -m "$COMMIT_MSG"
+
+          # Clean up commit message file
+          rm .commit-message.txt
+
+      - name: Push feature branch
+        if: steps.check.outputs.has_updates == 'true'
+        run: |
+          git push origin "$BRANCH_NAME" -u
+
+      - name: Generate PR description
+        if: steps.check.outputs.has_updates == 'true'
+        id: pr-desc
+        run: |
+          DATE=$(date +%Y-%m-%d)
+
+          # Read updates.json
+          UPDATES=$(cat updates.json)
+          MOD_COUNT=$(echo "$UPDATES" | jq '.mods | length')
+          HAS_LOADER=$(echo "$UPDATES" | jq '.fabricLoader != null')
+
+          # Start building PR body
+          echo 'PR_BODY<<EOF' >> $GITHUB_ENV
+          echo "## Automated Mod Updates - $DATE" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "### Summary" >> $GITHUB_ENV
+          echo "Updates $MOD_COUNT mod(s) to latest stable versions for Minecraft version compatible with this branch." >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+
+          if [ "$MOD_COUNT" -gt 0 ]; then
+            echo "### Updated Mods" >> $GITHUB_ENV
+            echo "| Mod | Current | New | Changelog |" >> $GITHUB_ENV
+            echo "|-----|---------|-----|-----------|" >> $GITHUB_ENV
+
+            echo "$UPDATES" | jq -r '.mods[] | "| \(.name) | \(.currentVersion) | \(.latestVersion) | [\(.updateUrl)](\(.updateUrl)) |"' >> $GITHUB_ENV
+            echo "" >> $GITHUB_ENV
+          fi
+
+          if [ "$HAS_LOADER" = "true" ]; then
+            CURRENT_LOADER=$(echo "$UPDATES" | jq -r '.fabricLoader.currentVersion')
+            LATEST_LOADER=$(echo "$UPDATES" | jq -r '.fabricLoader.latestVersion')
+            echo "### Fabric Loader" >> $GITHUB_ENV
+            echo "- Current: $CURRENT_LOADER" >> $GITHUB_ENV
+            echo "- New: $LATEST_LOADER" >> $GITHUB_ENV
+            echo "" >> $GITHUB_ENV
+          fi
+
+          echo "### Validation Status" >> $GITHUB_ENV
+          echo "⏳ Awaiting automated validation" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "### Test Checklist" >> $GITHUB_ENV
+          echo "- [ ] Game launches successfully" >> $GITHUB_ENV
+          echo "- [ ] No crashes in overworld/nether/end" >> $GITHUB_ENV
+          echo "- [ ] Shaders work (high-end editions)" >> $GITHUB_ENV
+          echo "- [ ] Performance is stable" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "---" >> $GITHUB_ENV
+          echo "🤖 Generated with automated update system" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Create draft PR
+        if: steps.check.outputs.has_updates == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ matrix.branch }}
+        run: |
+          gh pr create \
+            --draft \
+            --title "chore: automated mod updates for $BASE_BRANCH" \
+            --body "$PR_BODY" \
+            --base "$BASE_BRANCH" \
+            --label "automated-update" \
+            --label "needs-validation"
+
+      - name: Trigger validation workflow
+        if: steps.check.outputs.has_updates == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        run: |
+          # Get PR number
+          PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number')
+          echo "Created PR #$PR_NUMBER"
+
+          # Validation will be triggered automatically by PR label

@@ -1,0 +1,218 @@
+name: New Minecraft Version Check
+
+on:
+  schedule:
+    # Check weekly for new Minecraft versions
+    - cron: '0 10 * * 1'
+  workflow_dispatch:
+    inputs:
+      mc_version:
+        description: 'Minecraft version to create branch for (e.g., 1.21.8)'
+        required: false
+        type: string
+
+jobs:
+  check-version:
+    name: Check for new Minecraft versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Check for new Minecraft versions
+        id: check
+        run: |
+          bun run scripts/automation/check-minecraft-versions.js
+
+          # Check if new version was detected
+          if [ -f version-check-result.json ]; then
+            HAS_NEW=$(jq -r '.hasNewVersion' version-check-result.json)
+            NEW_VERSION=$(jq -r '.latestVersion' version-check-result.json)
+
+            echo "has_new_version=$HAS_NEW" >> $GITHUB_OUTPUT
+            echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "has_new_version=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub issue for new version
+        if: steps.check.outputs.has_new_version == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ steps.check.outputs.new_version }}
+        run: |
+          # Read issue content
+          if [ -f new-version-issue.json ]; then
+            ISSUE_TITLE=$(jq -r '.title' new-version-issue.json)
+            ISSUE_BODY=$(jq -r '.body' new-version-issue.json)
+
+            # Create issue
+            gh issue create \
+              --title "$ISSUE_TITLE" \
+              --body "$ISSUE_BODY" \
+              --label "enhancement" \
+              --label "new-minecraft-version"
+
+            echo "✅ Created GitHub issue for Minecraft $NEW_VERSION"
+          fi
+
+      - name: Notify via issue comment
+        if: steps.check.outputs.has_new_version == 'true'
+        env:
+          NEW_VERSION: ${{ steps.check.outputs.new_version }}
+        run: |
+          echo "New Minecraft version $NEW_VERSION detected!"
+          echo "Please review the created issue for next steps."
+
+  create-branch:
+    name: Create branch for new version (manual)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.mc_version != ''
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Setup Packwiz
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
+
+      - name: Extract major.minor version
+        id: version
+        env:
+          MC_VERSION: ${{ github.event.inputs.mc_version }}
+        run: |
+          # Extract major.minor (e.g., "1.21.8" -> "1.21.x")
+          MAJOR_MINOR=$(echo "$MC_VERSION" | cut -d. -f1-2)
+          BRANCH_NAME="mc-${MAJOR_MINOR}.x"
+
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "Creating branch: $BRANCH_NAME for MC $MC_VERSION"
+
+      - name: Create and checkout new branch
+        env:
+          BRANCH_NAME: ${{ steps.version.outputs.branch_name }}
+        run: |
+          git checkout -b "$BRANCH_NAME"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update pack.toml with new MC version
+        env:
+          MC_VERSION: ${{ github.event.inputs.mc_version }}
+        run: |
+          # Update Minecraft version in pack.toml
+          sed -i "s/minecraft = \"[^\"]*\"/minecraft = \"$MC_VERSION\"/" pack.toml
+
+          echo "Updated pack.toml with MC $MC_VERSION"
+
+      - name: Get latest Fabric loader for this MC version
+        id: fabric
+        run: |
+          # This would ideally use the Fabric Meta API
+          # For now, just note it needs manual update
+          echo "⚠️  Please manually update Fabric loader version in pack.toml"
+
+      - name: Run mod compatibility scan
+        id: scan
+        continue-on-error: true
+        run: |
+          echo "Scanning mod compatibility..."
+          bun run scripts/automation/validate-compatibility.js || true
+
+      - name: Commit changes
+        env:
+          BRANCH_NAME: ${{ steps.version.outputs.branch_name }}
+          MC_VERSION: ${{ github.event.inputs.mc_version }}
+        run: |
+          git add pack.toml
+
+          git commit -m "chore: create branch for Minecraft $MC_VERSION
+
+          Initial setup for Minecraft $MC_VERSION support.
+          - Updated pack.toml with MC version
+          - Branch: $BRANCH_NAME
+
+          Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+
+      - name: Push new branch
+        env:
+          BRANCH_NAME: ${{ steps.version.outputs.branch_name }}
+        run: |
+          git push origin "$BRANCH_NAME" -u
+
+      - name: Create tracking PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ steps.version.outputs.branch_name }}
+          MC_VERSION: ${{ github.event.inputs.mc_version }}
+        run: |
+          # Read validation results if available
+          VALIDATION_INFO=""
+          if [ -f validation-results.json ]; then
+            VALIDATION_INFO=$(cat validation-results.json | jq -r '.')
+          fi
+
+          # Create PR body
+          {
+            echo "## New Minecraft Version: $MC_VERSION"
+            echo ""
+            echo "This PR tracks the setup of support for Minecraft $MC_VERSION."
+            echo ""
+            echo "### Tasks"
+            echo "- [x] Create branch: \`$BRANCH_NAME\`"
+            echo "- [x] Update pack.toml with MC version"
+            echo "- [ ] Update Fabric loader version"
+            echo "- [ ] Run full mod compatibility check"
+            echo "- [ ] Remove incompatible mods"
+            echo "- [ ] Test modpack in-game"
+            echo "- [ ] Update documentation"
+            echo ""
+            echo "### Validation Results"
+            echo ""
+            if [ -f validation-results.json ]; then
+              echo "\`\`\`json"
+              cat validation-results.json
+              echo "\`\`\`"
+            else
+              echo "Validation not yet run."
+            fi
+            echo ""
+            echo "---"
+            echo "🤖 Generated by new version workflow"
+          } > pr-body.md
+
+          gh pr create \
+            --draft \
+            --title "feat: add support for Minecraft $MC_VERSION" \
+            --body-file pr-body.md \
+            --base main \
+            --label "enhancement" \
+            --label "new-minecraft-version" \
+            --label "needs-manual-review"
+
+          echo "✅ Created tracking PR for branch $BRANCH_NAME"

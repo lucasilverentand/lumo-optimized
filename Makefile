@@ -6,7 +6,7 @@ DIST_DIR := dist
 PACK_NAME := lumo-optimized
 VERSION := $(shell grep '^version' pack.toml | cut -d'"' -f2)
 
-.PHONY: all clean modrinth curseforge refresh list help update
+.PHONY: all clean modrinth curseforge refresh list help update check-updates apply-updates validate build-all-editions check-mc-versions
 
 all: modrinth curseforge
 
@@ -23,6 +23,13 @@ help:
 	@echo "  make list          - List all mods in the pack"
 	@echo "  make update        - Update all mods to latest versions"
 	@echo "  make clean         - Remove dist and build directories"
+	@echo ""
+	@echo "Automation:"
+	@echo "  make check-updates        - Check for available mod updates"
+	@echo "  make apply-updates        - Apply detected updates"
+	@echo "  make validate             - Validate mod compatibility"
+	@echo "  make check-mc-versions    - Check for new Minecraft versions"
+	@echo "  make build-all-editions   - Build all 7 hardware editions"
 	@echo ""
 	@echo "Current version: $(VERSION)"
 
@@ -53,3 +60,24 @@ curseforge: $(DIST_DIR) refresh
 clean:
 	rm -rf $(DIST_DIR)
 	rm -rf .build
+
+# Automation targets
+check-updates:
+	@echo "🔍 Checking for mod updates..."
+	@bun run scripts/automation/check-updates.js
+
+apply-updates:
+	@echo "🔧 Applying updates..."
+	@bun run scripts/automation/apply-updates.js
+
+validate:
+	@echo "🔍 Validating compatibility..."
+	@bun run scripts/automation/validate-compatibility.js
+
+check-mc-versions:
+	@echo "🎮 Checking Minecraft versions..."
+	@bun run scripts/automation/check-minecraft-versions.js
+
+build-all-editions:
+	@echo "🔨 Building all editions..."
+	@./scripts/build-all-editions.sh

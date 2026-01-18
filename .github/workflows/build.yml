@@ -2,13 +2,25 @@ name: Build Modpack
 
 on:
   push:
-    branches: [main]
+    branches: [main, mc-1.21.x, mc-1.20.x]
   pull_request:
-    branches: [main]
+    branches: [main, mc-1.21.x, mc-1.20.x]
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-editions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        edition:
+          - steam-deck
+          - macbook
+          - mac-studio
+          - low-end
+          - medium
+          - high-end
+      fail-fast: false
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,18 +31,44 @@ jobs:
           go-version: "1.22"
 
       - name: Install packwiz
-        run: go install github.com/packwiz/packwiz@latest
-
-      - name: Build Modpack
         run: |
-          mkdir -p dist
-          packwiz refresh
-          VERSION=$(grep '^version' pack.toml | cut -d'"' -f2)
-          packwiz modrinth export -o dist/lumo-optimized-${VERSION}.mrpack
-          packwiz curseforge export -o dist/lumo-optimized-${VERSION}-curseforge.zip
+          go install github.com/packwiz/packwiz@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
-      - name: Upload artifacts
+      - name: Build edition
+        env:
+          EDITION: ${{ matrix.edition }}
+        run: |
+          chmod +x scripts/build-edition.sh
+          ./scripts/build-edition.sh "$EDITION"
+
+      - name: Upload edition artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: modpack-build
+          name: modpack-${{ matrix.edition }}-build
           path: dist/
+          retention-days: 30
+
+  build-summary:
+    name: Build Summary
+    runs-on: ubuntu-latest
+    needs: build-editions
+    if: always()
+
+    steps:
+      - name: Check build status
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          echo "All edition builds completed"
+          echo "Branch: $BRANCH_NAME"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-builds
+
+      - name: List built packages
+        run: |
+          echo "Built packages:"
+          find all-builds -type f \( -name "*.mrpack" -o -name "*.zip" \) | sort

@@ -31,6 +31,11 @@ Desktop.ini
 
 # Cache directories
 .puzzle_cache/
+.update-cache/
+
+# Node/Bun dependencies
+node_modules/
+bun.lockb
 
 # Packwiz temp files
 *.tmp
