@@ -1,3 +1,130 @@
 {
-  "skipped": []
+  "skipped": [
+    {
+      "modId": "onSQdWhM",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id oyGmzKRu",
+      "until": "2026-01-20T00:21:14.356Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.359Z"
+    },
+    {
+      "modId": "1eAoo2KR",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id iPLhsWMM",
+      "until": "2026-01-20T00:21:14.366Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.366Z"
+    },
+    {
+      "modId": "O7RBXm3n",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id QGs1Vitv",
+      "until": "2026-01-20T00:21:14.372Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.372Z"
+    },
+    {
+      "modId": "mOgUt4GM",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id kiOz1Uxm",
+      "until": "2026-01-20T00:21:14.378Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.378Z"
+    },
+    {
+      "modId": "9eGKb6K1",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id KYSxRYEb",
+      "until": "2026-01-20T00:21:14.384Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.384Z"
+    },
+    {
+      "modId": "m5T5xmUy",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id ykR6O8Gc",
+      "until": "2026-01-20T00:21:14.390Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.391Z"
+    },
+    {
+      "modId": "4I1XuqiY",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id 9YmuHru2",
+      "until": "2026-01-20T00:21:14.397Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.397Z"
+    },
+    {
+      "modId": "Ha28R6CL",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id N6D3uiZF",
+      "until": "2026-01-20T00:21:14.403Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.403Z"
+    },
+    {
+      "modId": "5ZwdcRci",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id 49MPhz8k",
+      "until": "2026-01-20T00:21:14.409Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.409Z"
+    },
+    {
+      "modId": "1bokaNcj",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id ETFJtOY2",
+      "until": "2026-01-20T00:21:14.415Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.415Z"
+    },
+    {
+      "modId": "NcUtCpym",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id jhjh8t8E",
+      "until": "2026-01-20T00:21:14.421Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.421Z"
+    },
+    {
+      "modId": "w7ThoJFB",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id OwKsg9JX",
+      "until": "2026-01-20T00:21:14.428Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.428Z"
+    },
+    {
+      "modId": "DOUdJVEm",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id y2Ibl3Yp",
+      "until": "2026-01-20T00:21:14.434Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.434Z"
+    },
+    {
+      "modId": "ix1qq8Ux",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id 6jzxvt1B",
+      "until": "2026-01-20T00:21:14.440Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.440Z"
+    },
+    {
+      "modId": "NNAgCjsB",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id fa1r3lFt",
+      "until": "2026-01-20T00:21:14.446Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.446Z"
+    },
+    {
+      "modId": "BVzZfTc1",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id 9J9YjqvC",
+      "until": "2026-01-20T00:21:14.451Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.452Z"
+    },
+    {
+      "modId": "LQ3K71Q1",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id ri6igUC5",
+      "until": "2026-01-20T00:21:14.457Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.458Z"
+    },
+    {
+      "modId": "3IuO68q1",
+      "reason": "Update failed: Command failed: packwiz modrinth install --version-id HUt5RNu0",
+      "until": "2026-01-20T00:21:14.463Z",
+      "addedBy": "automated-check",
+      "addedAt": "2026-01-18T00:21:14.463Z"
+    }
+  ]
 }
