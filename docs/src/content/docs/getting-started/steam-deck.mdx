@@ -7,11 +7,11 @@ import { Aside, Steps } from "@astrojs/starlight/components";
 
 # Steam Deck Installation
 
-Lumo Optimized offers a dedicated **Steam Deck Edition** with optimized settings for handheld gaming on Valve's Steam Deck.
+Lumo Optimized works great on Steam Deck! While there's only one modpack, it includes recommended settings for handheld gaming that you can adjust after installation.
 
-## Steam Deck Edition Features
+## Recommended Steam Deck Settings
 
-The Steam Deck Edition includes all the same mods as the standard edition, but with pre-configured settings optimized for the Deck:
+After installing, adjust these settings for optimal Steam Deck performance:
 
 | Feature             | Setting        | Reason                     |
 | ------------------- | -------------- | -------------------------- |
@@ -57,14 +57,18 @@ The Steam Deck Edition includes all the same mods as the standard edition, but w
   Make sure to select Java 21 or higher. Minecraft 1.21+ requires it!
 </Aside>
 
-### Step 4: Download Steam Deck Edition
+### Step 4: Download Lumo Optimized
 
 <Steps>
   1. Open a web browser (Firefox is pre-installed) 2. Go to [GitHub
   Releases](https://github.com/lucasilverentand/lumo-optimized/releases/latest)
-  3. Download `lumo-optimized-steam-deck-vX.X.X.mrpack` 4. Save to your
+  3. Download the `.mrpack` file for your Minecraft version 4. Save to your
   Downloads folder
 </Steps>
+
+<Aside type="tip">
+  Choose your Minecraft version: **v*** for 1.21.8 (latest), **mc1.21-v*** for 1.21.3-1.21.7, or **mc1.20-v*** for 1.20.x
+</Aside>
 
 ### Step 5: Import the Modpack
 
@@ -181,19 +185,21 @@ Then in-game, change max FPS to 40 in Video Settings.
 1. Adjust GUI Scale in Video Settings
 2. Recommended: GUI Scale 3 for Steam Deck
 
-## Comparison: Standard vs Steam Deck Edition
+## Recommended In-Game Settings for Steam Deck
 
-| Setting             | Standard     | Steam Deck          |
-| ------------------- | ------------ | ------------------- |
-| Render Distance     | Auto         | 10 chunks           |
-| Simulation Distance | Auto         | 8 chunks            |
-| Max FPS             | Unlimited    | 60                  |
-| Fullscreen          | No           | Yes                 |
-| View Bobbing        | Yes          | No                  |
-| Shaders             | Available    | Disabled by default |
-| GUI Scale           | Auto         | 3                   |
-| Controller          | Manual setup | Pre-configured      |
-| DH Quality          | Default      | Low                 |
+After launching, adjust these settings for best performance:
+
+| Setting             | Recommended Value | Location |
+| ------------------- | ----------------- | -------- |
+| Render Distance     | 10 chunks         | Video Settings |
+| Simulation Distance | 8 chunks          | Video Settings |
+| Max FPS             | 60                | Video Settings |
+| Fullscreen          | Yes               | Video Settings |
+| View Bobbing        | No                | Video Settings |
+| Shaders             | Disabled (or Low) | Video Settings → Shader Packs |
+| GUI Scale           | 3                 | Video Settings |
+| Controller          | Enable Controlify | Mod Menu |
+| Voxy Quality        | Low               | Mod Menu → Voxy
 
 ## Recommended Accessories
 
