@@ -5,6 +5,20 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/lucasilverentand/lumo-optimized/compare/v1.2.0...v1.2.1) (2026-01-18)
+
+
+### Bug Fixes
+
+* remove invalid inputs from release-please v4 action ([c0d96ff](https://github.com/lucasilverentand/lumo-optimized/commit/c0d96ffe27f77f8ba39af24d467473c2e60f21e9))
+* simplify release to single modpack build ([247fd09](https://github.com/lucasilverentand/lumo-optimized/commit/247fd0927cd2a5686d64ade801ce312cd9c80a74))
+
+
+### Documentation
+
+* remove duplicate H1 headings from all pages ([50fc404](https://github.com/lucasilverentand/lumo-optimized/commit/50fc4044f86183a43168039f6dba09d524ceba36))
+* update for single modpack and multi-version releases ([57a66e9](https://github.com/lucasilverentand/lumo-optimized/commit/57a66e95d5e5cf63de9371b71df246abbbce0797))
+
 ## [1.2.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.1.0...v1.2.0) (2026-01-18)
 
 
