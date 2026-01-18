@@ -5,6 +5,37 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
+
+
+### Features
+
+* add multi-branch release support for all Minecraft versions ([52ef63f](https://github.com/lucasilverentand/lumo-optimized/commit/52ef63fc68c68d0619c1948f887f459e399aac75))
+* implement automated mod and version management system ([2f252c2](https://github.com/lucasilverentand/lumo-optimized/commit/2f252c235be3e94a096f95dd9847f2e9bea11274))
+
+
+### Bug Fixes
+
+* correct packwiz command syntax for mod updates ([8db09f2](https://github.com/lucasilverentand/lumo-optimized/commit/8db09f2c2370020dd5464afa1c675d0a95024490))
+* remove invalid inputs from release-please v4 action ([c0d96ff](https://github.com/lucasilverentand/lumo-optimized/commit/c0d96ffe27f77f8ba39af24d467473c2e60f21e9))
+* simplify release to single modpack build ([247fd09](https://github.com/lucasilverentand/lumo-optimized/commit/247fd0927cd2a5686d64ade801ce312cd9c80a74))
+* use correct packwiz syntax with both project-id and version-id ([77e4d9a](https://github.com/lucasilverentand/lumo-optimized/commit/77e4d9a6297b748c0dcaefc1ff37858182c63ce7))
+
+
+### Documentation
+
+* remove duplicate H1 headings from all pages ([50fc404](https://github.com/lucasilverentand/lumo-optimized/commit/50fc4044f86183a43168039f6dba09d524ceba36))
+* update for single modpack and multi-version releases ([57a66e9](https://github.com/lucasilverentand/lumo-optimized/commit/57a66e95d5e5cf63de9371b71df246abbbce0797))
+
+
+### Miscellaneous
+
+* **main:** release 1.1.0 ([4da104c](https://github.com/lucasilverentand/lumo-optimized/commit/4da104c2a8a3dec643a9702d5ba2230ed85a8feb))
+* **main:** release 1.1.0 ([dd80c56](https://github.com/lucasilverentand/lumo-optimized/commit/dd80c56c21ab19a70d609454c9036561831df093))
+* **main:** release 1.2.0 ([#8](https://github.com/lucasilverentand/lumo-optimized/issues/8)) ([ce91f86](https://github.com/lucasilverentand/lumo-optimized/commit/ce91f8673403485088801d1725f585dfff0db698))
+* **main:** release 1.2.1 ([#13](https://github.com/lucasilverentand/lumo-optimized/issues/13)) ([cb6d100](https://github.com/lucasilverentand/lumo-optimized/commit/cb6d100eaa17f7438b69d6e022614a3d6e8f9eff))
+* reset version to 1.0.0 ([625be80](https://github.com/lucasilverentand/lumo-optimized/commit/625be80890b36d512494af323bce3e5278f9fb22))
+
 ## [1.2.1](https://github.com/lucasilverentand/lumo-optimized/compare/v1.2.0...v1.2.1) (2026-01-18)
 
 
