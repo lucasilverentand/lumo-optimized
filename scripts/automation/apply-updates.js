@@ -45,7 +45,7 @@ async function main() {
         try {
           // Use packwiz to update the mod to the specific version
           const { stdout, stderr } = await execAsync(
-            `packwiz modrinth install --version-id ${mod.latestVersionId}`,
+            `packwiz modrinth add --project-id ${mod.projectId} --version-id ${mod.latestVersionId} -y`,
             { cwd: process.cwd() }
           );
 
