@@ -1,0 +1,161 @@
+{
+  "timestamp": "2026-01-20T03:13:39.503Z",
+  "minecraftVersion": "1.21.8",
+  "mods": [
+    {
+      "name": "libIPN",
+      "projectId": "onSQdWhM",
+      "currentVersion": "fabric-1.21.6-6.6.1",
+      "currentVersionId": "B2GdJiKB",
+      "latestVersion": "fabric-1.21.6-6.6.2",
+      "latestVersionId": "oyGmzKRu",
+      "changelog": "## What's new\n\n### 6.6.2\n\n-   added support for 1.21.11\n-   fixed scroll wheel input causing crash in creative inventory\n\n*NOTE*: this is the last release that supports 1.21.6 and probably 1.21.10\n",
+      "updateUrl": "https://modrinth.com/mod/onSQdWhM/version/oyGmzKRu"
+    },
+    {
+      "name": "YetAnotherConfigLib (YACL)",
+      "projectId": "1eAoo2KR",
+      "currentVersion": "3.8.1+1.21.6-fabric",
+      "currentVersionId": "KyQmNIz8",
+      "latestVersion": "3.8.2+1.21.6-fabric",
+      "latestVersionId": "iPLhsWMM",
+      "changelog": "# YetAnotherConfigLib 3.8.2\n\n### 3.8.2 targets\n\n|                  | Fabric    | NeoForge  | Forge |\n|------------------|-----------|-----------|-------|\n| 26.1 (Snapshots) | ✅         | ❌         | ❌     |\n| 1.21.11          | ✅         | ✅         | ❌     |\n| 1.21.10          | ✅         | ✅         | ❌     |\n| 1.21.9           | ✅ 1.21.10 | ✅ 1.21.10 | ❌     |\n| 1.21.8           | ✅ 1.21.6  | ✅ 1.21.6  | ❌     |\n| 1.21.7           | ✅ 1.21.6  | ✅ 1.21.6  | ❌     |\n| 1.21.6           | ✅         | ✅         | ❌     |\n| 1.21.5           | ✅         | ✅         | ❌     |\n| 1.21.4           | ✅         | ✅         | ❌     |\n| 1.21.3           | ✅         | ✅         | ❌     |\n| 1.21.2           | ✅ 1.21.3  | ✅ 1.21.3  | ❌     |\n| 1.21.1           | ✅         | ✅         | ❌     |\n| 1.20.6           | ❌         | ❌         | ❌     |\n| 1.20.4           | ❌         | ❌         | ❌     |\n| 1.20.1           | ❌         | ❌         | ❌     |\n\n### Changes\n\n- Add targets for 26.1 snapshots.\n- Remove some excessive validation from search field.\n",
+      "updateUrl": "https://modrinth.com/mod/1eAoo2KR/version/iPLhsWMM"
+    },
+    {
+      "name": "Inventory Profiles Next",
+      "projectId": "O7RBXm3n",
+      "currentVersion": "fabric-1.21.6-2.2.1",
+      "currentVersionId": "YJerI3me",
+      "latestVersion": "fabric-1.21.6-2.2.3",
+      "latestVersionId": "QGs1Vitv",
+      "changelog": "## What's new\n\n### 2.2.3\n\n-   Fixed sort by item count.\n-   Added new settings to treat non-stackable items as full stackable stacks when sorting by item count.\n-   Added compatibility with Easy Shulker Boxes and Metal Bundles\n-   Major settings screen rework.\n    -   Added \"**Features**\" page where all major features can be enabled/disabled.\n    -   Added \"**Sort Settings**\" page, where all sort-related settings were moved.\n    -   Old settings files will be updated automatically. Also, downgrade is possible without loss of information.\n-   The number of quick profiles is now 10.\n",
+      "updateUrl": "https://modrinth.com/mod/O7RBXm3n/version/QGs1Vitv"
+    },
+    {
+      "name": "Mod Menu",
+      "projectId": "mOgUt4GM",
+      "currentVersion": "15.0.0",
+      "currentVersionId": "am1Siv7F",
+      "latestVersion": "15.0.1",
+      "latestVersionId": "kiOz1Uxm",
+      "changelog": "- Add links to contacts' e-mail if present in fmj\n- Translations",
+      "updateUrl": "https://modrinth.com/mod/mOgUt4GM/version/kiOz1Uxm"
+    },
+    {
+      "name": "Simple Voice Chat",
+      "projectId": "9eGKb6K1",
+      "currentVersion": "fabric-1.21.8-2.6.7",
+      "currentVersionId": "1pQxrQRi",
+      "latestVersion": "fabric-1.21.8-2.6.11",
+      "latestVersionId": "KYSxRYEb",
+      "changelog": "- Improved voice chat group name validation\n- Fixed being able to whisper while being muted\n",
+      "updateUrl": "https://modrinth.com/mod/9eGKb6K1/version/KYSxRYEb"
+    },
+    {
+      "name": "BetterGrassify",
+      "projectId": "m5T5xmUy",
+      "currentVersion": "1.8.2+fabric.1.21.10",
+      "currentVersionId": "2C7y66BK",
+      "latestVersion": "1.8.3+fabric.1.21.10",
+      "latestVersionId": "ykR6O8Gc",
+      "changelog": "# 1.8.3+fabric.1.21.10\n🗃️**Detailed Changelog: [1.8.2 --> 1.8.3](https://github.com/UltimatChamp/BetterGrassify/compare/1.8.2%2bfabric.1.21.10...1.8.3%2bfabric.1.21.11)**\n\n---\n\n### 💡Added\n\n- Support for **Minecraft** `1.21.11`.\n- Support for **Sodium**'s new _Video Settings Menu_.\n",
+      "updateUrl": "https://modrinth.com/mod/m5T5xmUy/version/ykR6O8Gc"
+    },
+    {
+      "name": "[EMF] Entity Model Features",
+      "projectId": "4I1XuqiY",
+      "currentVersion": "3.0.7-fabric-1.21.6",
+      "currentVersionId": "2WVMrDc2",
+      "latestVersion": "3.0.10-fabric-1.21.6",
+      "latestVersionId": "9YmuHru2",
+      "changelog": "- fixed armor textures breaking on 3.0.9 in MC 1.21.9+\n- fixed entities flickering in some GUIs in older versions, e.g. horses inventory when using Fresh Animations & some player GUIs\n\n",
+      "updateUrl": "https://modrinth.com/mod/4I1XuqiY/version/9YmuHru2"
+    },
+    {
+      "name": "ImmediatelyFast",
+      "projectId": "5ZwdcRci",
+      "currentVersion": "1.12.3+1.21.8-fabric",
+      "currentVersionId": "Pan1UGq3",
+      "latestVersion": "1.12.4+1.21.8-fabric",
+      "latestVersionId": "49MPhz8k",
+      "changelog": "* Made ImmediatelyFast compatible with Java 25\r\n* Only apply map atlas texture coords when the map texture is set correctly (Fixes map rendering issues with ImageFrameClient mod)\r\n",
+      "updateUrl": "https://modrinth.com/mod/5ZwdcRci/version/49MPhz8k"
+    },
+    {
+      "name": "Xaero's Minimap",
+      "projectId": "1bokaNcj",
+      "currentVersion": "25.2.16_Fabric_1.21.8",
+      "currentVersionId": "dEIlpdij",
+      "latestVersion": "fabric-1.21.8-25.3.5",
+      "latestVersionId": "ETFJtOY2",
+      "changelog": "[Read changelogs](https://chocolateminecraft.com/update.php?mod_id=0)",
+      "updateUrl": "https://modrinth.com/mod/1bokaNcj/version/ETFJtOY2"
+    },
+    {
+      "name": "Xaero's World Map",
+      "projectId": "NcUtCpym",
+      "currentVersion": "1.39.13_Fabric_1.21.8",
+      "currentVersionId": "d1Pc1nIN",
+      "latestVersion": "fabric-1.21.8-1.40.6",
+      "latestVersionId": "jhjh8t8E",
+      "changelog": "[Read changelogs](https://chocolateminecraft.com/update.php?mod_id=2)",
+      "updateUrl": "https://modrinth.com/mod/NcUtCpym/version/jhjh8t8E"
+    },
+    {
+      "name": "Controlify (Controller support)",
+      "projectId": "DOUdJVEm",
+      "currentVersion": "2.4.4",
+      "currentVersionId": "rxbLBXzv",
+      "latestVersion": "2.5.2",
+      "latestVersionId": "y2Ibl3Yp",
+      "changelog": "# Controlify 2.5.2\n\nThis version has the following targets:\n- StonecutterProject(project=1.21.11-fabric, version=1.21.11)\n- StonecutterProject(project=1.21.11-neoforge, version=1.21.11)\n- StonecutterProject(project=1.21.10-fabric, version=1.21.10)\n- StonecutterProject(project=1.21.10-neoforge, version=1.21.10)\n- StonecutterProject(project=1.21.8-fabric, version=1.21.8)\n- StonecutterProject(project=1.21.8-neoforge, version=1.21.8)\n- StonecutterProject(project=1.21.5-fabric, version=1.21.5)\n- StonecutterProject(project=1.21.5-neoforge, version=1.21.5)\n- StonecutterProject(project=1.21.4-fabric, version=1.21.4)\n- StonecutterProject(project=1.21.4-neoforge, version=1.21.4)\n- StonecutterProject(project=1.21.3-fabric, version=1.21.3)\n- StonecutterProject(project=1.21.3-neoforge, version=1.21.3)\n- StonecutterProject(project=1.21.1-fabric, version=1.21.1)\n- StonecutterProject(project=1.21.1-neoforge, version=1.21.1)\n\n[![](https://short.isxander.dev/bisect-img)](https://short.isxander.dev/bisect)\n\n**By donating on my [Patreon](https://patreon.com/isxander), you will gain access to builds of Controlify for splitscreen support and snapshot versions**\n\n## Changes\n\n- Fix controller vibrations causing input to freeze\n- Fix being stuck sneaking if GUI_BACK matches VMOUSE_SHIFT_CLICK\n- Add debug option to specify SDL natives path explicitly\n- Update translations\n",
+      "updateUrl": "https://modrinth.com/mod/DOUdJVEm/version/y2Ibl3Yp"
+    },
+    {
+      "name": "Entity Culling",
+      "projectId": "NNAgCjsB",
+      "currentVersion": "1.9.4",
+      "currentVersionId": "XK3Wqd9x",
+      "latestVersion": "1.9.5",
+      "latestVersionId": "fa1r3lFt",
+      "changelog": "## What's Changed\r\n* Fix nametag inconsistency causing fps loss in later versions\r\n* Added option to force a culling box on unconfigured display entities. This will increase fps on servers/maps that did not configure their displays, but can cause visual issues for really big displays (Default is off)\r\n* Add new translations for block entity culling by @Texaliuz in https://github.com/tr7zw/EntityCulling/pull/260\r\n\r\n\r\n**Full Changelog**: https://github.com/tr7zw/EntityCulling/compare/1.9.4...1.9.5\n",
+      "updateUrl": "https://modrinth.com/mod/NNAgCjsB/version/fa1r3lFt"
+    },
+    {
+      "name": "[ETF] Entity Texture Features",
+      "projectId": "BVzZfTc1",
+      "currentVersion": "7.0.6-fabric-1.21.6",
+      "currentVersionId": "szy3S4To",
+      "latestVersion": "7.0.8-fabric-1.21.6",
+      "latestVersionId": "9J9YjqvC",
+      "changelog": "- neoforge 1.21.11\n- fixed various issues with the skin tool and uploading on 1.21.11 specifically and some other versions\n- fixed player skin enchanted pixel selections being inverted in 1.21.9+\n- fixed a crash with block entities\n- fixed the jacket/dress extension skin feature in 1.21.2+\n\n",
+      "updateUrl": "https://modrinth.com/mod/BVzZfTc1/version/9J9YjqvC"
+    },
+    {
+      "name": "Dynamic FPS",
+      "projectId": "LQ3K71Q1",
+      "currentVersion": "3.11.0",
+      "currentVersionId": "ThtaBEpL",
+      "latestVersion": "3.11.3",
+      "latestVersionId": "ri6igUC5",
+      "changelog": "- Update Spanish Translations ([Issue 279](https://github.com/juliand665/Dynamic-FPS/issues/279) by @pilahito)\n- Fix battery charge display not accounting for multiple batteries ([commit c2c32379ea](https://github.com/juliand665/Dynamic-FPS/commit/c2c32379ea1fa02be8c4f607562b779412a942d4) by @LostLuma)\n- Fix the loading overlay fading to a black screen while inside a world ([PR 282](https://github.com/juliand665/Dynamic-FPS/pull/282) by @LostLuma)\n  - Dynamic FPS skips rendering the world while resources are reloading, but did so too eagerly before\n- Update battery library to 2.0.0 ([commit a76cd4a069](https://github.com/juliand665/Dynamic-FPS/commit/a76cd4a069a14d6cc8cf9e0dc55d9a8ef1d03062) by @LostLuma)\n  - There is now another error toast when enabling the feature fails ([commit 535fe9c2f8](https://github.com/juliand665/Dynamic-FPS/commit/535fe9c2f8b6385e5b145d71bcb044839af0b4b3) by @LostLuma)\n",
+      "updateUrl": "https://modrinth.com/mod/LQ3K71Q1/version/ri6igUC5"
+    },
+    {
+      "name": "Puzzle",
+      "projectId": "3IuO68q1",
+      "currentVersion": "2.2.1+1.21.8-fabric",
+      "currentVersionId": "xnOQLcDf",
+      "latestVersion": "2.3.0+1.21.8-fabric",
+      "latestVersionId": "HUt5RNu0",
+      "changelog": "# Puzzle v2.3.0\n- Backported Minecraft 1.21.11's new multi-axis-rotation system for models to MC 1.20.1 - 1.21.10\n\n## Puzzle v2.2.1\n- Add support for 1.21.11 (Mounts of Mayhem)\n- Fix crash when ModMenu is missing\n- Fix 1.21.4 support by providing an extra build\n  - This is the first 1.21.4 build with working splashscreen logo blending!\n- Load splashscreen textures earlier on NeoForge\n- Update to MidnightLib 1.9.2\n\n# Puzzle v2.2.0\n- Setup a **multiversion** build environment\n    - Puzzle will now always be up-to-date on all relevant versions of Minecraft  \n      (Fabric/Forge 1.20.1; Fabric/NeoForge 1.21.1, 1.21.5, 1.21.8, 1.21.10)\n- Migrate to Mojang mappings in preparation for upcoming non-obfuscated releases\n- Updated Entity Model/Texture Features compatibility",
+      "updateUrl": "https://modrinth.com/mod/3IuO68q1/version/HUt5RNu0"
+    }
+  ],
+  "fabricLoader": {
+    "currentVersion": "0.18.2",
+    "latestVersion": "0.18.4",
+    "changelogUrl": "https://fabricmc.net/wiki/changelog/loader/0.18.4"
+  }
+}
