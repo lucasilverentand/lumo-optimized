@@ -1,16 +1,13 @@
-filename = 'controlify-2.4.4+1.21.8-fabric.jar'
-name = 'Controlify (Controller support)'
-side = 'both'
-x-prismlauncher-loaders = [ 'fabric' ]
-x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
-x-prismlauncher-release-type = 'release'
+name = "Controlify (Controller support)"
+filename = "controlify-2.5.2+1.21.8-fabric.jar"
+side = "both"
 
 [download]
-hash = '720972b933161c16227fcb64d336eaa6a6e51d7bb52a19b652e96bce307bd5879a2426539455b60d763dcbaadbddf2272941596242dff51223b487db6e8cde0f'
-hash-format = 'sha512'
-mode = 'url'
-url = 'https://cdn.modrinth.com/data/DOUdJVEm/versions/rxbLBXzv/controlify-2.4.4%2B1.21.8-fabric.jar'
+url = "https://cdn.modrinth.com/data/DOUdJVEm/versions/y2Ibl3Yp/controlify-2.5.2%2B1.21.8-fabric.jar"
+hash-format = "sha512"
+hash = "1c47d555893ee9ff9eae70f4209b2c88a294aaa030ceb80a0eba6f024a12fd921c306f878910e62457eac4240c540f58d7de3f01858c3bec557b50c85ddc0b51"
 
+[update]
 [update.modrinth]
-mod-id = 'DOUdJVEm'
-version = 'rxbLBXzv'
+mod-id = "DOUdJVEm"
+version = "y2Ibl3Yp"
