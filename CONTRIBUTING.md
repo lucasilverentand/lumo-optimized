@@ -148,7 +148,6 @@ Follow conventional commit format:
 
 - `feat: Add Sodium Extra mod`
 - `fix: Resolve crash with Distant Horizons`
-- `config: Adjust Jade tooltip settings`
 - `docs: Update installation instructions`
 - `chore: Update dependencies`
 

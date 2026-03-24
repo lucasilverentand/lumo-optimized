@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - mc-1.21.x
-      - mc-1.20.x
   workflow_dispatch:
 
 permissions:
@@ -19,34 +17,12 @@ jobs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
       version: ${{ steps.release.outputs.version }}
-      branch: ${{ steps.branch.outputs.branch }}
-      mc_version: ${{ steps.prefix.outputs.mc_version }}
     steps:
-      - name: Get branch name
-        id: branch
-        run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
-
-      - name: Set release configuration
-        id: prefix
-        run: |
-          BRANCH="${{ steps.branch.outputs.branch }}"
-          if [ "$BRANCH" = "main" ]; then
-            echo "prefix=" >> $GITHUB_OUTPUT
-            echo "mc_version=1.21.8" >> $GITHUB_OUTPUT
-          elif [ "$BRANCH" = "mc-1.21.x" ]; then
-            echo "prefix=mc1.21-" >> $GITHUB_OUTPUT
-            echo "mc_version=1.21.3" >> $GITHUB_OUTPUT
-          elif [ "$BRANCH" = "mc-1.20.x" ]; then
-            echo "prefix=mc1.20-" >> $GITHUB_OUTPUT
-            echo "mc_version=1.20.4" >> $GITHUB_OUTPUT
-          fi
-
       - name: Run Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target-branch: ${{ steps.branch.outputs.branch }}
 
   build-and-upload:
     needs: release-please
@@ -64,36 +40,25 @@ jobs:
           go-version: "1.22"
 
       - name: Install packwiz
-        run: go install github.com/packwiz/packwiz@latest
+        run: |
+          go install github.com/packwiz/packwiz@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
-      - name: Build Modpack
+      - name: Build modpack
         env:
           VERSION: ${{ needs.release-please.outputs.version }}
-          MC_VERSION: ${{ needs.release-please.outputs.mc_version }}
-          BRANCH: ${{ needs.release-please.outputs.branch }}
         run: |
-          echo "Building Lumo Optimized for Minecraft $MC_VERSION (version $VERSION)"
+          MC_VERSION=$(grep '^minecraft' pack.toml | cut -d'"' -f2)
+          echo "Building Lumo Optimized v${VERSION} for Minecraft ${MC_VERSION}"
 
-          # Create dist directory
           mkdir -p dist
-
-          # Refresh packwiz index
           packwiz refresh
-
-          # Set filename with MC version for non-main branches
-          if [ "$BRANCH" = "main" ]; then
-            FILENAME_BASE="lumo-optimized-${VERSION}"
-          else
-            FILENAME_BASE="lumo-optimized-mc${MC_VERSION}-${VERSION}"
-          fi
-
-          # Export modpack
-          packwiz modrinth export -o "dist/${FILENAME_BASE}.mrpack"
-          packwiz curseforge export -o "dist/${FILENAME_BASE}-curseforge.zip"
+          packwiz modrinth export -o "dist/lumo-optimized-${VERSION}.mrpack"
+          packwiz curseforge export -o "dist/lumo-optimized-${VERSION}-curseforge.zip"
 
           ls -la dist/
 
-      - name: Upload Release Artifacts
+      - name: Upload release artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
