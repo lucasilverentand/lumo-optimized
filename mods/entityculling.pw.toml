@@ -1,16 +1,13 @@
-filename = 'entityculling-fabric-1.9.4-mc1.21.8.jar'
-name = 'Entity Culling'
-side = 'client'
-x-prismlauncher-loaders = [ 'fabric' ]
-x-prismlauncher-mc-versions = [ '1.21.8' ]
-x-prismlauncher-release-type = 'release'
+name = "Entity Culling"
+filename = "entityculling-fabric-1.10.0-mc1.21.8.jar"
+side = "client"
 
 [download]
-hash = '88d05f286316246e09083dd4eddf24de3bb2eb0fdaaed2d658f869d5509fba1c9d3f70481851e63a9508e56973027f74b90690a1492921ce4d71a8ac7f7ce8b5'
-hash-format = 'sha512'
-mode = 'url'
-url = 'https://cdn.modrinth.com/data/NNAgCjsB/versions/XK3Wqd9x/entityculling-fabric-1.9.4-mc1.21.8.jar'
+url = "https://cdn.modrinth.com/data/NNAgCjsB/versions/Wxb3V3SV/entityculling-fabric-1.10.0-mc1.21.8.jar"
+hash-format = "sha512"
+hash = "67afd6a3fc685b031efd605937b70e0693c6ac0969add0980b00c8d208dd660a9028cbd79be232a83187353eeff882427a9bc3fd8e142372d6e5d34f98ba8b71"
 
+[update]
 [update.modrinth]
-mod-id = 'NNAgCjsB'
-version = 'XK3Wqd9x'
+mod-id = "NNAgCjsB"
+version = "Wxb3V3SV"
