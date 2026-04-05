@@ -1,0 +1,221 @@
+{
+  "timestamp": "2026-04-05T02:58:49.838Z",
+  "minecraftVersion": "1.21.8",
+  "mods": [
+    {
+      "name": "Entity Culling",
+      "projectId": "NNAgCjsB",
+      "currentVersion": "1.9.4",
+      "currentVersionId": "XK3Wqd9x",
+      "latestVersion": "1.10.0",
+      "latestVersionId": "Wxb3V3SV",
+      "changelog": "## What's Changed\r\n* Add Fabric 26.1 support\r\n* Large build script and lib updates due to 26.1, please report any issues. Enter ``godmode`` into the recipe book for debugging\r\n* Add German translation by @GulutGames in https://github.com/tr7zw/EntityCulling/pull/277\r\n* lang: Update zh_cn.json by @Moralts in https://github.com/tr7zw/EntityCulling/pull/284\r\n\r\n## New Contributors\r\n* @GulutGames made their first contribution in https://github.com/tr7zw/EntityCulling/pull/277\r\n\r\n**Full Changelog**: https://github.com/tr7zw/EntityCulling/compare/1.9.5...1.10.0\n",
+      "updateUrl": "https://modrinth.com/mod/NNAgCjsB/version/Wxb3V3SV"
+    },
+    {
+      "name": "ImmediatelyFast",
+      "projectId": "5ZwdcRci",
+      "currentVersion": "1.12.3+1.21.8-fabric",
+      "currentVersionId": "Pan1UGq3",
+      "latestVersion": "1.12.5+1.21.8-fabric",
+      "latestVersionId": "iNldtLH8",
+      "changelog": "* Fixed villager type and profession layer render order\r\n* Fixed core shader incompatibility detection logic bug\r\n* Added advanced memory leak detector\r\n* Fixed batching buffer clearing\r\n",
+      "updateUrl": "https://modrinth.com/mod/5ZwdcRci/version/iNldtLH8"
+    },
+    {
+      "name": "Simple Voice Chat",
+      "projectId": "9eGKb6K1",
+      "currentVersion": "fabric-1.21.8-2.6.7",
+      "currentVersionId": "1pQxrQRi",
+      "latestVersion": "fabric-1.21.8-2.6.15",
+      "latestVersionId": "vLqzD0OI",
+      "changelog": "- Added Esperanto translation\n- Fall back to Java microphone implementation when using ALSoft >= 1.25.0\n",
+      "updateUrl": "https://modrinth.com/mod/9eGKb6K1/version/vLqzD0OI"
+    },
+    {
+      "name": "Dynamic FPS",
+      "projectId": "LQ3K71Q1",
+      "currentVersion": "3.11.0",
+      "currentVersionId": "ThtaBEpL",
+      "latestVersion": "3.11.4",
+      "latestVersionId": "OnRerL4D",
+      "changelog": "- Update Ukrainian Translation ([PR 285](https://github.com/juliand665/Dynamic-FPS/issues/285) by @StarmanMine142)\n- Revert a change to the mod initialization process which could hide errors caused elsewhere\n  - Reported by @Danieltl21 in [Issue 284](https://github.com/juliand665/Dynamic-FPS/issues/284)\n- Fix minimal graphics override irreversibly changing some settings ([commit b7316de9b2](https://github.com/juliand665/Dynamic-FPS/commit/b7316de9b2d9a6ed65d23ebbbebeefe4f21a07a9) by @LostLuma)\n  - Reported by @Fabian42 in [Issue 283](https://github.com/juliand665/Dynamic-FPS/issues/283)\n",
+      "updateUrl": "https://modrinth.com/mod/LQ3K71Q1/version/OnRerL4D"
+    },
+    {
+      "name": "UniLib",
+      "projectId": "nT86WUER",
+      "currentVersion": "1.2.0+1.21.8-fabric",
+      "currentVersionId": "BEkYsae8",
+      "latestVersion": "1.2.1+1.21.8-fabric",
+      "latestVersionId": "Sk3S6EES",
+      "changelog": "# UniLib Changes\n\n## v1.2.1 (03/02/2026)\n\n_A Detailed Changelog from the last release is\navailable [here](https://gitlab.com/CDAGaming/UniLib/-/compare/release%2Fv1.2.0...release%2Fv1.2.1)_\n\nSee the Mod Description or [README](https://gitlab.com/CDAGaming/UniLib) for more info regarding the mod.\n\n### Changes\n\n* (Backend) Updated Build Dependencies (Please see the appropriate repositories for changes)\n    * Unimined (`1.3.14` -> `1.0.5+1.4.2-SNAPSHOT`)\n    * JVMDowngrader (`1.2.2` -> `1.3.6`)\n    * Spotless (`8.0.0` -> `8.2.1`)\n    * Shadow (`9.2.2` -> `9.3.1`)\n    * SpotBugs Annotations (`4.9.6` -> `4.9.8`)\n    * ASM (`9.8` -> `9.9.1`)\n    * Fabric Loader (`0.17.2` -> `0.18.4`)\n    * UniCore (`1.3.3` -> `1.3.4`)\n    * LenniReflect (`1.5.0` -> `1.6.2`)\n    * ClassGraph (`4.8.181` -> `4.8.184`)\n    * ImageIO (`3.12.0` -> `3.13.0`)\n    * Gradle (`8.14.3` -> `9.2.1`)\n\n___\n\n### More Information\n\n#### Known Issues\n\nDespite compatibility often being ensured between versions,\ncaution is advised to ensure the best experience, while also baring in mind that features can be adjusted, removed, or\nadded/iterated upon between releases.\n\nPlease refer to the Mod Description or [README](https://gitlab.com/CDAGaming/UniLib) to view more info relating\nto known issues.\n\n#### Snapshot Build Info\n\nSome Versions of this Mod are for Minecraft Snapshots or Experimental Versions, and as such, caution should be noted.\n\nAny Snapshot Build released will be marked as **ALPHA** to match its Snapshot Status depending on tests done before\nrelease\nand issues found.\n\nSnapshot Builds, depending on circumstances, may also contain changes for a future version of the mod, and will be noted\nas so if this is the case with the `-Staging` label.\n",
+      "updateUrl": "https://modrinth.com/mod/nT86WUER/version/Sk3S6EES"
+    },
+    {
+      "name": "FerriteCore",
+      "projectId": "uXXizFIs",
+      "currentVersion": "8.0.0-fabric",
+      "currentVersionId": "CtMpt7Jr",
+      "latestVersion": "8.0.4-fabric",
+      "latestVersionId": "LdlksamY",
+      "changelog": "- Port changes from build 7.0.3 to 1.21.5\n  - Reduce memory usage of data component patches\n  - Fix loading slowdown with ModernFix dynamic resources\n",
+      "updateUrl": "https://modrinth.com/mod/uXXizFIs/version/LdlksamY"
+    },
+    {
+      "name": "Zoomify",
+      "projectId": "w7ThoJFB",
+      "currentVersion": "2.14.6+1.21.6",
+      "currentVersionId": "qMqviL3t",
+      "latestVersion": "2.15.2+1.21.6",
+      "latestVersionId": "LpSqZyo1",
+      "changelog": "# Zoomify 2.15.2\n\n## Changes\n\n- Add compatibility for Controlify 3.x",
+      "updateUrl": "https://modrinth.com/mod/w7ThoJFB/version/LpSqZyo1"
+    },
+    {
+      "name": "Xaero's World Map",
+      "projectId": "NcUtCpym",
+      "currentVersion": "1.39.13_Fabric_1.21.8",
+      "currentVersionId": "d1Pc1nIN",
+      "latestVersion": "fabric-1.21.8-1.40.11",
+      "latestVersionId": "ilWxCVWq",
+      "changelog": "[Read changelogs](https://chocolateminecraft.com/update.php?mod_id=2)",
+      "updateUrl": "https://modrinth.com/mod/NcUtCpym/version/ilWxCVWq"
+    },
+    {
+      "name": "BetterGrassify",
+      "projectId": "m5T5xmUy",
+      "currentVersion": "1.8.2+fabric.1.21.10",
+      "currentVersionId": "2C7y66BK",
+      "latestVersion": "1.8.4+fabric.1.21.10",
+      "latestVersionId": "CX2FXbud",
+      "changelog": "# 1.8.4+fabric.1.21.10\n🗃️**Detailed Changelog: [1.8.3 --> 1.8.4](https://github.com/UltimatChamp/BetterGrassify/compare/1.8.3%2bfabric.1.21.11...1.8.4%2bfabric.26.1.1)**\n\n---\n\n### ⚠️Note\n\n- Requires, a currently, unreleased version of **Sodium** for the mod to work with it.\n\n---\n\n### 💡Added\n\n- Support for **Minecraft** `26.1`-`26.1.1`.\n",
+      "updateUrl": "https://modrinth.com/mod/m5T5xmUy/version/CX2FXbud"
+    },
+    {
+      "name": "[ETF] Entity Texture Features",
+      "projectId": "BVzZfTc1",
+      "currentVersion": "7.0.6-fabric-1.21.6",
+      "currentVersionId": "szy3S4To",
+      "latestVersion": "7.0.13-fabric-1.21.6",
+      "latestVersionId": "gIDpViYV",
+      "changelog": "- fixed the player skin tool menu on 26.1\n- fixed fabric api detection\n- fixed skin feature part transforms\n\n",
+      "updateUrl": "https://modrinth.com/mod/BVzZfTc1/version/gIDpViYV"
+    },
+    {
+      "name": "Inventory Profiles Next",
+      "projectId": "O7RBXm3n",
+      "currentVersion": "fabric-1.21.6-2.2.1",
+      "currentVersionId": "YJerI3me",
+      "latestVersion": "fabric-1.21.6-2.2.4",
+      "latestVersionId": "bfe98o7x",
+      "changelog": "## What's new\n\n### 2.2.3\n\n-   Fixed sort by item count.\n-   Added new settings to treat non-stackable items as full stackable stacks when sorting by item count.\n-   Added compatibility with Easy Shulker Boxes and Metal Bundles\n-   Major settings screen rework.\n    -   Added \"**Features**\" page where all major features can be enabled/disabled.\n    -   Added \"**Sort Settings**\" page, where all sort-related settings were moved.\n    -   Old settings files will be updated automatically. Also, downgrade is possible without loss of information.\n-   The number of quick profiles is now 10.\n",
+      "updateUrl": "https://modrinth.com/mod/O7RBXm3n/version/bfe98o7x"
+    },
+    {
+      "name": "Crash Assistant",
+      "projectId": "ix1qq8Ux",
+      "currentVersion": "1.10.26",
+      "currentVersionId": "GIlsi9YD",
+      "latestVersion": "1.11.6",
+      "latestVersionId": "WeY6N68h",
+      "changelog": "- New GUI analysis tool `ConnectorModDetectorGUI`. Detects fabric mods loaded by connector mod.\n- New GUI analysis tool `ModsSearcherAnalysisGUI`. Searches for user-entered String/Regex names inside of mod\n  files/Minecraft folder. Good for finding problematic mods/configs when it isn't clear where a problem/resource is\n  coming from.\n- Now `modlist.txt` has `notes` column (renamed from `isMCreator`). Will have `via Connector` or `MCreator mod` notes\n  there aplicable.\n- `crash_assistant_app.log` now has:\n    - disk spase: total, free (at launch moment, at crash moment).\n    - Minecraft main class name.\n- Add separator row to `modlist.txt` formatting for improved readability.\n- Now `startup_scripts.log` added to logs list only if has errors. If no, its contents will be logged to CA log instead.\n- Added ability to customize colors of Yes/No in privacy policy acceptance.\n- Fixed blacklisting `CodexMessage` crash reason didn't work.\n- Fixed missing/corrupted mixins config analysis sometimes didn't work. Added a button to find which mod provided it if\n  we can't say immediately.\n- Fixed analysis results in generated message filenames may be duplicated.\n- `CorruptedConfigFinder` now correctly analysing `json5`. Also added support of `jsonc`, `properties` formats.\n- Improved generation of example scripts.\n\n### [See full changelog](https://kostromdan.github.io/Crash-Assistant/changelog.md)",
+      "updateUrl": "https://modrinth.com/mod/ix1qq8Ux/version/WeY6N68h"
+    },
+    {
+      "name": "YetAnotherConfigLib (YACL)",
+      "projectId": "1eAoo2KR",
+      "currentVersion": "3.8.1+1.21.6-fabric",
+      "currentVersionId": "KyQmNIz8",
+      "latestVersion": "3.8.2+1.21.6-fabric",
+      "latestVersionId": "iPLhsWMM",
+      "changelog": "# YetAnotherConfigLib 3.8.2\n\n### 3.8.2 targets\n\n|                  | Fabric    | NeoForge  | Forge |\n|------------------|-----------|-----------|-------|\n| 26.1 (Snapshots) | ✅         | ❌         | ❌     |\n| 1.21.11          | ✅         | ✅         | ❌     |\n| 1.21.10          | ✅         | ✅         | ❌     |\n| 1.21.9           | ✅ 1.21.10 | ✅ 1.21.10 | ❌     |\n| 1.21.8           | ✅ 1.21.6  | ✅ 1.21.6  | ❌     |\n| 1.21.7           | ✅ 1.21.6  | ✅ 1.21.6  | ❌     |\n| 1.21.6           | ✅         | ✅         | ❌     |\n| 1.21.5           | ✅         | ✅         | ❌     |\n| 1.21.4           | ✅         | ✅         | ❌     |\n| 1.21.3           | ✅         | ✅         | ❌     |\n| 1.21.2           | ✅ 1.21.3  | ✅ 1.21.3  | ❌     |\n| 1.21.1           | ✅         | ✅         | ❌     |\n| 1.20.6           | ❌         | ❌         | ❌     |\n| 1.20.4           | ❌         | ❌         | ❌     |\n| 1.20.1           | ❌         | ❌         | ❌     |\n\n### Changes\n\n- Add targets for 26.1 snapshots.\n- Remove some excessive validation from search field.\n",
+      "updateUrl": "https://modrinth.com/mod/1eAoo2KR/version/iPLhsWMM"
+    },
+    {
+      "name": "libIPN",
+      "projectId": "onSQdWhM",
+      "currentVersion": "fabric-1.21.6-6.6.1",
+      "currentVersionId": "B2GdJiKB",
+      "latestVersion": "fabric-1.21.6-6.6.2",
+      "latestVersionId": "oyGmzKRu",
+      "changelog": "## What's new\n\n### 6.6.2\n\n-   added support for 1.21.11\n-   fixed scroll wheel input causing crash in creative inventory\n\n*NOTE*: this is the last release that supports 1.21.6 and probably 1.21.10\n",
+      "updateUrl": "https://modrinth.com/mod/onSQdWhM/version/oyGmzKRu"
+    },
+    {
+      "name": "Fabric Language Kotlin",
+      "projectId": "Ha28R6CL",
+      "currentVersion": "1.13.7+kotlin.2.2.21",
+      "currentVersionId": "LcgnDDmT",
+      "latestVersion": "1.13.10+kotlin.2.3.20",
+      "latestVersionId": "21TRTKmh",
+      "changelog": "- Bump version (modmuss)\n- Update versions (#181) (github-actions[bot], github-actions)\n- Update readme (github-actions)\n",
+      "updateUrl": "https://modrinth.com/mod/Ha28R6CL/version/21TRTKmh"
+    },
+    {
+      "name": "Mod Menu",
+      "projectId": "mOgUt4GM",
+      "currentVersion": "15.0.0",
+      "currentVersionId": "am1Siv7F",
+      "latestVersion": "15.0.2",
+      "latestVersionId": "ku5NivOP",
+      "changelog": "- Fix inversion of config mode (thanks sisby-folk)",
+      "updateUrl": "https://modrinth.com/mod/mOgUt4GM/version/ku5NivOP"
+    },
+    {
+      "name": "[EMF] Entity Model Features",
+      "projectId": "4I1XuqiY",
+      "currentVersion": "3.0.7-fabric-1.21.6",
+      "currentVersionId": "2WVMrDc2",
+      "latestVersion": "3.0.17-fabric-1.21.6",
+      "latestVersionId": "pdqb4uEy",
+      "changelog": "- fixed the position of the first person hand when using custom player models on 1.21.9+\n- fixed the config not changing properly until a full game reload on 26.1\n- fixed a crash that could occur when opening the config screen\n\n",
+      "updateUrl": "https://modrinth.com/mod/4I1XuqiY/version/pdqb4uEy"
+    },
+    {
+      "name": "Puzzle",
+      "projectId": "3IuO68q1",
+      "currentVersion": "2.2.1+1.21.8-fabric",
+      "currentVersionId": "xnOQLcDf",
+      "latestVersion": "2.3.0+1.21.8-fabric",
+      "latestVersionId": "HUt5RNu0",
+      "changelog": "# Puzzle v2.3.0\n- Backported Minecraft 1.21.11's new multi-axis-rotation system for models to MC 1.20.1 - 1.21.10\n\n## Puzzle v2.2.1\n- Add support for 1.21.11 (Mounts of Mayhem)\n- Fix crash when ModMenu is missing\n- Fix 1.21.4 support by providing an extra build\n  - This is the first 1.21.4 build with working splashscreen logo blending!\n- Load splashscreen textures earlier on NeoForge\n- Update to MidnightLib 1.9.2\n\n# Puzzle v2.2.0\n- Setup a **multiversion** build environment\n    - Puzzle will now always be up-to-date on all relevant versions of Minecraft  \n      (Fabric/Forge 1.20.1; Fabric/NeoForge 1.21.1, 1.21.5, 1.21.8, 1.21.10)\n- Migrate to Mojang mappings in preparation for upcoming non-obfuscated releases\n- Updated Entity Model/Texture Features compatibility",
+      "updateUrl": "https://modrinth.com/mod/3IuO68q1/version/HUt5RNu0"
+    },
+    {
+      "name": "Xaero's Minimap",
+      "projectId": "1bokaNcj",
+      "currentVersion": "25.2.16_Fabric_1.21.8",
+      "currentVersionId": "dEIlpdij",
+      "latestVersion": "fabric-1.21.8-25.3.10",
+      "latestVersionId": "fZaO8piK",
+      "changelog": "[Read changelogs](https://chocolateminecraft.com/update.php?mod_id=0)",
+      "updateUrl": "https://modrinth.com/mod/1bokaNcj/version/fZaO8piK"
+    },
+    {
+      "name": "Controlify (Controller support)",
+      "projectId": "DOUdJVEm",
+      "currentVersion": "2.4.4",
+      "currentVersionId": "rxbLBXzv",
+      "latestVersion": "2.5.2",
+      "latestVersionId": "y2Ibl3Yp",
+      "changelog": "# Controlify 2.5.2\n\nThis version has the following targets:\n- StonecutterProject(project=1.21.11-fabric, version=1.21.11)\n- StonecutterProject(project=1.21.11-neoforge, version=1.21.11)\n- StonecutterProject(project=1.21.10-fabric, version=1.21.10)\n- StonecutterProject(project=1.21.10-neoforge, version=1.21.10)\n- StonecutterProject(project=1.21.8-fabric, version=1.21.8)\n- StonecutterProject(project=1.21.8-neoforge, version=1.21.8)\n- StonecutterProject(project=1.21.5-fabric, version=1.21.5)\n- StonecutterProject(project=1.21.5-neoforge, version=1.21.5)\n- StonecutterProject(project=1.21.4-fabric, version=1.21.4)\n- StonecutterProject(project=1.21.4-neoforge, version=1.21.4)\n- StonecutterProject(project=1.21.3-fabric, version=1.21.3)\n- StonecutterProject(project=1.21.3-neoforge, version=1.21.3)\n- StonecutterProject(project=1.21.1-fabric, version=1.21.1)\n- StonecutterProject(project=1.21.1-neoforge, version=1.21.1)\n\n[![](https://short.isxander.dev/bisect-img)](https://short.isxander.dev/bisect)\n\n**By donating on my [Patreon](https://patreon.com/isxander), you will gain access to builds of Controlify for splitscreen support and snapshot versions**\n\n## Changes\n\n- Fix controller vibrations causing input to freeze\n- Fix being stuck sneaking if GUI_BACK matches VMOUSE_SHIFT_CLICK\n- Add debug option to specify SDL natives path explicitly\n- Update translations\n",
+      "updateUrl": "https://modrinth.com/mod/DOUdJVEm/version/y2Ibl3Yp"
+    },
+    {
+      "name": "CraftPresence",
+      "projectId": "DFqQfIBR",
+      "currentVersion": "2.7.0+1.21.8-fabric",
+      "currentVersionId": "4vj0xtr0",
+      "latestVersion": "2.7.1+1.21.8-fabric",
+      "latestVersionId": "DyhE3Afw",
+      "changelog": "# CraftPresence Changes\n\n## v2.7.1 (03/02/2026)\n\n_A Detailed Changelog from the last release is\navailable [here](https://gitlab.com/CDAGaming/CraftPresence/-/compare/release%2Fv2.6.2...release%2Fv2.7.0)_\n\nSee the Mod Description or [README](https://gitlab.com/CDAGaming/CraftPresence) for more info regarding the mod.\n\n### Changes\n\n* (Backend) Updated Build Dependencies (Please see the appropriate repositories for changes)\n    * Unimined (`1.3.14` -> `1.0.5+1.4.2-SNAPSHOT`)\n    * JVMDowngrader (`1.2.2` -> `1.3.6`)\n    * Spotless (`8.0.0` -> `8.2.1`)\n    * Shadow (`9.2.2` -> `9.3.1`)\n    * SpotBugs Annotations (`4.9.6` -> `4.9.8`)\n    * ASM (`9.8` -> `9.9.1`)\n    * Fabric Loader (`0.17.2` -> `0.18.4`)\n    * UniCore (`1.3.3` -> `1.3.4`)\n    * LenniReflect (`1.5.0` -> `1.6.2`)\n    * ClassGraph (`4.8.181` -> `4.8.184`)\n    * Gradle (`8.14.3` -> `9.2.1`)\n    * DiscordIPC (`0.10.6` -> `0.11.3`)\n* Reduced file size from de-duplicating dependencies from `UniLib`\n* Added support for several new Rich Presence fields\n    * `Status Display Type` => Allows determining whether to display the `Name`, `State`, or `Details` section of the RPC as the short activity text\n    * URL Support for `State`, `Details`, `Large Image`, and `Small Image`\n    * `Application Name` => Allows for setting a custom name for the Discord Application being used\n* Updated the Rich Presence Visualizer to better represent what Discord would display\n    * Both Highlight and URL support have also been added, for the new RPC fields\n\n### Fixes\n\n* Fixed cases of the rich presence being unable to close once the game was exited, due to a Discord API change\n\n___\n\n### More Information\n\n#### Known Issues\n\nDespite configuration compatibility often being ensured between versions,\ncaution is advised to ensure the best experience, while also baring in mind that features can be adjusted, removed, or\nadded/iterated upon between releases.\n\nPlease refer to the Mod Description or [README](https://gitlab.com/CDAGaming/CraftPresence) to view more info relating\nto known issues.\n\n#### Snapshot Build Info\n\nSome Versions of this Mod are for Minecraft Snapshots or Experimental Versions, and as such, caution should be noted.\n\nAny Snapshot Build released will be marked as **ALPHA** to match its Snapshot Status depending on tests done before\nrelease\nand issues found.\n\nSnapshot Builds, depending on circumstances, may also contain changes for a future version of the mod, and will be noted\nas so if this is the case with the `-Staging` label.\n",
+      "updateUrl": "https://modrinth.com/mod/DFqQfIBR/version/DyhE3Afw"
+    }
+  ],
+  "fabricLoader": {
+    "currentVersion": "0.18.2",
+    "latestVersion": "0.18.6",
+    "changelogUrl": "https://fabricmc.net/wiki/changelog/loader/0.18.6"
+  }
+}
