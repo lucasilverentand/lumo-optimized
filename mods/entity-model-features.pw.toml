@@ -1,16 +1,13 @@
-filename = 'entity_model_features_1.21.6-fabric-3.0.7.jar'
-name = '[EMF] Entity Model Features'
-side = 'client'
-x-prismlauncher-loaders = [ 'quilt', 'fabric' ]
-x-prismlauncher-mc-versions = [ '1.21.6', '1.21.7', '1.21.8' ]
-x-prismlauncher-release-type = 'release'
+name = "[EMF] Entity Model Features"
+filename = "entity_model_features_1.21.6-fabric-3.2.jar"
+side = "client"
 
 [download]
-hash = 'a9ce04263b289cc429584f55fd7298c3d1d70b3194c38cf2af0568c45f2aa096d3a2cf0e58e8bce9151dc27e802abbba8e1bbd6c85db3758e083ebd78ccb0a98'
-hash-format = 'sha512'
-mode = 'url'
-url = 'https://cdn.modrinth.com/data/4I1XuqiY/versions/2WVMrDc2/entity_model_features_1.21.6-fabric-3.0.7.jar'
+url = "https://cdn.modrinth.com/data/4I1XuqiY/versions/r8nGKJWy/entity_model_features_1.21.6-fabric-3.2.jar"
+hash-format = "sha512"
+hash = "f78dda1870f1977adc234586e933dbe91f2f86b4d112bffb2f0f7b3059187992d8d16364d878de1e8375acd0ba8c2f003d3d1317ffcbffeb55eddce8ed75ea77"
 
+[update]
 [update.modrinth]
-mod-id = '4I1XuqiY'
-version = '2WVMrDc2'
+mod-id = "4I1XuqiY"
+version = "r8nGKJWy"
