@@ -1,0 +1,32 @@
+chore: update mods and Fabric loader
+
+## Mod Updates
+
+- YetAnotherConfigLib (YACL): 3.8.1+1.21.6-fabric → 3.8.2+1.21.6-fabric
+- CraftPresence: 2.7.0+1.21.8-fabric → 2.7.1+1.21.8-fabric
+- Entity Culling: 1.9.4 → 1.10.1
+- Xaero's World Map: 1.39.13_Fabric_1.21.8 → fabric-1.21.8-1.40.16
+- libIPN: fabric-1.21.6-6.6.1 → fabric-1.21.6-6.6.2
+- Xaero's Minimap: 25.2.16_Fabric_1.21.8 → fabric-1.21.8-25.3.12
+- Fabric Language Kotlin: 1.13.7+kotlin.2.2.21 → 1.13.11+kotlin.2.3.21
+- BetterGrassify: 1.8.2+fabric.1.21.10 → 1.8.6+fabric.1.21.10
+- MidnightLib: 1.9.2+1.21.8-fabric → 1.9.3+1.21.8-fabric
+- Controlify (Controller support): 2.4.4 → 2.5.2
+- Zoomify: 2.14.6+1.21.6 → 2.15.2+1.21.6
+- [ETF] Entity Texture Features: 7.0.6-fabric-1.21.6 → 7.1-fabric-1.21.6
+- Inventory Profiles Next: fabric-1.21.6-2.2.1 → fabric-1.21.6-2.2.4
+- Puzzle: 2.2.1+1.21.8-fabric → 2.3.0+1.21.8-fabric
+- FerriteCore: 8.0.0-fabric → 8.0.4-fabric
+- UniLib: 1.2.0+1.21.8-fabric → 1.2.1+1.21.8-fabric
+- ImmediatelyFast: 1.12.3+1.21.8-fabric → 1.12.5+1.21.8-fabric
+- Mod Menu: 15.0.0 → 15.0.2
+- [EMF] Entity Model Features: 3.0.7-fabric-1.21.6 → 3.2.2-fabric-1.21.6
+- Simple Voice Chat: fabric-1.21.8-2.6.7 → fabric-1.21.8-2.6.17
+- Dynamic FPS: 3.11.0 → 3.11.4
+- Crash Assistant: 1.10.26 → 1.11.9
+
+## Fabric Loader Update
+
+- 0.18.2 → 0.19.2
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
