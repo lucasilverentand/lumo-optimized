@@ -1,22 +1,6 @@
 hash-format = "sha256"
 
 [[files]]
-file = ".github/workflows/build.yml"
-hash = "8a60875a330a9b0c9763b373ae757027851c5eb5e598506295070f7fb3604332"
-
-[[files]]
-file = "Makefile"
-hash = "ae4b1a5cfa59099ebbdcd87f292efbc468f9ef8fcaf6743a34d15eb54fd9cfc7"
-
-[[files]]
-file = "README.md"
-hash = "518461c738bf8518ed00f748a58020f541546e96275c18dd9e21fd97dd1c027d"
-
-[[files]]
-file = "config/DistantHorizons.toml"
-hash = "8f40fe8dc77169e76e238d8c80d7de5cab34b926d9092feacc20d62986df0f70"
-
-[[files]]
 file = "config/NoChatReports/NCR-Client.json"
 hash = "edfe78d985fe67dce28104f3d87673e94c89134144451c291ecedcd2e2c3b480"
 
@@ -37,12 +21,16 @@ file = "config/PaginatedAdvancements.json5"
 hash = "7cdd05c67e1a940708170567a984928223240fd15080b450943fae86e3b4a039"
 
 [[files]]
-file = "config/animatica.properties"
-hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-
-[[files]]
 file = "config/appleskin.json5"
 hash = "ae87f2d1b38dfd4b1e0767dfeb539261deaaf4fd2eb73692afcbaac7147855b9"
+
+[[files]]
+file = "config/automation/mod-skip-list.json"
+hash = "1505843b17c89f6fc60a9e836d1645cd707d0396997cadd4146bb68829a5e336"
+
+[[files]]
+file = "config/automation/update-config.json"
+hash = "277052408b353016b35a4d8cb9a4eb1ab419f452b9c85b53710ee4e33a40760b"
 
 [[files]]
 file = "config/bettergrass.json"
@@ -78,7 +66,7 @@ hash = "52f394cd3754a29a6f236b1fe622bb430fa7e4632bce262eeb0333d71842bb52"
 
 [[files]]
 file = "config/crash_assistant/modlist.json"
-hash = "4f0d8e65d44c9171070582b9d59cead6cf7eaf1452c438b4791d3e190ecdb34b"
+hash = "e0a5e1d0c1a640f46c7cff12407babf2bcba6bf6ebb474cce8c421dd02e55d95"
 
 [[files]]
 file = "config/crash_assistant/problematic_mods_config.json"
@@ -90,7 +78,7 @@ hash = "2c090e764278788cf2ab6323bc9bdf699727bdbf79804c2f65c4425f3468527a"
 
 [[files]]
 file = "config/dynamic_fps.json"
-hash = "7770e96357840fe3a165a543ed0b48f387cd04920931ec3849a7861ac24c239a"
+hash = "a8dca41a10062da46c77ebaa508edea8948af041d902aea22f7cc62143dd90c6"
 
 [[files]]
 file = "config/entity_model_features.json"
@@ -102,7 +90,7 @@ hash = "0554c0e7816266477c65c18d2ada9fdddf1c6750787efd329056223ca4a073b2"
 
 [[files]]
 file = "config/entityculling.json"
-hash = "5110d83fa12df053d48eb3bcfded9d174e617910ce3e6c72f01dfc248c4e6abb"
+hash = "8edd56f7e5d5c5ba554f83bc7d6534442dfabbbde6bd5537267ff8a50a5e6783"
 
 [[files]]
 file = "config/etf_warnings.json"
@@ -218,7 +206,7 @@ hash = "b627c4456e6fa0bc4b5f85e2f1cd949faedae3cb9afdaf2a5f52e6f3b6ae1f01"
 
 [[files]]
 file = "config/sodium-options.json"
-hash = "d3482af3895ad31a3b9c59b26807eb9944ede706b3d314668ad83c94d61bd195"
+hash = "ae70ab335dd6dbedb3e4f9ce2245edbf6b77b37ac13026e3db1dbfe06618b102"
 
 [[files]]
 file = "config/sodium-shadowy-path-blocks-options.json"
@@ -265,6 +253,10 @@ file = "config/voicechat/voicechat-server.properties"
 hash = "afcfe81a3d3b7a3cb7d7151937c767efb8df8c8e1f9669665da9b3d33815c07e"
 
 [[files]]
+file = "config/voxy.txt"
+hash = "d59c50701842e6910640d36460fd36c71530754ccf35573411d630ee384d0a2e"
+
+[[files]]
 file = "config/worldeditcui.config.json"
 hash = "862eb44e855b5ff872006933278eaf6c17c04c4cb56c6a90f7e2b1c232a2920b"
 
@@ -301,17 +293,8 @@ file = "config/zoomify.json"
 hash = "60a78fe1b271ce9b53e295235eb5a7cdb3a8692ca583fdaa7f5bc09f9049e2f4"
 
 [[files]]
-file = "dist/lumo-optimized-1.0.0-curseforge.zip"
-hash = "633e6740015ff11722c98ca9eb4f2ea5e66d020a1474322e3e66012c16872e1b"
-
-[[files]]
 file = "icon.png"
 hash = "4fbd86232694ec395a3bc9f7130448f5642fe4b1014e40be7c906e1dbaa27ae4"
-
-[[files]]
-file = "mods/animatica.pw.toml"
-hash = "e53ce6797aaa0a24a10389d2a082db1ce42c892e86b3c989ee2b21849efd699d"
-metafile = true
 
 [[files]]
 file = "mods/appleskin.pw.toml"
@@ -371,11 +354,6 @@ metafile = true
 [[files]]
 file = "mods/debugify.pw.toml"
 hash = "773991ae21d8d78aa6d53c5892a44fa9e1df5900ec797c448919ba872015afe2"
-metafile = true
-
-[[files]]
-file = "mods/distanthorizons.pw.toml"
-hash = "30d982a38ebd4cdc1e085d5c111ef0ff45f60ad62c0cfba516dc962327ba73bf"
 metafile = true
 
 [[files]]
@@ -569,6 +547,11 @@ hash = "f727fbc55162f928114d584a260c798633615e16c57488ef60f5d3a21d1aaae3"
 metafile = true
 
 [[files]]
+file = "mods/voxy.pw.toml"
+hash = "e0535db18c9b33af85db1b3d6fa50881275a70e189246e893e0673bbc52bc6df"
+metafile = true
+
+[[files]]
 file = "mods/worldedit-cui.pw.toml"
 hash = "2bfb03676fc3c61bacf56e27aa785860c3c2bec0120d768b9173bc9896d70409"
 metafile = true
@@ -613,13 +596,13 @@ hash = "42b8a59616b3ed15a02e55466dff7ab400d481a8730949ce0168a927b71b91fb"
 metafile = true
 
 [[files]]
-file = "resourcepacks/low-on-fire.pw.toml"
-hash = "028c0c4eb8e7f76ee32ba6889bae9c058da066c049d2e3e6c1172f84f9f1c134"
+file = "resourcepacks/fresh-moves.pw.toml"
+hash = "bf825aff575d42c7b992d0e6b39cd92c28ea62fc1910007528779ea86711c33a"
 metafile = true
 
 [[files]]
-file = "resourcepacks/fresh-moves.pw.toml"
-hash = "bf825aff575d42c7b992d0e6b39cd92c28ea62fc1910007528779ea86711c33a"
+file = "resourcepacks/low-on-fire.pw.toml"
+hash = "028c0c4eb8e7f76ee32ba6889bae9c058da066c049d2e3e6c1172f84f9f1c134"
 metafile = true
 
 [[files]]

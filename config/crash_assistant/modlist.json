@@ -4,13 +4,6 @@
     "modId": "fabric",
     "version": "fabric-loader-0.18.2.jar"
   },
-  "animatica-0.6.1+1.21.5.jar": {
-    "jarName": "animatica-0.6.1+1.21.5.jar",
-    "modId": "animatica",
-    "version": "0.6.1+1.21.5",
-    "curseForgeHash": 602460333,
-    "modrinthHash": "48746e8fbf005ffd4b7018cf37339a312865c57b"
-  },
   "appleskin-fabric-mc1.21.6-3.0.6.jar": {
     "jarName": "appleskin-fabric-mc1.21.6-3.0.6.jar",
     "modId": "appleskin",
@@ -94,13 +87,6 @@
     "version": "1.21.8+1.0",
     "curseForgeHash": 3059905005,
     "modrinthHash": "5c2eaf9c1825a458ca279ee30ac0667c68d1b417"
-  },
-  "DistantHorizons-2.3.6-b-1.21.8-fabric-neoforge.jar": {
-    "jarName": "DistantHorizons-2.3.6-b-1.21.8-fabric-neoforge.jar",
-    "modId": "distanthorizons",
-    "version": "2.3.6-b",
-    "curseForgeHash": 517511341,
-    "modrinthHash": "f3694b8d7c8507a39bf62ee7986e1c3ebcf0d157"
   },
   "dynamic-fps-3.11.0+minecraft-1.21.6-fabric.jar": {
     "jarName": "dynamic-fps-3.11.0+minecraft-1.21.6-fabric.jar",

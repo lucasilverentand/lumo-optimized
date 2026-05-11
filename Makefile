@@ -1,7 +1,7 @@
 # Lumo Optimized Modpack - Build Scripts
 # Exports modpack to various launcher formats
 
-PACKWIZ := $(shell command -v packwiz 2>/dev/null || echo "$(HOME)/.local/share/mise/installs/go/1.25.3/bin/packwiz")
+PACKWIZ := $(shell command -v packwiz 2>/dev/null || (test -x "$(HOME)/go/bin/packwiz" && echo "$(HOME)/go/bin/packwiz") || echo "$(HOME)/.local/share/mise/installs/go/1.25.3/bin/packwiz")
 DIST_DIR := dist
 PACK_NAME := lumo-optimized
 VERSION := $(shell grep '^version' pack.toml | cut -d'"' -f2)
