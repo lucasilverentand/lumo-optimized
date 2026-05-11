@@ -8,7 +8,12 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
+
+concurrency:
+  group: release-please-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release-please:
@@ -22,7 +27,9 @@ jobs:
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
 
   build-and-upload:
     needs: release-please
@@ -51,10 +58,7 @@ jobs:
           MC_VERSION=$(grep '^minecraft' pack.toml | cut -d'"' -f2)
           echo "Building Lumo Optimized v${VERSION} for Minecraft ${MC_VERSION}"
 
-          mkdir -p dist
-          packwiz refresh
-          packwiz modrinth export -o "dist/lumo-optimized-${VERSION}.mrpack"
-          packwiz curseforge export -o "dist/lumo-optimized-${VERSION}-curseforge.zip"
+          make all
 
           ls -la dist/
 

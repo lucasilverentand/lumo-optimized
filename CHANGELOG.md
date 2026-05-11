@@ -37,40 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * reset version to 1.0.0 ([625be80](https://github.com/lucasilverentand/lumo-optimized/commit/625be80890b36d512494af323bce3e5278f9fb22))
 * sync pack.toml version to 1.0.0 ([22caaa4](https://github.com/lucasilverentand/lumo-optimized/commit/22caaa44fc97184cb2ad47d827c094dd622adaa2))
 
-## [1.2.1](https://github.com/lucasilverentand/lumo-optimized/compare/v1.2.0...v1.2.1) (2026-01-18)
-
-
-### Bug Fixes
-
-* remove invalid inputs from release-please v4 action ([c0d96ff](https://github.com/lucasilverentand/lumo-optimized/commit/c0d96ffe27f77f8ba39af24d467473c2e60f21e9))
-* simplify release to single modpack build ([247fd09](https://github.com/lucasilverentand/lumo-optimized/commit/247fd0927cd2a5686d64ade801ce312cd9c80a74))
-
-
-### Documentation
-
-* remove duplicate H1 headings from all pages ([50fc404](https://github.com/lucasilverentand/lumo-optimized/commit/50fc4044f86183a43168039f6dba09d524ceba36))
-* update for single modpack and multi-version releases ([57a66e9](https://github.com/lucasilverentand/lumo-optimized/commit/57a66e95d5e5cf63de9371b71df246abbbce0797))
-
-## [1.2.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.1.0...v1.2.0) (2026-01-18)
-
-
-### Features
-
-* add multi-branch release support for all Minecraft versions ([52ef63f](https://github.com/lucasilverentand/lumo-optimized/commit/52ef63fc68c68d0619c1948f887f459e399aac75))
-
-## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
-
-
-### Features
-
-* implement automated mod and version management system ([2f252c2](https://github.com/lucasilverentand/lumo-optimized/commit/2f252c235be3e94a096f95dd9847f2e9bea11274))
-
-
-### Bug Fixes
-
-* correct packwiz command syntax for mod updates ([8db09f2](https://github.com/lucasilverentand/lumo-optimized/commit/8db09f2c2370020dd5464afa1c675d0a95024490))
-* use correct packwiz syntax with both project-id and version-id ([77e4d9a](https://github.com/lucasilverentand/lumo-optimized/commit/77e4d9a6297b748c0dcaefc1ff37858182c63ce7))
-
 ## 1.0.0 (2026-01-17)
 
 
@@ -106,4 +72,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * add workflow_dispatch trigger to release-please ([158a537](https://github.com/lucasilverentand/lumo-optimized/commit/158a5378b02af4723f1fb5a071ecd2766914039e))
 * remove all benchmarking files and references ([ce8741c](https://github.com/lucasilverentand/lumo-optimized/commit/ce8741cb510569f52e0f4b23f871c8482c05d798))
 * reset release-please manifest to 0.0.0 ([c00f54a](https://github.com/lucasilverentand/lumo-optimized/commit/c00f54a58b950108c0a3ea40b36f460b5745bde0))
-
