@@ -142,7 +142,7 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "603544dee3ce745c308917eae6e12f18fc5a925a765d1642d2a26d7e4b230480"
+hash = "50bd9e6d1a4fd90dd3fb45a07bc66ffd0eefdf5097165a51be029c2cbda1486b"
 
 [[files]]
 file = "config/jade/hide-blocks.json"
@@ -206,7 +206,7 @@ hash = "00d45b0a7c71cda7d9867f1346741dd59c408f3917c4989cc6cd3ba0da2b0f67"
 
 [[files]]
 file = "config/sodium-extra-options.json"
-hash = "8d8759b4678b6ade846f9ac2624200cd541c52e1c3d7b287c2f0eda22de28b95"
+hash = "c03a0565f0588ede5feeed002c51ea4dcc3600c652d395180b540bd516ef5a33"
 
 [[files]]
 file = "config/sodium-extra.properties"
@@ -623,6 +623,6 @@ hash = "bf825aff575d42c7b992d0e6b39cd92c28ea62fc1910007528779ea86711c33a"
 metafile = true
 
 [[files]]
-file = "shaderpacks/complementary-unbound.pw.toml"
-hash = "134b3cee2ac2b5c5b9d02d8d70e8e4ba32c7c241f5bc51209521831a7c254e22"
+file = "shaderpacks/photon.pw.toml"
+hash = "3add1378e964947556ec43ebc86a431981cfa67c9b95353105d7f48deb58ff3d"
 metafile = true
