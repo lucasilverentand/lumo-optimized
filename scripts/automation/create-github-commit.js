@@ -151,7 +151,7 @@ async function upsertRef(octokit, owner, repo, branch, sha) {
       force: true
     });
   } catch (error) {
-    if (error.status !== 404) {
+    if (!isMissingRefError(error)) {
       throw error;
     }
 
@@ -162,6 +162,11 @@ async function upsertRef(octokit, owner, repo, branch, sha) {
       sha
     });
   }
+}
+
+function isMissingRefError(error) {
+  return error.status === 404 ||
+    (error.status === 422 && String(error.message).includes('Reference does not exist'));
 }
 
 async function writeOutputs(outputs) {
