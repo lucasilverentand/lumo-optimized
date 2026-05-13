@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
   issues: write
@@ -22,11 +23,11 @@ jobs:
     name: Create release candidate
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout release source
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.ref_name || 'main' }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -50,52 +51,18 @@ jobs:
         id: candidate
         run: bun run release:candidate
 
-      - name: Configure signed release commits
-        if: steps.candidate.outputs.has_updates == 'true'
-        env:
-          RELEASE_COMMIT_SSH_PRIVATE_KEY: ${{ secrets.RELEASE_COMMIT_SSH_PRIVATE_KEY }}
-        run: |
-          if [ -z "$RELEASE_COMMIT_SSH_PRIVATE_KEY" ]; then
-            echo "::error::Set RELEASE_COMMIT_SSH_PRIVATE_KEY so release creator commits are signed."
-            exit 1
-          fi
-
-          mkdir -p ~/.ssh
-          printf '%s\n' "$RELEASE_COMMIT_SSH_PRIVATE_KEY" > ~/.ssh/release_commit_signing_key
-          chmod 600 ~/.ssh/release_commit_signing_key
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config gpg.format ssh
-          git config user.signingkey ~/.ssh/release_commit_signing_key
-          git config commit.gpgsign true
-
-      - name: Commit release candidate
+      - name: Create verified release commit
         if: steps.candidate.outputs.has_updates == 'true'
         id: commit
+        env:
+          COMMIT_MESSAGE_FILE: ${{ steps.candidate.outputs.commit_message_file }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git checkout -B "$RELEASE_BRANCH"
-
-          git add \
-            config \
-            index.toml \
-            mods \
-            overrides \
-            pack.toml \
-            resourcepacks \
-            shaderpacks
-
-          if git diff --cached --quiet; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          git commit -S -F "${{ steps.candidate.outputs.commit_message_file }}"
-          git push --force-with-lease origin "$RELEASE_BRANCH"
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          bun run scripts/automation/create-github-commit.js
 
       - name: Open or update release candidate PR
         if: steps.commit.outputs.has_changes == 'true'
+        id: pr
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
@@ -131,7 +98,52 @@ jobs:
           fi
 
           gh pr edit "$RELEASE_BRANCH" --remove-label validated || true
+          PR_NUMBER=$(gh pr view "$RELEASE_BRANCH" --json number --jq .number)
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
+      - name: Run release candidate checks
+        if: steps.commit.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          HEAD_SHA: ${{ steps.commit.outputs.commit_sha }}
+        run: |
+          gh workflow run build.yml --ref "$RELEASE_BRANCH"
+          gh workflow run validate-compatibility.yml --ref "$RELEASE_BRANCH" -f pr_number="$PR_NUMBER"
+
+          wait_for_run() {
+            local workflow="$1"
+            local run_id=""
+
+            for _ in $(seq 1 30); do
+              run_id=$(gh run list \
+                --workflow "$workflow" \
+                --branch "$RELEASE_BRANCH" \
+                --event workflow_dispatch \
+                --json databaseId,headSha \
+                --jq ".[] | select(.headSha == \"$HEAD_SHA\") | .databaseId" \
+                | head -n 1)
+
+              if [ -n "$run_id" ]; then
+                gh run watch "$run_id" --exit-status
+                return
+              fi
+
+              sleep 2
+            done
+
+            echo "::error::Timed out waiting for $workflow to start for $HEAD_SHA."
+            exit 1
+          }
+
+          wait_for_run build.yml
+          wait_for_run validate-compatibility.yml
+
+      - name: Enable release candidate auto-merge
+        if: steps.commit.outputs.has_changes == 'true' && vars.RELEASE_CREATOR_AUTO_MERGE == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
           if [ "${{ vars.RELEASE_CREATOR_AUTO_MERGE }}" = "true" ]; then
             gh pr merge "$RELEASE_BRANCH" \
               --auto \

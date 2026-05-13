@@ -43,6 +43,7 @@ async function main() {
   }
 
   await run('bun', ['run', 'scripts/automation/apply-updates.js']);
+  await removeLegacyGeneratedFiles();
   await run('bun', ['run', 'scripts/automation/validate-compatibility.js']);
   await run(getPackwizCommand(), ['refresh']);
 
@@ -234,6 +235,10 @@ function run(command, args) {
 
 function getPackwizCommand() {
   return process.env.PACKWIZ || 'packwiz';
+}
+
+async function removeLegacyGeneratedFiles() {
+  await fs.rm('.commit-message.txt', { force: true });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
