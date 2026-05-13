@@ -62,9 +62,49 @@ jobs:
 
           ls -la dist/
 
+      - name: Smoke test release artifacts
+        env:
+          VERSION: ${{ needs.release-please.outputs.version }}
+        run: |
+          test -s "dist/lumo-optimized-${VERSION}.mrpack"
+          test -s "dist/lumo-optimized-${VERSION}-curseforge.zip"
+
+          unzip -t "dist/lumo-optimized-${VERSION}.mrpack"
+          unzip -t "dist/lumo-optimized-${VERSION}-curseforge.zip"
+
       - name: Upload release artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
           gh release upload "${TAG_NAME}" dist/*.mrpack dist/*.zip --clobber
+
+  auto-merge-release-pr:
+    needs: release-please
+    if: vars.RELEASE_CREATOR_AUTO_RELEASE == 'true' && needs.release-please.outputs.release_created != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge for Release Please PR
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --head release-please--branches--main \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No open Release Please PR found."
+            exit 0
+          fi
+
+          gh pr merge "$PR_NUMBER" \
+            --repo "$GITHUB_REPOSITORY" \
+            --auto \
+            --merge \
+            --delete-branch

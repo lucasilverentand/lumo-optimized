@@ -69,9 +69,15 @@ make list
 
 Releases are managed by Release Please from conventional commits on `main`.
 
-1. Merge feature and fix work using commit messages such as `feat: update mods` or `fix: correct pack export`.
+The `Release Creator` workflow runs daily and can also be started manually. It checks Modrinth and Fabric metadata, applies available updates, validates compatibility, builds both pack exports, smoke-tests the archives, and maintains a single `automation/release-candidate` pull request. That fixed branch prevents the duplicate daily PR pile-up.
+
+1. Merge the release-candidate PR after review. Its commit uses `fix(deps): ...`, so Release Please includes it in the next patch release.
 2. Release Please opens or updates a release PR with the changelog and version bumps for `pack.toml` and `package.json`.
-3. Merge the release PR. The workflow creates the GitHub release, builds the Modrinth and CurseForge exports, and uploads both files to the release.
+3. Merge the Release Please PR. The workflow creates the GitHub release, builds the Modrinth and CurseForge exports, smoke-tests both files, and uploads them to the release.
+
+For fully automatic releases, set repository variables `RELEASE_CREATOR_AUTO_MERGE=true` and `RELEASE_CREATOR_AUTO_RELEASE=true`. With both enabled, GitHub auto-merges the release-candidate PR after checks pass, then auto-merges the Release Please PR, which creates the release and uploads artifacts.
+
+The release creator refuses to commit unless `RELEASE_COMMIT_SSH_PRIVATE_KEY` is configured, so automated update commits stay signed. The matching public key must be registered on the committing GitHub account for GitHub to show the commits as verified.
 
 The workflow can use the default `GITHUB_TOKEN`. Add a `RELEASE_PLEASE_TOKEN` repository secret if release PRs need normal CI runs triggered from the bot-created branch.
 
