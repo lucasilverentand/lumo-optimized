@@ -12,6 +12,9 @@
 /docs/
 /node_modules/
 /package.json
+/updates.json
+/.commit-message.txt
+/.release-candidate/
 /release-please-config.json
 /renovate.json
 /scripts/
