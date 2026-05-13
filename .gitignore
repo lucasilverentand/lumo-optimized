@@ -32,6 +32,7 @@ Desktop.ini
 # Cache directories
 .puzzle_cache/
 .update-cache/
+validation-results.json
 
 # Node/Bun dependencies
 node_modules/
@@ -39,7 +40,6 @@ bun.lockb
 
 # Packwiz temp files
 *.tmp
-.packwizignore
 
 # User-specific config files that shouldn't be distributed
 config/sodium-fingerprint.json

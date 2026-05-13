@@ -93,7 +93,6 @@ The workflow can use the default `GITHUB_TOKEN`. Add a `RELEASE_PLEASE_TOKEN` re
 - Voxy - See farther with LODs (up to 10x faster than alternatives)
 - Continuity - Connected textures
 - BetterGrassify - Better grass rendering
-- Animatica - Animated textures support
 - Fresh Animations - Mob animation overhaul
 - Fresh Moves - Player animation improvements
 - Better Leaves - Improved leaf textures
