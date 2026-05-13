@@ -10,6 +10,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  statuses: write
 
 concurrency:
   group: release-creator
@@ -78,6 +79,10 @@ jobs:
             --description "PR needs automated validation" \
             --color "d73a4a" \
             --force
+          gh label create validated \
+            --description "Automated validation passed" \
+            --color "0e8a16" \
+            --force
 
           if gh pr view "$RELEASE_BRANCH" >/dev/null 2>&1; then
             gh pr edit "$RELEASE_BRANCH" \
@@ -108,11 +113,35 @@ jobs:
           PR_NUMBER: ${{ steps.pr.outputs.number }}
           HEAD_SHA: ${{ steps.commit.outputs.commit_sha }}
         run: |
+          set_status() {
+            local state="$1"
+            local context="$2"
+            local description="$3"
+            local target_url="${4:-}"
+            local args=(
+              repos/"$GITHUB_REPOSITORY"/statuses/"$HEAD_SHA"
+              -f "state=$state"
+              -f "context=$context"
+              -f "description=$description"
+            )
+
+            if [ -n "$target_url" ]; then
+              args+=(-f "target_url=$target_url")
+            fi
+
+            gh api "${args[@]}" >/dev/null
+          }
+
+          set_status pending "release-candidate/build" "Build Modpack is running"
+          set_status pending "release-candidate/validation" "Compatibility validation is running"
+
           gh workflow run build.yml --ref "$RELEASE_BRANCH"
           gh workflow run validate-compatibility.yml --ref "$RELEASE_BRANCH" -f pr_number="$PR_NUMBER"
 
           wait_for_run() {
             local workflow="$1"
+            local context="$2"
+            local description="$3"
             local run_id=""
 
             for _ in $(seq 1 30); do
@@ -125,19 +154,32 @@ jobs:
                 | head -n 1)
 
               if [ -n "$run_id" ]; then
-                gh run watch "$run_id" --exit-status
-                return
+                local run_url
+                run_url=$(gh run view "$run_id" --json url --jq .url)
+
+                if gh run watch "$run_id" --exit-status; then
+                  set_status success "$context" "$description" "$run_url"
+                  return
+                fi
+
+                set_status failure "$context" "$workflow failed" "$run_url"
+                return 1
               fi
 
               sleep 2
             done
 
+            set_status failure "$context" "$workflow did not start"
             echo "::error::Timed out waiting for $workflow to start for $HEAD_SHA."
             exit 1
           }
 
-          wait_for_run build.yml
-          wait_for_run validate-compatibility.yml
+          wait_for_run build.yml "release-candidate/build" "Build Modpack passed"
+          wait_for_run validate-compatibility.yml "release-candidate/validation" "Compatibility validation passed"
+
+          gh pr ready "$PR_NUMBER" || true
+          gh pr edit "$PR_NUMBER" --remove-label "needs-validation" || true
+          gh pr edit "$PR_NUMBER" --add-label "validated"
 
       - name: Enable release candidate auto-merge
         if: steps.commit.outputs.has_changes == 'true' && vars.RELEASE_CREATOR_AUTO_MERGE == 'true'
