@@ -77,9 +77,9 @@ The `Release Creator` workflow runs daily and can also be started manually. It c
 
 For fully automatic releases, set repository variables `RELEASE_CREATOR_AUTO_MERGE=true` and `RELEASE_CREATOR_AUTO_RELEASE=true`. With both enabled, GitHub auto-merges the release-candidate PR after checks pass, then auto-merges the Release Please PR, which creates the release and uploads artifacts.
 
-The release creator refuses to commit unless `RELEASE_COMMIT_SSH_PRIVATE_KEY` is configured, so automated update commits stay signed. The matching public key must be registered on the committing GitHub account for GitHub to show the commits as verified.
+The release creator uses GitHub's API with the default `GITHUB_TOKEN` to create verified bot commits, so no signing key secret is required. Because `GITHUB_TOKEN` events do not trigger the normal PR workflow cascade, the release creator explicitly dispatches the build and validation workflows for the generated candidate branch before enabling auto-merge.
 
-The workflow can use the default `GITHUB_TOKEN`. Add a `RELEASE_PLEASE_TOKEN` repository secret if release PRs need normal CI runs triggered from the bot-created branch.
+Add a `RELEASE_PLEASE_TOKEN` repository secret only if release PRs need normal CI runs triggered from bot-created branches.
 
 ## Mod List
 
