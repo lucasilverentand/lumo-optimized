@@ -17,6 +17,7 @@ const execAsync = promisify(exec);
  */
 async function main() {
   console.log('🔍 Validating mod compatibility...\n');
+  const packwiz = process.env.PACKWIZ || 'packwiz';
 
   const results = {
     timestamp: new Date().toISOString(),
@@ -135,7 +136,7 @@ async function main() {
     console.log('3️⃣  Build Validation: Testing packwiz refresh...\n');
 
     try {
-      const { stdout, stderr } = await execAsync('packwiz refresh', { cwd: process.cwd() });
+      const { stdout, stderr } = await execAsync(`${packwiz} refresh`, { cwd: process.cwd() });
 
       if (stderr && !stderr.includes('Refreshing')) {
         results.buildValidation.issues.push(`Packwiz stderr: ${stderr}`);

@@ -16,6 +16,8 @@ async function main() {
   console.log('🔧 Applying updates...\n');
 
   try {
+    const packwiz = process.env.PACKWIZ || 'packwiz';
+
     // Load updates.json
     const updatesPath = path.join(process.cwd(), 'updates.json');
     const updatesData = await fs.readFile(updatesPath, 'utf-8');
@@ -45,7 +47,7 @@ async function main() {
         try {
           // Use packwiz to update the mod to the specific version
           const { stdout, stderr } = await execAsync(
-            `packwiz modrinth add --project-id ${mod.projectId} --version-id ${mod.latestVersionId} -y`,
+            `${packwiz} modrinth add --project-id ${mod.projectId} --version-id ${mod.latestVersionId} -y`,
             { cwd: process.cwd() }
           );
 
@@ -89,7 +91,7 @@ async function main() {
     // Run packwiz refresh to update hashes
     console.log('♻️  Refreshing packwiz index...');
     try {
-      const { stdout } = await execAsync('packwiz refresh', { cwd: process.cwd() });
+      const { stdout } = await execAsync(`${packwiz} refresh`, { cwd: process.cwd() });
       console.log(stdout);
       console.log('✅ Packwiz index refreshed\n');
     } catch (error) {
@@ -138,7 +140,7 @@ function generateCommitMessage(updates) {
     lines.push('## Mod Updates');
     lines.push('');
     updates.mods.forEach(mod => {
-      lines.push(`- ${mod.name}: ${mod.currentVersion} → ${mod.latestVersion}`);
+      lines.push(`- ${mod.name}: ${mod.currentVersion} -> ${mod.latestVersion}`);
     });
     lines.push('');
   }
@@ -147,12 +149,9 @@ function generateCommitMessage(updates) {
   if (updates.fabricLoader) {
     lines.push('## Fabric Loader Update');
     lines.push('');
-    lines.push(`- ${updates.fabricLoader.currentVersion} → ${updates.fabricLoader.latestVersion}`);
+    lines.push(`- ${updates.fabricLoader.currentVersion} -> ${updates.fabricLoader.latestVersion}`);
     lines.push('');
   }
-
-  // Footer
-  lines.push('Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>');
 
   return lines.join('\n');
 }

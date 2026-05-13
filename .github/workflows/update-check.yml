@@ -1,21 +1,32 @@
-name: Automated Update Check
+name: Release Creator
 
 on:
   schedule:
-    - cron: "0 2 * * 1" # Weekly on Mondays at 2 AM UTC
+    - cron: "0 2 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: release-creator
+  cancel-in-progress: false
+
+env:
+  RELEASE_BRANCH: automation/release-candidate
 
 jobs:
-  check-and-apply-updates:
-    name: Check and apply mod updates
+  release-candidate:
+    name: Create release candidate
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout main
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -23,7 +34,7 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -33,53 +44,113 @@ jobs:
       - name: Install packwiz
         run: |
           go install github.com/packwiz/packwiz@latest
-          echo "$HOME/go/bin" >> $GITHUB_PATH
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
 
-      - name: Check for updates
-        id: check
+      - name: Prepare release candidate
+        id: candidate
+        run: bun run release:candidate
+
+      - name: Configure signed release commits
+        if: steps.candidate.outputs.has_updates == 'true'
+        env:
+          RELEASE_COMMIT_SSH_PRIVATE_KEY: ${{ secrets.RELEASE_COMMIT_SSH_PRIVATE_KEY }}
         run: |
-          bun run scripts/automation/check-updates.js
-          if [ -f updates.json ]; then
-            MOD_COUNT=$(jq '.mods | length' updates.json)
-            HAS_LOADER=$(jq '.fabricLoader != null' updates.json)
-            if [ "$MOD_COUNT" -gt 0 ] || [ "$HAS_LOADER" = "true" ]; then
-              echo "has_updates=true" >> $GITHUB_OUTPUT
-            else
-              echo "has_updates=false" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "has_updates=false" >> $GITHUB_OUTPUT
+          if [ -z "$RELEASE_COMMIT_SSH_PRIVATE_KEY" ]; then
+            echo "::error::Set RELEASE_COMMIT_SSH_PRIVATE_KEY so release creator commits are signed."
+            exit 1
           fi
 
-      - name: Apply updates
-        if: steps.check.outputs.has_updates == 'true'
-        run: bun run scripts/automation/apply-updates.js
+          mkdir -p ~/.ssh
+          printf '%s\n' "$RELEASE_COMMIT_SSH_PRIVATE_KEY" > ~/.ssh/release_commit_signing_key
+          chmod 600 ~/.ssh/release_commit_signing_key
 
-      - name: Commit and push
-        if: steps.check.outputs.has_updates == 'true'
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git config gpg.format ssh
+          git config user.signingkey ~/.ssh/release_commit_signing_key
+          git config commit.gpgsign true
 
-          # Build commit message from updates.json
-          MOD_COUNT=$(jq '.mods | length' updates.json)
-          MODS=$(jq -r '.mods[].name' updates.json | paste -sd ', ' -)
-          HAS_LOADER=$(jq '.fabricLoader != null' updates.json)
+      - name: Commit release candidate
+        if: steps.candidate.outputs.has_updates == 'true'
+        id: commit
+        run: |
+          git checkout -B "$RELEASE_BRANCH"
 
-          MSG="feat: update mods"
-          BODY=""
-          if [ "$MOD_COUNT" -gt 0 ]; then
-            BODY="Updated mods: ${MODS}"
+          git add \
+            config \
+            index.toml \
+            mods \
+            overrides \
+            pack.toml \
+            resourcepacks \
+            shaderpacks
+
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
-          if [ "$HAS_LOADER" = "true" ]; then
-            LOADER_VER=$(jq -r '.fabricLoader.latestVersion' updates.json)
-            if [ -n "$BODY" ]; then
-              BODY="${BODY}\nFabric Loader updated to ${LOADER_VER}"
-            else
-              BODY="Fabric Loader updated to ${LOADER_VER}"
-            fi
+
+          git commit -S -F "${{ steps.candidate.outputs.commit_message_file }}"
+          git push --force-with-lease origin "$RELEASE_BRANCH"
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update release candidate PR
+        if: steps.commit.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create release-candidate \
+            --description "Automated release candidate" \
+            --color "5319e7" \
+            --force
+          gh label create automated-update \
+            --description "Automated mod update PR" \
+            --color "0366d6" \
+            --force
+          gh label create needs-validation \
+            --description "PR needs automated validation" \
+            --color "d73a4a" \
+            --force
+
+          if gh pr view "$RELEASE_BRANCH" >/dev/null 2>&1; then
+            gh pr edit "$RELEASE_BRANCH" \
+              --title "fix(deps): update modpack release candidate" \
+              --body-file "${{ steps.candidate.outputs.pr_body_file }}" \
+              --add-label release-candidate \
+              --add-label automated-update \
+              --add-label needs-validation
+          else
+            gh pr create \
+              --base main \
+              --head "$RELEASE_BRANCH" \
+              --title "fix(deps): update modpack release candidate" \
+              --body-file "${{ steps.candidate.outputs.pr_body_file }}" \
+              --label release-candidate \
+              --label automated-update \
+              --label needs-validation
           fi
 
-          git commit -m "${MSG}" -m "${BODY}"
-          git push
+          gh pr edit "$RELEASE_BRANCH" --remove-label validated || true
+
+          if [ "${{ vars.RELEASE_CREATOR_AUTO_MERGE }}" = "true" ]; then
+            gh pr merge "$RELEASE_BRANCH" \
+              --auto \
+              --merge \
+              --delete-branch
+          fi
+
+      - name: Report no updates
+        if: steps.candidate.outputs.has_updates == 'false'
+        run: cat "${{ steps.candidate.outputs.summary_file }}"
+
+      - name: Upload release candidate summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-candidate-summary
+          path: |
+            .release-candidate/*.md
+            updates.json
+            validation-results.json
+          if-no-files-found: ignore
+          retention-days: 30

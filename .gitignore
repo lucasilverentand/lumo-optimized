@@ -32,7 +32,10 @@ Desktop.ini
 # Cache directories
 .puzzle_cache/
 .update-cache/
+.release-candidate/
+updates.json
 validation-results.json
+.commit-message.txt
 
 # Node/Bun dependencies
 node_modules/
