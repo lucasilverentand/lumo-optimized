@@ -65,6 +65,16 @@ make update
 make list
 ```
 
+## Releasing
+
+Releases are managed by Release Please from conventional commits on `main`.
+
+1. Merge feature and fix work using commit messages such as `feat: update mods` or `fix: correct pack export`.
+2. Release Please opens or updates a release PR with the changelog and version bumps for `pack.toml` and `package.json`.
+3. Merge the release PR. The workflow creates the GitHub release, builds the Modrinth and CurseForge exports, and uploads both files to the release.
+
+The workflow can use the default `GITHUB_TOKEN`. Add a `RELEASE_PLEASE_TOKEN` repository secret if release PRs need normal CI runs triggered from the bot-created branch.
+
 ## Mod List
 
 ### Performance
