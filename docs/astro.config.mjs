@@ -16,7 +16,7 @@ export default defineConfig({
 				src: './src/assets/icon.png',
 			},
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/lucasilverentand/lumo-optimized' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/lumo-minecraft/lumo-optimized' },
 			],
 			sidebar: [
 				{
@@ -56,7 +56,7 @@ export default defineConfig({
 				},
 			],
 			editLink: {
-				baseUrl: 'https://github.com/lucasilverentand/lumo-optimized/edit/main/docs/',
+				baseUrl: 'https://github.com/lumo-minecraft/lumo-optimized/edit/main/docs/',
 			},
 			lastUpdated: true,
 		}),

@@ -9,7 +9,7 @@ Thank you for your interest in contributing to Lumo Optimized! This document pro
 If you'd like to suggest a mod to be added or removed:
 
 1. Check if there's already an issue for the mod
-2. Create a new [Feature Request](https://github.com/lucasilverentand/lumo-optimized/issues/new/choose)
+2. Create a new [Feature Request](https://github.com/lumo-minecraft/lumo-optimized/issues/new/choose)
 3. Provide the following information:
    - Mod name and link (Modrinth/CurseForge)
    - Why it should be added/removed
@@ -21,7 +21,7 @@ If you'd like to suggest a mod to be added or removed:
 If you encounter a bug:
 
 1. Check if the bug has already been reported
-2. Create a new [Bug Report](https://github.com/lucasilverentand/lumo-optimized/issues/new/choose)
+2. Create a new [Bug Report](https://github.com/lumo-minecraft/lumo-optimized/issues/new/choose)
 3. Include:
    - Modpack version
    - Minecraft version

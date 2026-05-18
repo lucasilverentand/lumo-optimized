@@ -1,9 +1,13 @@
+<p align="center">
+  <img src=".github/assets/lumo-logo.png" alt="Lumo logo" width="128">
+</p>
+
 # Lumo Optimized
 
-[![Build Status](https://github.com/lucasilverentand/lumo-optimized/workflows/Build%20Modpack/badge.svg)](https://github.com/lucasilverentand/lumo-optimized/actions)
-[![Latest Release](https://img.shields.io/github/v/release/lucasilverentand/lumo-optimized)](https://github.com/lucasilverentand/lumo-optimized/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/lucasilverentand/lumo-optimized/total)](https://github.com/lucasilverentand/lumo-optimized/releases)
-[![License](https://img.shields.io/github/license/lucasilverentand/lumo-optimized)](LICENSE)
+[![Build Status](https://github.com/lumo-minecraft/lumo-optimized/workflows/Build%20Modpack/badge.svg)](https://github.com/lumo-minecraft/lumo-optimized/actions)
+[![Latest Release](https://img.shields.io/github/v/release/lumo-minecraft/lumo-optimized)](https://github.com/lumo-minecraft/lumo-optimized/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/lumo-minecraft/lumo-optimized/total)](https://github.com/lumo-minecraft/lumo-optimized/releases)
+[![License](https://img.shields.io/github/license/lumo-minecraft/lumo-optimized)](LICENSE)
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.3--1.21.8-brightgreen)](https://www.minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-dbd0b4)](https://fabricmc.net/)
 
