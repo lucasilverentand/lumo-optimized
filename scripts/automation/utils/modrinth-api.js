@@ -111,7 +111,7 @@ export class ModrinthAPI {
             const response = await axios.get(url, {
               ...options,
               headers: {
-                'User-Agent': 'lucasilverentand/lumo-optimized (github.com/lucasilverentand/lumo-optimized)',
+                'User-Agent': 'lumo-minecraft/lumo-optimized (github.com/lumo-minecraft/lumo-optimized)',
                 ...options.headers
               }
             });

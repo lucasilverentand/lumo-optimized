@@ -81,7 +81,7 @@ export class FabricMetaAPI {
     try {
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': 'lucasilverentand/lumo-optimized (github.com/lucasilverentand/lumo-optimized)'
+          'User-Agent': 'lumo-minecraft/lumo-optimized (github.com/lumo-minecraft/lumo-optimized)'
         }
       });
 
@@ -171,7 +171,7 @@ export class FabricMetaAPI {
     try {
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': 'lucasilverentand/lumo-optimized (github.com/lucasilverentand/lumo-optimized)'
+          'User-Agent': 'lumo-minecraft/lumo-optimized (github.com/lumo-minecraft/lumo-optimized)'
         }
       });
 

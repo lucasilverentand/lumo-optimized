@@ -4,5 +4,5 @@ contact_links:
     url: https://discord.gg/your-discord-here
     about: Join our Discord for general questions and support
   - name: Mod Issues
-    url: https://github.com/lucasilverentand/lumo-optimized/issues
+    url: https://github.com/lumo-minecraft/lumo-optimized/issues
     about: For issues with specific mods, please report to their respective repositories
