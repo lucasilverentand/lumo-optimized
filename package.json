@@ -1,6 +1,6 @@
 {
   "name": "lumo-optimized",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A performance-focused Fabric modpack for Minecraft 1.21.8 optimized for low-end devices",
   "scripts": {
     "build": "make modrinth curseforge",

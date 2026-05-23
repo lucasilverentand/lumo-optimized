@@ -5,6 +5,34 @@ All notable changes to Lumo Optimized will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/lumo-minecraft/lumo-optimized/compare/v1.1.0...v1.2.0) (2026-05-23)
+
+
+### Features
+
+* add self-running release creator ([#141](https://github.com/lumo-minecraft/lumo-optimized/issues/141)) ([2a1196f](https://github.com/lumo-minecraft/lumo-optimized/commit/2a1196fb2fc3aa4608c23398c9fcf04383578e31))
+
+
+### Bug Fixes
+
+* create missing release candidate ref ([fbea023](https://github.com/lumo-minecraft/lumo-optimized/commit/fbea0237cbebb4e36601722c1515ace4909ef9f2))
+* create release commits through GitHub ([5805adc](https://github.com/lumo-minecraft/lumo-optimized/commit/5805adc5ba252c320fc588a84ff8081c8fda416f))
+* **deps:** make astro security update installable ([91ca9d4](https://github.com/lumo-minecraft/lumo-optimized/commit/91ca9d4d0bfbcb8880835371a8f643cc98780a77))
+* **deps:** merge Astro security update ([5b3b0b4](https://github.com/lumo-minecraft/lumo-optimized/commit/5b3b0b491395f2b3db4285f08020b255d5aec092))
+* **deps:** update dependency astro to v6 [security] ([b7a0bc7](https://github.com/lumo-minecraft/lumo-optimized/commit/b7a0bc750f2a931e955264c7bb9890bd21b2b9bf))
+* mark release candidate checks on PR ([78bf860](https://github.com/lumo-minecraft/lumo-optimized/commit/78bf860ad5098b3f3e1d854653dbb81cf23079d6))
+* repair shader pack loading across editions ([#140](https://github.com/lumo-minecraft/lumo-optimized/issues/140)) ([1d77be7](https://github.com/lumo-minecraft/lumo-optimized/commit/1d77be7a3d46a3125465dd39b8b4515118d94738))
+
+
+### Miscellaneous
+
+* add Lumo branding assets ([0ea44fb](https://github.com/lumo-minecraft/lumo-optimized/commit/0ea44fb3aee6c07535ee108bb24f968f14d209e8))
+* add renovate config ([771554f](https://github.com/lumo-minecraft/lumo-optimized/commit/771554f17a4c458d427e25d91859474b72c33434))
+* **deps:** bump devalue ([22cdb5c](https://github.com/lumo-minecraft/lumo-optimized/commit/22cdb5cf5b012bea2ad2e04466ac9db7e9891599))
+* **deps:** bump devalue from 5.8.0 to 5.8.1 in /docs in the npm_and_yarn group across 1 directory ([33314fc](https://github.com/lumo-minecraft/lumo-optimized/commit/33314fc830dab6495f451f2c11816f5ef74b1308))
+* **deps:** pin dependencies ([5da7f82](https://github.com/lumo-minecraft/lumo-optimized/commit/5da7f8286432d28eaf1dd0732ee158cb4871e13d))
+* **deps:** pin dependencies ([224d73c](https://github.com/lumo-minecraft/lumo-optimized/commit/224d73c26407f0bf42b755d9bfa4b6cd6a04bd51))
+
 ## [1.1.0](https://github.com/lucasilverentand/lumo-optimized/compare/v1.0.0...v1.1.0) (2026-01-18)
 
 
